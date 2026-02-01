@@ -20,6 +20,10 @@ echo    1. Performance: Auto Date/Time must be DISABLED.
 echo    2. Logic: No Bi-Directional Relationships allowed.
 echo    3. Documentation: All Measures must have Description properties.
 echo.
+echo AUTOMATIC ACTIONS:
+echo    - Results logged to: logs\governance_log.csv
+echo    - Documentation generated: {ReportName}.Report\DOCUMENTATION.md
+echo.
 echo ========================================================
 echo.
 echo  Running Validation Script...

@@ -1,6 +1,8 @@
 import os
 import re
 import sys
+import csv
+from datetime import datetime
 
 # Force UTF-8 encoding for stdout
 sys.stdout.reconfigure(encoding='utf-8')
@@ -20,10 +22,53 @@ def print_colored(text, color):
     os.system('') 
     print(f"{color}{text}{Colors.RESET}")
 
-def check_governance(start_dir):
+def get_developer_name():
+    """Get developer name from Windows username"""
+    return os.getenv('USERNAME', 'Unknown')
+
+def generate_documentation_for_report(semantic_model_dir, report_dir, developer):
+    """Generate documentation for a single report"""
+    try:
+        # Import documentation generator functions
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("doc_generator", 
+            os.path.join(os.path.dirname(__file__), '..', 'scripts', 'generate_live_docs.py'))
+        doc_gen = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(doc_gen)
+        
+        doc_path = doc_gen.generate_report_documentation(semantic_model_dir, report_dir)
+        return doc_path
+    except Exception as e:
+        print_colored(f"  ⚠️ Warning: Failed to generate documentation: {e}", Colors.YELLOW)
+        return None
+
+def log_to_csv(log_data, log_file='logs/governance_log.csv'):
+    """Append governance check results to CSV log file"""
+    try:
+        os.makedirs(os.path.dirname(log_file), exist_ok=True)
+        file_exists = os.path.isfile(log_file)
+        
+        with open(log_file, 'a', newline='', encoding='utf-8') as f:
+            fieldnames = ['timestamp', 'developer', 'report_name', 'model_path', 
+                         'auto_datetime_status', 'bidirectional_count', 'missing_descriptions_count',
+                         'missing_descriptions_list', 'overall_status', 'failure_count']
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            
+            if not file_exists:
+                writer.writeheader()
+            
+            writer.writerow(log_data)
+    except Exception as e:
+        print_colored(f"  ⚠️ Warning: Failed to write log: {e}", Colors.YELLOW)
+
+def check_governance(start_dir, enable_logging=True):
     start_dir = os.path.abspath(start_dir)
+    developer = get_developer_name()
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    
     # Print general info in Grey
     print_colored(f"\n🔍 Scanning directory: {start_dir}", Colors.GREY)
+    print_colored(f"   Developer: {developer}", Colors.GREY)
     print_colored(f"   (Looking for 'model.tmdl' files recursively)", Colors.GREY)
     
     models_found = 0
@@ -164,6 +209,33 @@ def check_governance(start_dir):
                  print_colored("  ✅ [PASS] Documentation: All measures described", Colors.GREEN)
 
             total_failures += model_failures
+            
+            # Log results to CSV
+            if enable_logging:
+                log_data = {
+                    'timestamp': timestamp,
+                    'developer': developer,
+                    'report_name': project_name,
+                    'model_path': model_path,
+                    'auto_datetime_status': 'PASS' if not time_intel_enabled else 'FAIL',
+                    'bidirectional_count': bidirectional_count,
+                    'missing_descriptions_count': len(missing_desc_list),
+                    'missing_descriptions_list': '; '.join(missing_desc_list[:5]) if missing_desc_list else '',
+                    'overall_status': 'PASS' if model_failures == 0 else 'FAIL',
+                    'failure_count': model_failures
+                }
+                log_to_csv(log_data)
+            
+            # Auto-generate documentation for this report ONLY if all checks passed
+            if '.SemanticModel' in root and model_failures == 0:
+                potential_report_dir = root.replace('.SemanticModel', '.Report')
+                if os.path.exists(potential_report_dir):
+                    print_colored("  📝 Generating documentation...", Colors.GREY)
+                    doc_path = generate_documentation_for_report(root, potential_report_dir, developer)
+                    if doc_path:
+                        print_colored(f"  ✅ Documentation: {os.path.basename(doc_path)}", Colors.GREEN)
+            elif '.SemanticModel' in root and model_failures > 0:
+                print_colored("  ⚠️  Documentation not generated (governance checks must pass)", Colors.YELLOW)
     
     print(f"\n{'='*70}")
     if models_found == 0:

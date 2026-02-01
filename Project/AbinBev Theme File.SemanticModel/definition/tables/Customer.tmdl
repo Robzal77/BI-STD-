@@ -5,6 +5,12 @@ table Customer
 	measure 'test measure' = "test"
 		lineageTag: 2e18d9b2-1f92-478e-bb4c-86c057bdf490
 
+	/// just a test measure
+	measure 'another test measure' = ```
+			"another test" 
+			```
+		lineageTag: 69c38df5-bb53-4ea4-bb5a-a3b015ea9a87
+
 	column CustomerKey
 		dataType: int64
 		isHidden
