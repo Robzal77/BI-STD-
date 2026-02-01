@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "f852632bb20d172ab0b7",
+  "position": {
+    "x": 21.84109748412429,
+    "y": 192.59876872364146,
+    "z": 0,
+    "height": 351.4431140627272,
+    "width": 617.50739250569586,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "result"
+                    }
+                  },
+                  "Property": "Report"
+                }
+              },
+              "queryRef": "result.Report",
+              "nativeQueryRef": "Report",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "result"
+                        }
+                      },
+                      "Property": "Workspace"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "CountNonNull(result.Workspace)",
+              "nativeQueryRef": "Count of Workspace1"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "result"
+                      }
+                    },
+                    "Property": "Workspace"
+                  }
+                },
+                "Function": 2
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b3175d994043a6c018ef",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "result"
+              }
+            },
+            "Property": "Report"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "34496141a1ae1535170b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "result"
+                  }
+                },
+                "Property": "Workspace"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

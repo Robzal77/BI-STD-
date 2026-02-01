@@ -16,3 +16,7 @@ timestamp,developer,report_name,model_path,auto_datetime_status,bidirectional_co
 2026-02-01 19:29:21,robza,AbinBev Theme File,C:\Users\robza\OneDrive\BI_Ops_Factory\BI-STD\Project\AbinBev Theme File.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0
 2026-02-01 19:53:09,robza,AbinBev Theme File,C:\Users\robza\OneDrive\BI_Ops_Factory\BI-STD\Project\AbinBev Theme File.SemanticModel\definition\model.tmdl,PASS,1,0,,FAIL,1
 2026-02-01 19:53:34,robza,AbinBev Theme File,C:\Users\robza\OneDrive\BI_Ops_Factory\BI-STD\Project\AbinBev Theme File.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0
+2026-02-01 20:06:38,40103427,AbinBev Theme File,C:\Users\40103427\OneDrive - Anheuser-Busch InBev\GCC 2026\Projects\PBI Standarization\bi ops\BI_Ops_Logs\BI-STD-\Project\AbinBev Theme File.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0
+2026-02-01 20:06:38,40103427,Local TEST,C:\Users\40103427\OneDrive - Anheuser-Busch InBev\GCC 2026\Projects\PBI Standarization\bi ops\BI_Ops_Logs\BI-STD-\Project\Local TEST.SemanticModel\definition\model.tmdl,PASS,0,1,result.tmdl: second test,FAIL,1
+2026-02-01 20:11:18,40103427,AbinBev Theme File,C:\Users\40103427\OneDrive - Anheuser-Busch InBev\GCC 2026\Projects\PBI Standarization\bi ops\BI_Ops_Logs\BI-STD-\Project\AbinBev Theme File.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0
+2026-02-01 20:11:18,40103427,Local TEST,C:\Users\40103427\OneDrive - Anheuser-Busch InBev\GCC 2026\Projects\PBI Standarization\bi ops\BI_Ops_Logs\BI-STD-\Project\Local TEST.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0

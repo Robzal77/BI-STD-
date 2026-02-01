@@ -1,0 +1,68 @@
+table result
+	lineageTag: a6944739-0a1d-41ce-9dd7-2f945d64b06f
+
+	/// this is test measure
+	measure 'test measure' = "test"
+		lineageTag: 826ce55d-b739-487d-a930-ab1947c17b3f
+
+	/// second test
+	measure 'second test' = ```
+			" test" 
+			```
+		lineageTag: f7f1cd01-d1db-4691-9b2e-daef6ade20f0
+
+	column Workspace
+		dataType: string
+		lineageTag: 11e18b33-c497-4cc3-82e4-8b4e392d8cf9
+		summarizeBy: none
+		sourceColumn: Workspace
+
+		annotation SummarizationSetBy = Automatic
+
+	column Report
+		dataType: string
+		lineageTag: 3b885789-d5e2-4a6b-8487-e389a9b371c0
+		summarizeBy: none
+		sourceColumn: Report
+
+		annotation SummarizationSetBy = Automatic
+
+	column Report_ID
+		dataType: string
+		lineageTag: 665c9e26-3e4e-4642-9fae-d8b1ec4e4465
+		summarizeBy: none
+		sourceColumn: Report_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distinct_User_Count(Jan 2025 - Jan 2026)'
+		dataType: int64
+		formatString: 0
+		lineageTag: eeaa8148-61e4-4a4a-9609-8b50483fb618
+		summarizeBy: sum
+		sourceColumn: Distinct_User_Count(Jan 2025 - Jan 2026)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total_View_Count(Jan 2025 - Jan 2026)'
+		dataType: int64
+		formatString: 0
+		lineageTag: cfda108a-a0ed-406d-8018-36a081b10c83
+		summarizeBy: sum
+		sourceColumn: Total_View_Count(Jan 2025 - Jan 2026)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition result = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\40103427\OneDrive - Anheuser-Busch InBev\GCC 2026\GBS_Tech_Supply_Reports_List.xlsx"), null, true),
+				    result_Sheet = Source{[Item="result",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(result_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Workspace", type text}, {"Report", type text}, {"Report_ID", type text}, {"Distinct_User_Count#(lf)(Jan 2025 - Jan 2026)", Int64.Type}, {"Total_View_Count#(lf)(Jan 2025 - Jan 2026)", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "d6492ce308fc4e19dfe5",
+  "position": {
+    "x": 663.175141790683,
+    "y": 192.59876872364146,
+    "z": 1,
+    "height": 351.4431140627272,
+    "width": 587.72407775461727,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "result"
+                    }
+                  },
+                  "Property": "Workspace"
+                }
+              },
+              "queryRef": "result.Workspace",
+              "nativeQueryRef": "Workspace",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "result"
+                    }
+                  },
+                  "Property": "Report"
+                }
+              },
+              "queryRef": "result.Report",
+              "nativeQueryRef": "Report",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "result"
+                        }
+                      },
+                      "Property": "Report"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Min(result.Report)",
+              "nativeQueryRef": "Count of Report"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0e9131fa204f7a50aa81",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "result"
+              }
+            },
+            "Property": "Workspace"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "71197c2e372f56537e6e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "result"
+              }
+            },
+            "Property": "Report"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "65048db62508a242a595",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "result"
+                  }
+                },
+                "Property": "Report"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

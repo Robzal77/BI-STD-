@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["result"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table result
+
+ref cultureInfo en-US
+
