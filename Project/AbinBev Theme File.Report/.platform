@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "AbinBev Theme File"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7411591a-1ec5-4d09-86b7-2e3e20b74800"
+  }
+}

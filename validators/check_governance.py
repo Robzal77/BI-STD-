@@ -1,8 +1,30 @@
 import os
 import re
+import sys
+
+# Force UTF-8 encoding for stdout
+sys.stdout.reconfigure(encoding='utf-8')
+
+# Constants for Colors
+class Colors:
+    RESET = '\033[0m'
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    GREY = '\033[90m'
+    BOLD = '\033[1m'
+
+def print_colored(text, color):
+    # Enable ANSI support in Windows 10+ console
+    os.system('') 
+    print(f"{color}{text}{Colors.RESET}")
 
 def check_governance(start_dir):
-    print(f"\n🔍 Scanning directory: {os.path.abspath(start_dir)}")
+    start_dir = os.path.abspath(start_dir)
+    # Print general info in Grey
+    print_colored(f"\n🔍 Scanning directory: {start_dir}", Colors.GREY)
+    print_colored(f"   (Looking for 'model.tmdl' files recursively)", Colors.GREY)
     
     models_found = 0
     total_failures = 0
@@ -11,7 +33,7 @@ def check_governance(start_dir):
         if 'model.tmdl' in files:
             models_found += 1
             model_path = os.path.join(root, 'model.tmdl')
-            # Get readable project name from path (assumes .SemanticModel folder structure)
+            # Get readable project name
             project_name = "Unknown Project"
             if ".SemanticModel" in root:
                 parts = root.split(os.sep)
@@ -20,10 +42,11 @@ def check_governance(start_dir):
                         project_name = p.replace(".SemanticModel", "")
                         break
             
-            print(f"\n{'='*60}")
-            print(f"📊 Analyzing Project: {project_name}")
-            print(f"   Path: {model_path}")
-            print(f"{'-'*60}")
+            # Header Report Name
+            print(f"\n{'='*70}")
+            print_colored(f"📊 REPORT: {project_name}", Colors.BLUE + Colors.BOLD)
+            print_colored(f"   File: {model_path}", Colors.GREY)
+            print(f"{'-'*70}")
             
             model_failures = 0
 
@@ -35,13 +58,14 @@ def check_governance(start_dir):
                     if '__PBI_TimeIntelligenceEnabled = 0' in content or 'autoDateTime: false' in content:
                         time_intel_enabled = False
             except Exception as e:
-                print(f"  ❌ ERROR reading model.tmdl: {e}")
+                print_colored(f"  ❌ ERROR reading model.tmdl: {e}", Colors.RED)
 
             if time_intel_enabled:
-                print("  ❌ PERFORMANCE: Auto Date/Time is ENABLED (Should be Disabled)")
+                print_colored("  ❌ [FAIL] Performance: Auto Date/Time is ENABLED", Colors.RED)
+                print_colored("      💡 FIX: Open Project Settings -> Data Load -> Uncheck 'Auto date/time'", Colors.YELLOW)
                 model_failures += 1
             else:
-                print("  ✅ PERFORMANCE: Auto Date/Time is Disabled")
+                print_colored("  ✅ [PASS] Performance: Auto Date/Time is Disabled", Colors.GREEN)
 
             # 2. Check Relationships (Bi-directional)
             rel_path = os.path.join(root, 'relationships.tmdl')
@@ -52,15 +76,16 @@ def check_governance(start_dir):
                         lines = f.readlines()
                         for i, line in enumerate(lines):
                             if 'crossFilteringBehavior: bothDirections' in line:
-                                print(f"  ❌ LOGIC: Bi-directional relationship found (Line {i+1})")
+                                print_colored(f"  ❌ [FAIL] Logic: Bi-directional relationship found (Line {i+1})", Colors.RED)
+                                print_colored("      💡 FIX: Change filter direction to 'Single' in Model View.", Colors.YELLOW)
                                 bidirectional_count += 1
                 except Exception as e:
-                     print(f"  ❌ ERROR reading relationships.tmdl: {e}")
+                     print_colored(f"  ❌ ERROR reading relationships.tmdl: {e}", Colors.RED)
             
             if bidirectional_count > 0:
                 model_failures += bidirectional_count
             else:
-                print("  ✅ LOGIC: No Bi-directional relationships found")
+                print_colored("  ✅ [PASS] Logic: No Bi-directional relationships found", Colors.GREEN)
 
             # 3. Check Measures (Missing Description)
             tables_dir = os.path.join(root, 'tables')
@@ -78,20 +103,35 @@ def check_governance(start_dir):
                                 current_measure = None
                                 has_description = False
                                 
+                                # Initialize description buffer (for /// comments)
+                                description_buffer = False
+
                                 for line in lines:
                                     stripped = line.strip()
+
+                                    # Check for /// comments (documentation style used by some models)
+                                    if stripped.startswith('///'):
+                                        description_buffer = True
+                                        continue
+                                    
                                     match = re.search(r'^\s*measure\s+[\'"]?([^\'"=]+)[\'"]?', line)
                                     
                                     if match:
                                         if current_measure and not has_description:
                                             missing_desc_list.append(f"{t_file}: {current_measure}")
                                         current_measure = match.group(1).strip()
-                                        has_description = False
+                                        has_description = description_buffer
+                                        description_buffer = False # Consumed
                                         continue
+                                    
+                                    # If not a comment and not a measure start, reset buffer? 
+                                    # Actually, let's keep it simple: if line is not empty and not a comment, clear it.
+                                    if stripped and not stripped.startswith('///'):
+                                        description_buffer = False
                                     
                                     if current_measure:
                                         first_word = stripped.split()[0] if stripped else ""
-                                        if first_word in ['column', 'partition', 'hierarchy', 'measure', 'evaluator']: # End of measure block check
+                                        if first_word in ['column', 'partition', 'hierarchy', 'measure', 'evaluator']: 
                                             if first_word != 'measure':
                                                 if not has_description:
                                                     missing_desc_list.append(f"{t_file}: {current_measure}")
@@ -99,36 +139,42 @@ def check_governance(start_dir):
                                                 has_description = False
                                             continue
 
-                                        if stripped.startswith('description:'):
+                                        # Case-insensitive check for description property
+                                        if stripped.lower().startswith('description'):
                                             has_description = True
                                 
                                 if current_measure and not has_description:
                                     missing_desc_list.append(f"{t_file}: {current_measure}")
 
                             except Exception as e:
-                                pass # formatting error
+                                pass 
             
             if missing_desc_list:
-                print(f"  ⚠️ DOCUMENTATION: {len(missing_desc_list)} measures missing descriptions:")
+                print_colored(f"  ⚠️ [WARN] Documentation: {len(missing_desc_list)} measures missing descriptions", Colors.YELLOW)
                 for m in missing_desc_list[:3]:
-                    print(f"      - {m}")
+                    print_colored(f"      - {m}", Colors.YELLOW)
                 if len(missing_desc_list) > 3:
-                     print(f"      ...and {len(missing_desc_list)-3} more")
-                model_failures += 1 # Count as 1 failure block
+                     print_colored(f"      ...and {len(missing_desc_list)-3} more", Colors.YELLOW)
+                print_colored("      💡 FIX: Add 'Description' to these measures in the Properties pane.", Colors.YELLOW)
+                # Warning doesn't count as failure for now? User said "if warning orange".
+                # But typically documentation gaps are governance failures.
+                # Let's count it as failure for final summary but show as orange.
+                model_failures += 1 
             else:
-                 print("  ✅ DOCUMENTATION: All measures described")
+                 print_colored("  ✅ [PASS] Documentation: All measures described", Colors.GREEN)
 
             total_failures += model_failures
     
-    print(f"\n{'='*60}")
+    print(f"\n{'='*70}")
     if models_found == 0:
-        print("❌ No Power BI Projects found (looking for model.tmdl)")
+        print_colored("❌ No Power BI semantic models found (looking for 'model.tmdl')", Colors.RED)
+        print_colored(f"   Searched in: {start_dir}", Colors.GREY)
     elif total_failures == 0:
-        print("🎉 SUCCESS: All governance checks PASSED!")
+        print_colored("🎉 SUCCESS: All governance checks PASSED! Great job.", Colors.GREEN)
     else:
-        print(f"🛑 ISSUES FOUND: Please review the {total_failures} failures above.")
-    print(f"{'='*60}\n")
+        print_colored(f"🛑 ISSUES FOUND: Please review the {total_failures} failures above.", Colors.RED)
+    print(f"{'='*70}\n")
 
 if __name__ == "__main__":
-    # Check current directory
-    check_governance(".")
+    target_dir = sys.argv[1] if len(sys.argv) > 1 else "."
+    check_governance(target_dir)
