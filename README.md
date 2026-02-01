@@ -67,8 +67,9 @@ Bulk PBI Analysis.bat
 
 Documentation is **automatically generated** in **both Markdown and HTML** when governance checks pass.
 
-To regenerate documentation manually:
+**Manual regeneration** (if needed):
 ```bash
+cd Automation
 Generate_Docs.bat
 ```
 
@@ -76,14 +77,20 @@ Generate_Docs.bat
 - `{ReportName}_DOCUMENTATION.md` - Markdown version
 - `{ReportName}_DOCUMENTATION.html` - ✨ **HTML version for easy browser viewing**
 
+> **Note**: This runs automatically after `Report Governance Run.bat`, so manual use is rarely needed.
+
 ### Building Wiki
 
+**Manual build** (if needed):
 ```bash
+cd Automation
 Sharable Documents.bat
 ```
 - Syncs all project documentation to Wiki
 - Updates compliance status
 - Generates `Wiki/Home.md` with project index
+
+> **Note**: This is typically run on a schedule or before publishing to Azure DevOps.
 
 ## 📊 Documentation Format
 
