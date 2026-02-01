@@ -1,0 +1,26 @@
+### COLOR PALETTE CONSTRAINTS
+- The Primary Data Color (Gold/Yellow) must be #FFC20E [1].
+- The Primary Foreground/Text Color must be #1A1A1A [1].
+- The Table Accent Color must be #FFC20E [1].
+- The Global Background Color must be #FFFFFF [1].
+- The Data Color Palette sequence must be: #FFC20E, #1A1A1A, #595959, #8C8C8C, #BFBFBF, #D9D9D9, #E6E6E6, #F2F2F2 [1].
+
+### VISUAL CONTAINER STYLES
+- All visual containers must have Borders enabled [2].
+- Visual Container Border Color must be #E0E0E0 [2].
+- Visual Container Border Radius must be 10 pixels [2], [3].
+- Visual Container Drop Shadows must be enabled [2].
+- Drop Shadow Color must be #000000 [2].
+- Drop Shadow Position must be "Outer" with Preset "BottomRight" [2].
+- Visual Header Background Color must be #FFFFFF [2].
+- Visual Header Icon/Foreground Color must be #1A1A1A [3].
+
+### SLICER STYLES
+- Slicer Background Color must be #FFFFFF [3].
+- Slicers must have Borders disabled (Show: false) [3].
+
+### PAGE LAYOUT & BACKGROUND
+- Page Background Color must be #FFFFFF with 0% Transparency [2].
+- Page Background Image must be named "Corporate Layout" with Scaling set to "Fit" [1].
+- Report Footer must display "Last Updated on :" in the bottom left corner [4].
+- Report Footer must display "Next Refresh scheduled:" in the bottom right corner [4].

@@ -1,0 +1,41 @@
+/// Sample_Data - Replace with your actual data source
+/// This is a placeholder table to demonstrate structure
+table Sample_Data
+	lineageTag: 00000000-0000-0000-0000-000000000201
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 00000000-0000-0000-0000-000000000202
+		summarizeBy: none
+		sourceColumn: DateKey
+
+	column Category
+		dataType: string
+		lineageTag: 00000000-0000-0000-0000-000000000203
+		summarizeBy: none
+		sourceColumn: Category
+
+	column Amount
+		dataType: double
+		lineageTag: 00000000-0000-0000-0000-000000000204
+		summarizeBy: sum
+		sourceColumn: Amount
+
+	partition Sample_Data = m
+		mode: import
+		source =
+			let
+			    Source = #table(
+			        {"DateKey", "Category", "Amount"},
+			        {
+			            {20260101, "Category A", 1000},
+			            {20260102, "Category B", 1500},
+			            {20260103, "Category A", 2000}
+			        }
+			    )
+			in
+			    Source
+
+	annotation PBI_ResultType = Table

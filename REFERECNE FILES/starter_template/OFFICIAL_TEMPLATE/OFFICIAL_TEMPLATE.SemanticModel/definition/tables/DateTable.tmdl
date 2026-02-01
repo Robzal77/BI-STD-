@@ -1,0 +1,82 @@
+/// DateTable - Standard Date Dimension
+/// All Power BI reports should use this table for time intelligence
+table DateTable
+	lineageTag: 00000000-0000-0000-0000-000000000001
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 00000000-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: DateKey
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 00000000-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 00000000-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: Year
+
+	column Month
+		dataType: string
+		lineageTag: 00000000-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthNumber
+
+	column MonthNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 00000000-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+	column Quarter
+		dataType: string
+		lineageTag: 00000000-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 00000000-0000-0000-0000-000000000008
+
+		level Year
+			lineageTag: 00000000-0000-0000-0000-000000000009
+			column: Year
+
+		level Quarter
+			lineageTag: 00000000-0000-0000-0000-00000000000a
+			column: Quarter
+
+		level Month
+			lineageTag: 00000000-0000-0000-0000-00000000000b
+			column: Month
+
+	partition DateTable = m
+		mode: import
+		source =
+			let
+			    StartDate = #date(2020, 1, 1),
+			    EndDate = #date(2030, 12, 31),
+			    DayCount = Duration.Days(EndDate - StartDate) + 1,
+			    DateList = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
+			    ToTable = Table.FromList(DateList, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
+			    ChangedType = Table.TransformColumnTypes(ToTable,{{"Date", type date}}),
+			    AddedYear = Table.AddColumn(ChangedType, "Year", each Date.Year([Date]), Int64.Type),
+			    AddedMonth = Table.AddColumn(AddedYear, "Month", each Date.MonthName([Date]), type text),
+			    AddedMonthNumber = Table.AddColumn(AddedMonth, "MonthNumber", each Date.Month([Date]), Int64.Type),
+			    AddedQuarter = Table.AddColumn(AddedMonthNumber, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+			    AddedDateKey = Table.AddColumn(AddedQuarter, "DateKey", each Date.Year([Date]) * 10000 + Date.Month([Date]) * 100 + Date.Day([Date]), Int64.Type)
+			in
+			    AddedDateKey
+
+	annotation PBI_ResultType = Table

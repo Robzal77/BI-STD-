@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "report_name": "Last Mile Data Hub",
+    "report_id": "LOG-001",
+    "description": "Detailed overview of Last Mile logistics KPI"
+  },
+  "project_name": "SupplyChain_Transformation_BI",
+  "log_path": "./projects/audit_log.csv",
+  "strict_mode": true,
+  "visuals": {
+    "theme": {
+      "name": "SupplyChain Standard",
+      "dataColors": [
+        "#0055FF",
+        "#FFC400",
+        "#A0A0A0",
+        "#107C10",
+        "#E81123"
+      ],
+      "background": "#FFFFFF",
+      "foreground": "#000000",
+      "tableAccent": "#FFC400"
+    },
+    "fonts": {
+      "family": "Segoe UI",
+      "title_size": 12,
+      "kpi_size": 45
+    },
+    "defaults": {
+      "visual_borders": false,
+      "drop_shadows": false,
+      "background_transparency": 100
+    }
+  },
+  "rules": {
+    "forbidden_logic": {
+      "bi_directional_filters": true,
+      "auto_date_time": true,
+      "many_to_many": true
+    },
+    "modeling": {
+      "require_date_table_marked": true,
+      "hide_numeric_columns": true,
+      "naming_convention": "Title Case"
+    },
+    "documentation": {
+      "require_description": true,
+      "required_tags": [
+        "Definition",
+        "Owner"
+      ]
+    }
+  }
+}

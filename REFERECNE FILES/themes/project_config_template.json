@@ -1,0 +1,12 @@
+{
+    "project_name": "Example Project",
+    "description": "Project-level configuration that overrides global rules",
+    "overrides": {
+        "allow_bi_directional_filters": false,
+        "allow_auto_date_time": false,
+        "allow_hardcoded_colors": false
+    },
+    "approved_by": "",
+    "approval_date": "",
+    "notes": "Set any override to 'true' to skip that check. Document the reason and get manager approval."
+}

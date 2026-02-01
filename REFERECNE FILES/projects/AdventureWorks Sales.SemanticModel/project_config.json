@@ -1,0 +1,10 @@
+{
+    "project_name": "AdventureWorks Sales",
+    "description": "Demo project with all checks enabled",
+    "overrides": {
+        "allow_bi_directional_filters": false,
+        "allow_auto_date_time": false
+    },
+    "approved_by": "",
+    "approval_date": ""
+}

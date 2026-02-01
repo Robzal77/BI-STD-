@@ -1,0 +1,12 @@
+{
+    "project_name": "OFFICIAL_TEMPLATE",
+    "description": "Golden starter template - all governance rules enforced",
+    "overrides": {
+        "allow_bi_directional_filters": false,
+        "allow_auto_date_time": false,
+        "allow_hardcoded_colors": false
+    },
+    "approved_by": "BI Governance Team",
+    "approval_date": "2026-01-31",
+    "notes": "This is the official starter template. Clone this folder when creating new reports."
+}
