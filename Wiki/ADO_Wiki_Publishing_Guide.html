@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure DevOps Wiki Publishing Guide - BI Factory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #1A1A1A;
+            background: linear-gradient(135deg, #1A1A1A 0%, #3d3d3d 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A1A1A 0%, #000000 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 5px solid #FFC20E;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            color: #FFC20E;
+            text-shadow: 2px 2px 4px rgba(255, 194, 14, 0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-bottom: 3px solid #FFC20E;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h3 {
+            color: #1A1A1A;
+            margin-bottom: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            color: #1A1A1A;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        nav a:hover {
+            background: #FFC20E;
+            color: #1A1A1A;
+            border-color: #FFC20E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 194, 14, 0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #FFC20E;
+        }
+
+        .section h2 {
+            color: #1A1A1A;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #FFC20E;
+        }
+
+        .section h3 {
+            color: #1A1A1A;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section h4 {
+            color: #595959;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .command {
+            background: #1A1A1A;
+            color: #FFC20E;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-left: 4px solid #FFC20E;
+            font-size: 0.95em;
+        }
+
+        .path {
+            background: #fff9e6;
+            color: #1A1A1A;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            border: 1px solid #FFC20E;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #fff9e6;
+            border-color: #FFC20E;
+            color: #1A1A1A;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .icon {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            margin: 12px 0;
+            padding-left: 10px;
+        }
+
+        .checklist li::marker {
+            content: "□ ";
+            color: #FFC20E;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #1A1A1A;
+            color: #FFC20E;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .step-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #FFC20E;
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 194, 14, 0.3);
+        }
+
+        .step-card h4 {
+            color: #1A1A1A;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFC20E, #e0a800);
+            color: #1A1A1A;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #1A1A1A;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-top: 5px solid #FFC20E;
+        }
+
+        code {
+            background: #fff9e6;
+            color: #1A1A1A;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            border: 1px solid #FFC20E;
+        }
+
+        ol,
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .workflow-diagram {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .workflow-step {
+            display: inline-block;
+            padding: 15px 25px;
+            background: #FFC20E;
+            color: #1A1A1A;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: 600;
+        }
+
+        .workflow-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 2em;
+            color: #FFC20E;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Azure DevOps Wiki Publishing</h1>
+            <p>Share BI Factory Documentation with Your Team</p>
+        </header>
+
+        <nav>
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#prerequisites">Prerequisites</a></li>
+                <li><a href="#setup">Initial Setup</a></li>
+                <li><a href="#workflow">Publishing Workflow</a></li>
+                <li><a href="#automation">Automation</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- OVERVIEW -->
+            <div class="section" id="overview">
+                <h2>📖 Overview</h2>
+
+                <p>This guide explains how to publish your validated Power BI documentation to Azure DevOps Wiki, making
+                    it accessible to your entire team.</p>
+
+                <div class="workflow-diagram">
+                    <div class="workflow-step">Validate Report</div>
+                    <span class="workflow-arrow">→</span>
+                    <div class="workflow-step">Generate Docs</div>
+                    <span class="workflow-arrow">→</span>
+                    <div class="workflow-step">Build Wiki</div>
+                    <span class="workflow-arrow">→</span>
+                    <div class="workflow-step">Push to ADO</div>
+                </div>
+
+                <h3>What You'll Learn</h3>
+                <ul>
+                    <li>Setting up ADO Wiki integration</li>
+                    <li>Publishing documentation after validation</li>
+                    <li>Automating the sync process</li>
+                    <li>Managing wiki structure and permissions</li>
+                </ul>
+
+                <div class="alert alert-info">
+                    <strong><span class="icon">💡</span>Why ADO Wiki?</strong><br>
+                    Centralize all BI documentation in one searchable location, version controlled and accessible to
+                    everyone on your team.
+                </div>
+            </div>
+
+            <!-- PREREQUISITES -->
+            <div class="section" id="prerequisites">
+                <h2>✅ Prerequisites</h2>
+
+                <h3>1. Azure DevOps Access</h3>
+                <div class="checklist">
+                    <ul>
+                        <li>ADO account with project access</li>
+                        <li>Permissions to create/edit wiki pages</li>
+                        <li>Wiki feature enabled in your project</li>
+                    </ul>
+                </div>
+
+                <h3>2. Git Configuration</h3>
+                <div class="checklist">
+                    <ul>
+                        <li>Git installed and configured</li>
+                        <li>Git credentials set up (PAT or SSH)</li>
+                        <li>Ability to clone repositories</li>
+                    </ul>
+                </div>
+
+                <h3>3. Local Setup</h3>
+                <div class="checklist">
+                    <ul>
+                        <li>BI Factory installed and working</li>
+                        <li>Reports validated (100% governance pass)</li>
+                        <li>Documentation generated successfully</li>
+                    </ul>
+                </div>
+
+                <h3>Check Git Installation</h3>
+                <div class="command">git --version</div>
+                <p>Expected output: <code>git version 2.x.x</code></p>
+            </div>
+
+            <!-- INITIAL SETUP -->
+            <div class="section" id="setup">
+                <h2>🔧 Initial Setup (One-Time)</h2>
+
+                <h3>Step 1: Create ADO Wiki</h3>
+
+                <h4>Option A: Code Wiki (Recommended)</h4>
+                <ol>
+                    <li>Go to Azure DevOps → Your Project → <strong>Overview</strong> → <strong>Wiki</strong></li>
+                    <li>Click "<strong>Publish code as wiki</strong>"</li>
+                    <li>Select repository and folder (e.g., <code>/Wiki</code>)</li>
+                    <li>Name: "<strong>BI Factory Knowledge Base</strong>"</li>
+                    <li>Click "<strong>Publish</strong>"</li>
+                </ol>
+
+                <div class="alert alert-info">
+                    <span class="icon">💡</span> Code Wiki stores content in a Git repository, giving you version
+                    control!
+                </div>
+
+                <h4>Option B: Project Wiki</h4>
+                <ol>
+                    <li>Go to Azure DevOps → Your Project → <strong>Wiki</strong></li>
+                    <li>Click "<strong>Create a wiki</strong>"</li>
+                    <li>Name: "<strong>BI Factory Docs</strong>"</li>
+                    <li>Click "<strong>Create</strong>"</li>
+                </ol>
+
+                <h3>Step 2: Get Wiki Repository URL</h3>
+
+                <p>Navigate to your wiki and copy the clone URL:</p>
+
+                <div class="command"># For Code Wiki:
+                    https://dev.azure.com/YourOrg/YourProject/_git/YourRepo
+
+                    # For Project Wiki:
+                    https://dev.azure.com/YourOrg/YourProject/_git/YourProject.wiki</div>
+
+                <h3>Step 3: Clone Wiki Locally</h3>
+
+                <div class="command"># Navigate to BI-STD folder
+                    cd C:\Users\YourName\OneDrive\BI_Ops_Factory\BI-STD
+
+                    # Clone wiki repository
+                    git clone [Your-Wiki-URL] ./Wiki-ADO
+
+                    # Example:
+                    git clone https://dev.azure.com/ABInBev/BI-Project/_git/BI-Wiki ./Wiki-ADO</div>
+
+                <div class="alert alert-success">
+                    <span class="icon">✓</span> You should now have a <code>Wiki-ADO/</code> folder in your BI-STD
+                    directory!
+                </div>
+
+                <h3>Step 4: Configure Git Credentials</h3>
+
+                <h4>Personal Access Token (PAT) - Recommended</h4>
+
+                <ol>
+                    <li>Go to ADO → <strong>User Settings</strong> (gear icon) → <strong>Personal Access Tokens</strong>
+                    </li>
+                    <li>Click "<strong>New Token</strong>"</li>
+                    <li>
+                        Configure:
+                        <ul>
+                            <li>Name: <code>BI Wiki Sync</code></li>
+                            <li>Scopes: <strong>Code (Read & Write)</strong></li>
+                            <li>Expiration: <code>Custom (1 year)</code></li>
+                        </ul>
+                    </li>
+                    <li>Click "<strong>Create</strong>" and <strong>copy the token</strong></li>
+                </ol>
+
+                <div class="command"># Store credentials
+                    git config --global credential.helper store
+
+                    # First push will prompt:
+                    # Username: your.email@company.com
+                    # Password: [Paste PAT token here]</div>
+
+                <div class="alert alert-warning">
+                    <span class="icon">⚠️</span> <strong>Save your PAT!</strong> You won't be able to see it again after
+                    creation.
+                </div>
+            </div>
+
+            <!-- PUBLISHING WORKFLOW -->
+            <div class="section" id="workflow">
+                <h2>🚀 Publishing Workflow</h2>
+
+                <p>Follow these steps every time you want to publish updated documentation:</p>
+
+                <div class="step-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Validate Reports</h4>
+                        <p>Run governance checks to ensure reports meet standards.</p>
+                        <div class="command" style="font-size: 0.85em;">Report Governance Run.bat</div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Build Wiki</h4>
+                        <p>Generate wiki content from documentation files.</p>
+                        <div class="command" style="font-size: 0.85em;">Automation/
+                            Sharable Documents.bat</div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Copy to ADO</h4>
+                        <p>Sync Wiki content to ADO repository clone.</p>
+                        <div class="command" style="font-size: 0.85em;">xcopy /E /I /Y
+                            Wiki\* Wiki-ADO\</div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4>Commit & Push</h4>
+                        <p>Save changes and push to Azure DevOps.</p>
+                        <div class="command" style="font-size: 0.85em;">git add .
+                            git commit -m "..."
+                            git push</div>
+                    </div>
+                </div>
+
+                <h3>Detailed Steps</h3>
+
+                <h4>Step 1: Validate & Generate Documentation</h4>
+                <div class="command"># Run governance check
+                    Report Governance Run.bat
+
+                    # This creates:
+                    # - YourReport_DOCUMENTATION.md
+                    # - YourReport_DOCUMENTATION.html</div>
+
+                <div class="alert alert-info">
+                    <span class="icon">ℹ️</span> Only validated reports (100% pass) will have documentation generated.
+                </div>
+
+                <h4>Step 2: Build Wiki Content</h4>
+                <div class="command">cd Automation
+                    Sharable Documents.bat
+
+                    # This syncs documentation to Wiki/ folder</div>
+
+                <h4>Step 3: Copy to ADO Wiki Clone</h4>
+                <div class="command"># Copy entire Wiki folder
+                    xcopy /E /I /Y Wiki\* Wiki-ADO\
+
+                    # Or copy specific sections:
+                    xcopy /E /I /Y Wiki\Projects\* Wiki-ADO\Projects\
+                    xcopy /E /I /Y Wiki\Standards\* Wiki-ADO\Standards\</div>
+
+                <h4>Step 4: Commit Changes</h4>
+                <div class="command">cd Wiki-ADO
+
+                    # Check what changed
+                    git status
+
+                    # Stage all changes
+                    git add .
+
+                    # Commit with meaningful message
+                    git commit -m "Update BI documentation - Added Sales Dashboard and Finance Report"</div>
+
+                <h4>Step 5: Push to ADO</h4>
+                <div class="command"># Push to main branch
+                    git push origin main
+
+                    # Or to specific branch
+                    git push origin feature/wiki-update</div>
+
+                <h4>Step 6: Verify in ADO</h4>
+                <ol>
+                    <li>Go to Azure DevOps → Your Project → <strong>Wiki</strong></li>
+                    <li>Refresh the page</li>
+                    <li>Navigate to updated pages</li>
+                    <li>Verify formatting and links work correctly</li>
+                </ol>
+
+                <div class="alert alert-success">
+                    <span class="icon">🎉</span> <strong>Success!</strong> Your documentation is now live and accessible
+                    to the team!
+                </div>
+            </div>
+
+            <!-- AUTOMATION -->
+            <div class="section" id="automation">
+                <h2>⚙️ Automation</h2>
+
+                <h3>Automated Sync Script</h3>
+
+                <p>Create <span class="path">Automation/Sync_To_ADO_Wiki.bat</span> to automate the process:</p>
+
+                <div class="command">@echo off
+                    echo ========================================
+                    echo Syncing Documentation to ADO Wiki
+                    echo ========================================
+
+                    REM Step 1: Build local wiki
+                    echo.
+                    echo [1/4] Building local wiki content...
+                    cd "%~dp0"
+                    call "Sharable Documents.bat"
+
+                    REM Step 2: Copy to ADO wiki clone
+                    echo.
+                    echo [2/4] Copying to ADO wiki repository...
+                    xcopy /E /I /Y "..\Wiki\*" "..\Wiki-ADO\"
+
+                    REM Step 3: Git commit
+                    echo.
+                    echo [3/4] Committing changes...
+                    cd "..\Wiki-ADO"
+                    git add .
+                    git commit -m "Auto-sync: Updated BI documentation %date% %time%"
+
+                    REM Step 4: Push to ADO
+                    echo.
+                    echo [4/4] Pushing to Azure DevOps...
+                    git push origin main
+
+                    echo.
+                    echo ========================================
+                    echo Wiki Sync Complete!
+                    echo View at: https://dev.azure.com/YourOrg/YourProject/_wiki
+                    echo ========================================
+                    pause</div>
+
+                <h3>Usage</h3>
+                <ol>
+                    <li>Save the script as <code>Sync_To_ADO_Wiki.bat</code></li>
+                    <li>Update the URLs to match your ADO project</li>
+                    <li>Double-click to run whenever you want to publish</li>
+                </ol>
+
+                <div class="alert alert-info">
+                    <span class="icon">💡</span> <strong>Pro Tip:</strong> Add this to your weekly workflow - validate
+                    reports, then sync wiki!
+                </div>
+            </div>
+
+            <!-- TROUBLESHOOTING -->
+            <div class="section" id="troubleshooting">
+                <h2>🔧 Troubleshooting</h2>
+
+                <table>
+                    <tr>
+                        <th>Issue</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentication Failed</strong></td>
+                        <td>
+                            1. Verify PAT is not expired<br>
+                            2. Check PAT has Code (Read & Write) permissions<br>
+                            3. Re-enter credentials: <code>git credential reject</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Push Rejected (Non-Fast-Forward)</strong></td>
+                        <td>
+                            1. Pull latest: <code>git pull origin main</code><br>
+                            2. Resolve conflicts if any<br>
+                            3. Try push again: <code>git push origin main</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wiki Pages Not Appearing</strong></td>
+                        <td>
+                            1. Check files are .md format<br>
+                            2. Verify .order file exists<br>
+                            3. Refresh ADO Wiki page (Ctrl+F5)<br>
+                            4. Check ADO Wiki permissions
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Links Broken in Wiki</strong></td>
+                        <td>
+                            1. Use relative paths: <code>[link](../folder/page)</code><br>
+                            2. Avoid spaces in filenames (use hyphens)<br>
+                            3. Check file extensions are correct
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Images Not Displaying</strong></td>
+                        <td>
+                            1. Store images in wiki repository<br>
+                            2. Use relative paths to images<br>
+                            3. Check image file extensions<br>
+                            4. Verify images are committed and pushed
+                        </td>
+                    </tr>
+                </table>
+
+                <h3>Quick Fixes</h3>
+
+                <div class="command"># Reset local wiki to match remote
+                    cd Wiki-ADO
+                    git fetch origin
+                    git reset --hard origin/main
+
+                    # Clear Git credentials
+                    git credential reject
+                    # Then re-enter on next push
+
+                    # Force push (use carefully!)
+                    git push --force origin main</div>
+
+                <div class="alert alert-warning">
+                    <span class="icon">⚠️</span> <strong>Force push with caution!</strong> It can overwrite others'
+                    changes. Coordinate with your team first.
+                </div>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="section">
+                <h2>💡 Best Practices</h2>
+
+                <h3>1. Keep Wiki Organized</h3>
+                <ul>
+                    <li>Use consistent folder structure</li>
+                    <li>Maintain .order files for navigation</li>
+                    <li>Use descriptive file names (kebab-case)</li>
+                    <li>Group related documentation together</li>
+                </ul>
+
+                <h3>2. Write Clear Commit Messages</h3>
+                <div class="command"># Good examples:
+                    git commit -m "Add Sales Dashboard documentation"
+                    git commit -m "Update governance standards - Added new DAX rules"
+                    git commit -m "Fix broken links in Finance report docs"
+
+                    # Bad examples:
+                    git commit -m "update"
+                    git commit -m "stuff"
+                    git commit -m "changes"</div>
+
+                <h3>3. Review Before Pushing</h3>
+                <div class="checklist">
+                    <ul>
+                        <li>Check markdown renders correctly locally</li>
+                        <li>Test all internal links</li>
+                        <li>Verify images display properly</li>
+                        <li>Review git diff before committing</li>
+                    </ul>
+                </div>
+
+                <h3>4. Use Branches for Major Updates</h3>
+                <div class="command"># Create feature branch
+                    git checkout -b wiki-update-2026-Q1
+
+                    # Make changes and commit
+                    git add .
+                    git commit -m "Major wiki restructure for Q1"
+
+                    # Push branch
+                    git push origin wiki-update-2026-Q1
+
+                    # Create Pull Request in ADO for team review</div>
+
+                <h3>5. Regular Syncs</h3>
+                <ul>
+                    <li>Sync after each governance check</li>
+                    <li>Schedule weekly documentation updates</li>
+                    <li>Keep local and remote in sync</li>
+                </ul>
+            </div>
+
+            <!-- QUICK REFERENCE -->
+            <div class="section">
+                <h2>📋 Quick Reference</h2>
+
+                <h3>Essential Commands</h3>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Command</th>
+                    </tr>
+                    <tr>
+                        <td>Check status</td>
+                        <td><code>git status</code></td>
+                    </tr>
+                    <tr>
+                        <td>Stage changes</td>
+                        <td><code>git add .</code></td>
+                    </tr>
+                    <tr>
+                        <td>Commit</td>
+                        <td><code>git commit -m "message"</code></td>
+                    </tr>
+                    <tr>
+                        <td>Push to ADO</td>
+                        <td><code>git push origin main</code></td>
+                    </tr>
+                    <tr>
+                        <td>Pull updates</td>
+                        <td><code>git pull origin main</code></td>
+                    </tr>
+                    <tr>
+                        <td>View log</td>
+                        <td><code>git log --oneline -10</code></td>
+                    </tr>
+                </table>
+
+                <h3>Folder Structure</h3>
+                <div class="command">BI-STD/
+                    ├── Wiki/ # Local preview
+                    │ ├── Home.md
+                    │ ├── Projects/
+                    │ ├── Standards/
+                    │ └── Templates/
+                    │
+                    └── Wiki-ADO/ # ADO repository clone
+                    ├── .git/
+                    ├── Home.md
+                    ├── Projects/
+                    ├── Standards/
+                    └── Templates/</div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>Need Help?</h3>
+            <p>Contact your BI team or check Azure DevOps documentation.</p>
+            <p style="margin-top: 20px; opacity: 0.8;">
+                <strong>BI Factory</strong> - Azure DevOps Wiki Publishing Guide<br>
+                AB InBev | Generated: 2026-02-01
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

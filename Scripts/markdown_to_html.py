@@ -44,70 +44,73 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }}
         
         header {{
-            border-bottom: 3px solid #0066cc;
+            border-bottom: 4px solid #FFC20E;
             padding-bottom: 20px;
             margin-bottom: 30px;
         }}
         
         h1 {{
-            color: #0066cc;
+            color: #1A1A1A;
             font-size: 2.5em;
             margin-bottom: 10px;
         }}
         
         h2 {{
-            color: #0066cc;
+            color: #1A1A1A;
             font-size: 2em;
             margin-top: 40px;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
+            border-bottom: 2px solid #FFC20E;
         }}
         
         h3 {{
-            color: #333;
+            color: #1A1A1A;
             font-size: 1.5em;
             margin-top: 30px;
             margin-bottom: 10px;
         }}
         
         h4 {{
-            color: #666;
+            color: #595959;
             font-size: 1.2em;
             margin-top: 20px;
             margin-bottom: 10px;
         }}
         
         blockquote {{
-            background: #f9f9f9;
-            border-left: 4px solid #0066cc;
+            background: #fff9e6;
+            border-left: 4px solid #FFC20E;
             padding: 15px 20px;
             margin: 20px 0;
-            color: #666;
+            color: #1A1A1A;
         }}
         
         code {{
-            background: #f4f4f4;
+            background: #fff9e6;
             padding: 2px 6px;
             border-radius: 3px;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.9em;
-            color: #c7254e;
+            color: #1A1A1A;
+            border: 1px solid #FFC20E;
         }}
         
         pre {{
-            background: #282c34;
-            color: #abb2bf;
+            background: #1A1A1A;
+            color: #FFC20E;
             padding: 20px;
             border-radius: 5px;
             overflow-x: auto;
             margin: 20px 0;
+            border-left: 4px solid #FFC20E;
         }}
         
         pre code {{
             background: transparent;
             color: inherit;
             padding: 0;
+            border: none;
         }}
         
         table {{
@@ -123,8 +126,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }}
         
         th {{
-            background: #0066cc;
-            color: white;
+            background: #1A1A1A;
+            color: #FFC20E;
             font-weight: 600;
         }}
         
@@ -133,14 +136,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }}
         
         tr:hover {{
-            background: #f0f7ff;
+            background: #fff9e6;
         }}
         
         details {{
             margin: 15px 0;
             padding: 15px;
             background: #f8f9fa;
-            border-left: 3px solid #0066cc;
+            border-left: 3px solid #FFC20E;
             border-radius: 4px;
         }}
         
@@ -148,31 +151,34 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             cursor: pointer;
             font-weight: 600;
             padding: 5px 0;
-            color: #0066cc;
+            color: #1A1A1A;
         }}
         
         summary:hover {{
-            color: #004999;
+            color: #FFC20E;
         }}
         
         details[open] {{
-            background: #e8f4f8;
+            background: #fff9e6;
         }}
         
         a {{
-            color: #0066cc;
+            color: #1A1A1A;
             text-decoration: none;
+            border-bottom: 2px solid #FFC20E;
         }}
         
         a:hover {{
-            text-decoration: underline;
+            background: #FFC20E;
+            color: #1A1A1A;
         }}
         
         nav {{
-            background: #f0f7ff;
+            background: #fff9e6;
             padding: 20px;
             border-radius: 5px;
             margin: 30px 0;
+            border: 2px solid #FFC20E;
         }}
         
         nav h2 {{
@@ -193,7 +199,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         footer {{
             margin-top: 60px;
             padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
+            border-top: 3px solid #FFC20E;
             text-align: center;
             color: #666;
             font-size: 0.9em;
@@ -411,4 +417,4 @@ if __name__ == "__main__":
     
     print(f"Converting {md_file} to HTML...")
     html_file = convert_markdown_file(md_file)
-    print(f"✅ Created: {html_file}")
+    print(f"[SUCCESS] Created: {html_file}")
