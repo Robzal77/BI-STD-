@@ -6,28 +6,30 @@
 
 ```
 BI-STD/
-├── 📂 ActiveReports/              # Active development reports
-│   ├── [Report].SemanticModel/
-│   ├── [Report]_DOCUMENTATION.md
-│   └── [Report]_DOCUMENTATION.html  ← Auto-generated
+├── 📂 ActiveReports/              # All your reports (flexible structure!)
+│   ├── [YourFolders]/             # ← Organize however you want
+│   ├── LocalTest/                 # Example: test reports
+│   ├── Production/                # Example: production reports
+│   ├── Templates/                 # ← SKIP: Reference only
+│   └── Archive/                   # ← SKIP: Not scanned
 │
 ├── 📂 BatchTesting/               # Batch testing folder
 │   ├── README.md
 │   └── [Test Reports]
 │
-├── 📂 Automation/                 # Automated batch scripts ← NEW
+├── 📂 Automation/                 # Automated batch scripts
 │   ├── Generate_Docs.bat          # Auto-doc generation
 │   ├── Sharable Documents.bat     # Auto-Wiki build
 │   └── README.md
 │
 ├── 📂 Validators/                 # Governance validation logic
-│   ├── check_governance.py
+│   ├── check_governance.py        # Skips Archive & Templates
 │   └── validators.py
 │
-├── 📂 Scripts/                    # Automation scripts
-│   ├── generate_live_docs.py
+├── 📂 Scripts/                    # Automation scripts (all scan recursively)
+│   ├── generate_live_docs.py      # Skips Archive & Templates
 │   ├── batch_test_runner.py
-│   ├── wiki_builder.py
+│   ├── wiki_builder.py            # Skips Archive & Templates
 │   └── markdown_to_html.py
 │
 ├── 📂 Themes/                     # Power BI themes
@@ -35,10 +37,13 @@ BI-STD/
 ├── 📂 Logs/                       # Governance check logs
 ├── 📂 Wiki/                       # Knowledge base
 │
-├── Report Governance Run.bat      # ← Main: Check active reports
+├── Report Governance Run.bat      # ← Main: Check reports (all folders)
 ├── Bulk PBI Analysis.bat          # ← Main: Batch testing
 └── README.md
 ```
+
+> **💡 Simple Rule:** Create any folders you want in ActiveReports/.  
+> Everything scanned **except** Archive/ and Templates/. Move reports freely!
 
 ## 🚀 Quick Start
 

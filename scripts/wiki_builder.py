@@ -172,27 +172,44 @@ def generate_home_page(projects):
     print(f"[+] Generated: Home.md")
 
 def sync_project_documentation():
-    """Copy project documentation files to Wiki/Projects folder"""
+    """Copy project documentation files to Wiki/Projects folder (recursively)"""
     
     project_order = []
     synced_count = 0
     
-    # Find all documentation files in Project folder
-    for item in os.listdir(PROJECTS_DIR):
-        if item.endswith('_DOCUMENTATION.md'):
-            source_path = os.path.join(PROJECTS_DIR, item)
-            
-            # Convert filename to Wiki format (spaces → hyphens)
-            wiki_filename = item.replace(' ', '-').replace('_DOCUMENTATION.md', '.md')
-            dest_path = os.path.join(WIKI_ROOT, 'Projects', wiki_filename)
-            
-            # Copy file
-            shutil.copy2(source_path, dest_path)
-            print(f"[+] Synced: {item} -> Projects/{wiki_filename}")
-            
-            # Add to navigation order
-            project_order.append(wiki_filename[:-3])  # Remove .md extension
-            synced_count += 1
+    # Walk through all subdirectories in ActiveReports
+    for root, dirs, files in os.walk(PROJECTS_DIR):
+        # Skip Archive and Templates folders - they're references only
+        dirs[:] = [d for d in dirs if d not in ['Archive', 'Templates']]
+        
+        for filename in files:
+            if filename.endswith('_DOCUMENTATION.md'):
+                source_path = os.path.join(root, filename)
+                
+                # Get subfolder name for organization
+                rel_path = os.path.relpath(root, PROJECTS_DIR)
+                if rel_path == '.':
+                    category = 'Root'
+                else:
+                    # Use first subfolder name as category (LocalTest, Templates, etc.)
+                    category = rel_path.split(os.sep)[0]
+                
+                # Convert filename to Wiki format (spaces → hyphens)
+                wiki_filename = filename.replace(' ', '-').replace('_DOCUMENTATION.md', '.md')
+                
+                # Add category prefix for better organization
+                if category != 'Root':
+                    wiki_filename = f"{category}-{wiki_filename}"
+                
+                dest_path = os.path.join(WIKI_ROOT, 'Projects', wiki_filename)
+                
+                # Copy file
+                shutil.copy2(source_path, dest_path)
+                print(f"[+] Synced [{category}]: {filename} → Projects/{wiki_filename}")
+                
+                # Add to navigation order
+                project_order.append(wiki_filename[:-3])  # Remove .md extension
+                synced_count += 1
     
     # Update .order file for Projects folder
     if project_order:

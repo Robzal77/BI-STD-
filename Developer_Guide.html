@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BI Factory - Developer Implementation Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #1A1A1A;
+            background: linear-gradient(135deg, #1A1A1A 0%, #3d3d3d 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A1A1A 0%, #000000 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 5px solid #FFC20E;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 194, 14, 0.3);
+            color: #FFC20E;
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-bottom: 3px solid #FFC20E;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h3 {
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #1A1A1A;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #FFC20E;
+            color: #1A1A1A;
+            border-color: #FFC20E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 194, 14, 0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .step {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #FFC20E;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFC20E, #e0a800);
+            color: #1A1A1A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(255, 194, 14, 0.4);
+        }
+
+        .step-title {
+            font-size: 1.8em;
+            color: #1A1A1A;
+            font-weight: 600;
+        }
+
+        .step-content {
+            margin-left: 80px;
+        }
+
+        .instruction {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .instruction h4 {
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .command {
+            background: #1A1A1A;
+            color: #FFC20E;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-left: 4px solid #FFC20E;
+        }
+
+        .path {
+            background: #fff9e6;
+            color: #1A1A1A;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            border: 1px solid #FFC20E;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #fff9e6;
+            border-color: #FFC20E;
+            color: #1A1A1A;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .icon {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            margin: 12px 0;
+            padding-left: 10px;
+        }
+
+        .checklist li::marker {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe8b3 100%);
+            border: 2px dashed #FFC20E;
+            border-radius: 10px;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 20px 0;
+            color: #1A1A1A;
+        }
+
+        .screenshot-placeholder .icon {
+            font-size: 3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .tip {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background: #1A1A1A;
+            color: #FFC20E;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        footer {
+            background: #1A1A1A;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-top: 5px solid #FFC20E;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .quick-link {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #1A1A1A;
+            border: 2px solid #FFC20E;
+            transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 194, 14, 0.3);
+            border-color: #1A1A1A;
+            background: #fff9e6;
+        }
+
+        .quick-link .icon {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🏭 BI Factory</h1>
+            <p>Developer Implementation Guide</p>
+        </header>
+
+        <nav>
+            <h3>📑 Quick Navigation</h3>
+            <ul>
+                <li><a href="#step0">Clone Repository</a></li>
+                <li><a href="#step1">Create PBIP</a></li>
+                <li><a href="#step2">Apply Theme</a></li>
+                <li><a href="#step3">Make Changes</a></li>
+                <li><a href="#step4">Governance Check</a></li>
+                <li><a href="#step5">Commit Changes</a></li>
+                <li><a href="#step6">Publish Report</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="alert alert-info">
+                <strong><span class="icon">ℹ️</span>Before You Start</strong><br>
+                This guide walks you through the complete workflow from cloning the repository to publishing your Power
+                BI report.
+                Follow each step carefully to ensure compliance with AB InBev governance standards.
+            </div>
+
+            <!-- STEP 0 -->
+            <div class="step" id="step0">
+                <div class="step-header">
+                    <div class="step-number">0</div>
+                    <div class="step-title">Clone Repository & Setup</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Pull all relevant files from GitHub and set up your local environment.</strong></p>
+
+                    <div class="instruction">
+                        <h4>1. Clone the Repository</h4>
+                        <p>Open Git Bash or Terminal and run:</p>
+                        <div class="command">git clone [repository-url]<br>cd BI-STD</div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>2. Place Your PBIX File</h4>
+                        <p>Copy your existing <code>.pbix</code> file to a temporary location:</p>
+                        <div class="command">Copy YourReport.pbix to C:\Temp\</div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <span class="icon">💡</span> <strong>Tip:</strong> Keep your original PBIX in a safe location
+                        until you've successfully converted to PBIP format.
+                    </div>
+
+                    <div class="checklist">
+                        <strong>Checklist:</strong>
+                        <ul>
+                            <li>Repository cloned successfully</li>
+                            <li>PBIX file ready for conversion</li>
+                            <li>Power BI Desktop installed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 1 -->
+            <div class="step" id="step1">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Convert PBIX to PBIP</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Open your PBIX file in Power BI Desktop and save it as PBIP format in ActiveReports
+                            folder.</strong></p>
+
+                    <div class="instruction">
+                        <h4>1. Open in Power BI Desktop</h4>
+                        <p>Launch Power BI Desktop and open your PBIX file.</p>
+                        <div class="screenshot-placeholder">
+                            <span class="icon">🖼️</span>
+                            <p>File → Open → Browse to your PBIX file</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>2. Save as Power BI Project (.pbip)</h4>
+                        <p>Go to <strong>File → Save As → Power BI Project</strong></p>
+                        <div class="screenshot-placeholder">
+                            <span class="icon">🖼️</span>
+                            <p>Select .pbip format in the dropdown</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>3. Choose Location & Name</h4>
+                        <p>Save to: <span class="path">BI-STD/ActiveReports/[YourFolderName]/</span></p>
+                        <p>Use a descriptive name: <code>YourReportName</code></p>
+
+                        <div class="tip">
+                            <div class="tip-title">💡 Folder Organization Tips</div>
+                            <p>Create a folder that makes sense for your project:</p>
+                            <ul>
+                                <li><code>Sales-Reports/</code> - For sales team reports</li>
+                                <li><code>Marketing/</code> - For marketing analytics</li>
+                                <li><code>LocalTest/</code> - For development/testing</li>
+                                <li><code>Q1-2026/</code> - For quarterly reports</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>4. Verify PBIP Structure</h4>
+                        <p>After saving, you should see these files created:</p>
+                        <div class="command">YourReportName.pbip
+                            YourReportName.SemanticModel/
+                            ├── definition/
+                            │ ├── model.tmdl
+                            │ ├── relationships.tmdl
+                            │ └── tables/
+                            └── ...
+                            YourReportName.Report/
+                            └── definition/
+                            └── pages/</div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <span class="icon">✅</span> <strong>You can now delete the original PBIX file!</strong> The PBIP
+                        format contains everything and works better with Git.
+                    </div>
+
+                    <div class="checklist">
+                        <strong>Checklist:</strong>
+                        <ul>
+                            <li>.pbip file created successfully</li>
+                            <li>Located in ActiveReports/[YourFolder]/</li>
+                            <li>SemanticModel and Report folders present</li>
+                            <li>Original PBIX can be deleted or archived</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step" id="step2">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Apply AB InBev Theme & Pages</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Apply the official AB InBev theme and copy standard page designs from Figma
+                            templates.</strong></p>
+
+                    <div class="instruction">
+                        <h4>Part A: Apply AB InBev Theme</h4>
+
+                        <p><strong>1. Open Your PBIP File</strong></p>
+                        <p>In Power BI Desktop, open: <span
+                                class="path">ActiveReports/[YourFolder]/YourReportName.pbip</span></p>
+
+                        <p><strong>2. Import Theme JSON</strong></p>
+                        <div class="screenshot-placeholder">
+                            <span class="icon">🎨</span>
+                            <p>View → Themes → Browse for themes</p>
+                        </div>
+
+                        <p><strong>3. Select Theme File</strong></p>
+                        <p>Navigate to: <span class="path">BI-STD/Themes/ABInBev_Default_Report.json</span></p>
+                        <div class="command">C:\...\BI-STD\Themes\ABInBev_Default_Report.json</div>
+
+                        <p><strong>4. Apply Theme</strong></p>
+                        <p>Click "Open" - the theme will apply immediately to your report</p>
+
+                        <div class="alert alert-success">
+                            <span class="icon">✅</span> Your report now uses AB InBev official colors, fonts, and
+                            styling!
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>Part B: Copy Standard Pages from Figma Theme</h4>
+
+                        <p><strong>1. Open Figma Theme Reference</strong></p>
+                        <p>Navigate to: <span class="path">BI-STD/Figma Theme/Report Home Page/</span></p>
+                        <p>This folder contains template pages you can copy.</p>
+
+                        <p><strong>2. Copy Home Page (Welcome Page)</strong></p>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Open the reference template PBIP from Figma Theme folder</li>
+                            <li>Copy the "Home" or "Welcome" page</li>
+                            <li>Paste into your report as first page</li>
+                            <li>Update text/branding as needed</li>
+                        </ol>
+
+                        <p><strong>3. Copy Report Template Pages</strong></p>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Copy standard report pages (Overview, Details, etc.)</li>
+                            <li>Paste into your report</li>
+                            <li>Replace placeholders with your data/visuals</li>
+                            <li>Maintain consistent layout and styling</li>
+                        </ol>
+
+                        <div class="tip">
+                            <div class="tip-title">🎨 Design Consistency</div>
+                            <p>The Figma Theme provides:</p>
+                            <ul>
+                                <li><strong>Home Page:</strong> Professional welcome screen with navigation</li>
+                                <li><strong>Report Pages:</strong> Standard layouts for consistency</li>
+                                <li><strong>Branding:</strong> AB InBev logos and styling</li>
+                            </ul>
+                            <p><strong>Tip:</strong> Keep the structure, update content to match your data!</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>4. Save Your Work</h4>
+                        <p>Press <kbd>Ctrl + S</kbd> to save your report with theme and pages applied.</p>
+                    </div>
+
+                    <div class="checklist">
+                        <strong>Checklist:</strong>
+                        <ul>
+                            <li>AB InBev theme applied successfully</li>
+                            <li>Home/Welcome page copied from template</li>
+                            <li>Report pages use standard layouts</li>
+                            <li>Colors and fonts match brand standards</li>
+                            <li>Changes saved</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step" id="step3">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Make Your Changes</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Develop your report following governance best practices.</strong></p>
+
+                    <div class="instruction">
+                        <h4>Development Guidelines</h4>
+
+                        <table>
+                            <tr>
+                                <th>What to Do</th>
+                                <th>Best Practice</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Data Model</strong></td>
+                                <td>
+                                    ✓ Use star schema<br>
+                                    ✓ Single direction relationships<br>
+                                    ✓ Disable Auto Date/Time
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Measures</strong></td>
+                                <td>
+                                    ✓ Add descriptions to ALL measures<br>
+                                    ✓ Use measure groups/folders<br>
+                                    ✓ Follow naming conventions
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Visuals</strong></td>
+                                <td>
+                                    ✓ Use theme colors<br>
+                                    ✓ Consistent formatting<br>
+                                    ✓ Clear titles and labels
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Performance</strong></td>
+                                <td>
+                                    ✓ Optimize DAX queries<br>
+                                    ✓ Minimize visual count<br>
+                                    ✓ Use aggregations where possible
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <span class="icon">⚠️</span> <strong>Important Governance Rules:</strong>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>Auto Date/Time must be DISABLED</strong></li>
+                            <li><strong>No bidirectional relationships</strong></li>
+                            <li><strong>All measures must have descriptions</strong></li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>These will be checked in Step 4!</em></p>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>How to Add Measure Descriptions</h4>
+
+                        <p><strong>1. Select a measure</strong> in the Fields pane</p>
+                        <p><strong>2. Open Properties</strong> pane (View → Properties if hidden)</p>
+                        <p><strong>3. Add Description</strong> in the "Description" field</p>
+
+                        <div class="tip">
+                            <div class="tip-title">✍️ Good Description Example</div>
+                            <div class="command" style="background: white; color: #333;">
+                                Measure: Total Sales
+                                Description: Sum of sales amount in USD. Includes all transaction types except returns.
+                                Updated daily.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>How to Disable Auto Date/Time</h4>
+                        <ol style="margin-left: 20px;">
+                            <li>Go to <strong>File → Options and settings → Options</strong></li>
+                            <li>Under "Current File" section, click <strong>Data Load</strong></li>
+                            <li><strong>UNCHECK</strong> "Auto date/time"</li>
+                            <li>Click OK</li>
+                            <li>Save your file (<kbd>Ctrl + S</kbd>)</li>
+                        </ol>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>How to Fix Bidirectional Relationships</h4>
+                        <ol style="margin-left: 20px;">
+                            <li>Go to <strong>Model View</strong></li>
+                            <li>Check all relationship lines between tables</li>
+                            <li>If you see arrows on <strong>both ends</strong> → bidirectional!</li>
+                            <li>Right-click the relationship → <strong>Properties</strong></li>
+                            <li>Change "Cross filter direction" to <strong>Single</strong></li>
+                            <li>Click OK</li>
+                        </ol>
+                    </div>
+
+                    <div class="checklist">
+                        <strong>Checklist Before Moving to Next Step:</strong>
+                        <ul>
+                            <li>All data connections working</li>
+                            <li>Visuals display correctly</li>
+                            <li>Theme applied consistently</li>
+                            <li>All measures have descriptions</li>
+                            <li>Auto Date/Time disabled</li>
+                            <li>No bidirectional relationships</li>
+                            <li>File saved</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step" id="step4">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Run Governance Check (100% Score Required)</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Validate your report meets all governance standards. You MUST achieve 100%
+                            compliance.</strong></p>
+
+                    <div class="instruction">
+                        <h4>1. Close Power BI Desktop</h4>
+                        <p>Save and close your report in Power BI Desktop before running the check.</p>
+                        <div class="alert alert-warning">
+                            <span class="icon">⚠️</span> The file must be closed for governance check to read it
+                            properly!
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>2. Run Governance Check</h4>
+                        <p>Navigate to the BI-STD folder and <strong>double-click</strong>:</p>
+                        <div class="command">Report Governance Run.bat</div>
+                        <p>Location: <span class="path">BI-STD/Report Governance Run.bat</span></p>
+
+                        <div class="screenshot-placeholder">
+                            <span class="icon">🖼️</span>
+                            <p>A command window will open and scan all reports...</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>3. Review Results</h4>
+
+                        <p><strong>✅ If ALL CHECKS PASS:</strong></p>
+                        <div class="alert alert-success">
+                            <strong>🎉 SUCCESS!</strong> Your report meets all governance standards.<br>
+                            Documentation will be auto-generated in the same folder as your report:
+                            <ul style="margin-top: 10px; margin-left: 20px;">
+                                <li><code>YourReportName_DOCUMENTATION.md</code></li>
+                                <li><code>YourReportName_DOCUMENTATION.html</code></li>
+                            </ul>
+                            You can proceed to Step 5!
+                        </div>
+
+                        <p><strong>❌ If CHECKS FAIL:</strong></p>
+                        <div class="alert alert-danger">
+                            <strong>Issues Found!</strong> You must fix all failures before proceeding.<br>
+                            The report will show specific errors and how to fix them.
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>4. Fix Any Failures</h4>
+
+                        <p><strong>Common Failures and Solutions:</strong></p>
+
+                        <table>
+                            <tr>
+                                <th>Failure</th>
+                                <th>How to Fix</th>
+                            </tr>
+                            <tr>
+                                <td>❌ Auto Date/Time is ENABLED</td>
+                                <td>
+                                    1. Open report in Power BI<br>
+                                    2. File → Options → Current File → Data Load<br>
+                                    3. UNCHECK "Auto date/time"<br>
+                                    4. Save file
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>❌ Bidirectional relationships found</td>
+                                <td>
+                                    1. Open report → Model View<br>
+                                    2. Find bidirectional relationships (arrows on both ends)<br>
+                                    3. Right-click relationship → Properties<br>
+                                    4. Change to "Single" direction<br>
+                                    5. Save file
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>❌ Measures missing descriptions</td>
+                                <td>
+                                    1. Open report<br>
+                                    2. Select each measure in Fields pane<br>
+                                    3. Add description in Properties pane<br>
+                                    4. Save file
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>5. Re-run Check After Fixes</h4>
+                        <p>After fixing issues:</p>
+                        <ol style="margin-left: 20px;">
+                            <li>Save your report</li>
+                            <li>Close Power BI Desktop</li>
+                            <li>Run <code>Report Governance Run.bat</code> again</li>
+                            <li>Repeat until you get 100% PASS</li>
+                        </ol>
+                    </div>
+
+                    <div class="tip">
+                        <div class="tip-title">💡 Pro Tip: Check Logs</div>
+                        <p>Detailed results are saved to: <span class="path">BI-STD/Logs/governance_log.csv</span></p>
+                        <p>Open this file in Excel to see historical checks and track your progress!</p>
+                    </div>
+
+                    <div class="checklist">
+                        <strong>Required for Completion:</strong>
+                        <ul>
+                            <li>✅ [PASS] Performance: Auto Date/Time is Disabled</li>
+                            <li>✅ [PASS] Logic: No Bi-directional relationships found</li>
+                            <li>✅ [PASS] Documentation: All measures described</li>
+                            <li>Documentation files generated (MD + HTML)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="step" id="step5">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Commit Changes to GitHub</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Save your work to the repository with a clear commit message.</strong></p>
+
+                    <div class="instruction">
+                        <h4>1. Check Status</h4>
+                        <p>Open Git Bash in the BI-STD folder and check what's changed:</p>
+                        <div class="command">git status</div>
+                        <p>You should see your new report files and documentation.</p>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>2. Stage Your Changes</h4>
+                        <p>Add all your changes:</p>
+                        <div class="command">git add .</div>
+                        <p><em>Or add specific files:</em></p>
+                        <div class="command">git add ActiveReports/YourFolder/</div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>3. Commit with Meaningful Message</h4>
+                        <p>Write a clear commit message describing your changes:</p>
+                        <div class="command">git commit -m "Add [Report Name] - [Brief description of what it does]"
+                        </div>
+
+                        <div class="tip">
+                            <div class="tip-title">✍️ Good Commit Message Examples</div>
+                            <div class="command" style="background: white; color: #333;">
+                                # Good examples:
+                                git commit -m "Add Sales Dashboard - Monthly revenue tracking"
+                                git commit -m "Add Marketing Analytics - Campaign performance report"
+                                git commit -m "Update Finance Report - Add YTD comparison"
+
+                                # Bad examples (don't do this):
+                                git commit -m "stuff"
+                                git commit -m "fixed things"
+                                git commit -m "update"
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>4. Push to GitHub</h4>
+                        <p>Upload your changes to the remote repository:</p>
+                        <div class="command">git push origin main</div>
+                        <p><em>(Replace 'main' with your branch name if different)</em></p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <span class="icon">💡</span> <strong>Working on a feature branch?</strong><br>
+                        If you're working on a separate branch:
+                        <div class="command">git checkout -b feature/your-report-name
+                            git add .
+                            git commit -m "Your message"
+                            git push origin feature/your-report-name</div>
+                        Then create a Pull Request for review.
+                    </div>
+
+                    <div class="instruction">
+                        <h4>5. Verify on GitHub</h4>
+                        <p>Go to your GitHub repository in a browser and verify:</p>
+                        <ul style="margin-left: 20px;">
+                            <li>Your files are uploaded</li>
+                            <li>Commit message is clear</li>
+                            <li>Documentation files are present</li>
+                        </ul>
+                    </div>
+
+                    <div class="checklist">
+                        <strong>Checklist:</strong>
+                        <ul>
+                            <li>Changes committed with clear message</li>
+                            <li>Pushed to GitHub successfully</li>
+                            <li>Files visible in repository</li>
+                            <li>Documentation included</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 6 -->
+            <div class="step" id="step6">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Publish to Power BI Workspace</div>
+                </div>
+                <div class="step-content">
+                    <p><strong>Deploy your report to the Power BI Service for end users.</strong></p>
+
+                    <div class="instruction">
+                        <h4>1. Open Your Report</h4>
+                        <p>Open your PBIP file in Power BI Desktop:</p>
+                        <p><span class="path">ActiveReports/[YourFolder]/YourReportName.pbip</span></p>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>2. Sign In to Power BI</h4>
+                        <p>If not already signed in:</p>
+                        <ol style="margin-left: 20px;">
+                            <li>Click "Sign in" in the top-right corner</li>
+                            <li>Use your AB InBev credentials</li>
+                            <li>Wait for authentication to complete</li>
+                        </ol>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>3. Publish Report</h4>
+                        <ol style="margin-left: 20px;">
+                            <li>Click <strong>Home → Publish</strong> (or press <kbd>Ctrl + Shift + P</kbd>)</li>
+                            <li>Select destination <strong>workspace</strong> from the list</li>
+                            <li>Click <strong>Select</strong></li>
+                            <li>Wait for upload to complete</li>
+                        </ol>
+
+                        <div class="screenshot-placeholder">
+                            <span class="icon">🖼️</span>
+                            <p>Publishing to Power BI...</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>4. Verify Publication</h4>
+                        <p>After successful publish:</p>
+                        <ol style="margin-left: 20px;">
+                            <li>Click "Open [Report Name] in Power BI" in the success dialog</li>
+                            <li>OR go to <a href="https://app.powerbi.com" target="_blank">app.powerbi.com</a></li>
+                            <li>Navigate to your workspace</li>
+                            <li>Verify your report appears in the list</li>
+                            <li>Click to open and test functionality</li>
+                        </ol>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <span class="icon">🎉</span> <strong>Congratulations!</strong> Your report is now live in Power
+                        BI Service!
+                    </div>
+
+                    <div class="instruction">
+                        <h4>5. Configure Refresh Schedule (if needed)</h4>
+                        <p>If your report uses imported data:</p>
+                        <ol style="margin-left: 20px;">
+                            <li>In Power BI Service, go to your workspace</li>
+                            <li>Find the <strong>dataset</strong> (not the report)</li>
+                            <li>Click <strong>⋯ (More options) → Settings</strong></li>
+                            <li>Expand <strong>Scheduled refresh</strong></li>
+                            <li>Configure refresh frequency and time</li>
+                            <li>Click <strong>Apply</strong></li>
+                        </ol>
+                    </div>
+
+                    <div class="instruction">
+                        <h4>6. Share with Users (if needed)</h4>
+                        <p>To share your report:</p>
+                        <ol style="margin-left: 20px;">
+                            <li>Open report in Power BI Service</li>
+                            <li>Click <strong>Share</strong> button</li>
+                            <li>Enter email addresses of recipients</li>
+                            <li>Set permissions (can edit/can view)</li>
+                            <li>Add optional message</li>
+                            <li>Click <strong>Share</strong></li>
+                        </ol>
+
+                        <div class="alert alert-info">
+                            <span class="icon">ℹ️</span> <strong>Note:</strong> Users must have appropriate Power BI
+                            licenses to view reports.
+                        </div>
+                    </div>
+
+                    <div class="checklist">
+                        <strong>Final Checklist:</strong>
+                        <ul>
+                            <li>Report published successfully</li>
+                            <li>Visible in Power BI Service</li>
+                            <li>All visuals loading correctly</li>
+                            <li>Data refreshing (if applicable)</li>
+                            <li>Shared with appropriate users</li>
+                            <li>Documentation available in GitHub</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUICK REFERENCE -->
+            <div style="background: #f8f9fa; padding: 40px; border-radius: 15px; margin-top: 60px;">
+                <h2 style="color: #0066cc; text-align: center; margin-bottom: 30px;">📚 Quick Reference</h2>
+
+                <div class="quick-links">
+                    <div class="quick-link">
+                        <span class="icon">📁</span>
+                        <strong>Key Locations</strong>
+                        <p style="font-size: 0.9em; margin-top: 10px;">
+                            Themes: <code>Themes/</code><br>
+                            Templates: <code>Figma Theme/</code><br>
+                            Your Reports: <code>ActiveReports/</code>
+                        </p>
+                    </div>
+
+                    <div class="quick-link">
+                        <span class="icon">🎨</span>
+                        <strong>Theme File</strong>
+                        <p style="font-size: 0.9em; margin-top: 10px;">
+                            ABInBev_Default_Report.json
+                        </p>
+                    </div>
+
+                    <div class="quick-link">
+                        <span class="icon">✅</span>
+                        <strong>Governance Check</strong>
+                        <p style="font-size: 0.9em; margin-top: 10px;">
+                            Report Governance Run.bat
+                        </p>
+                    </div>
+
+                    <div class="quick-link">
+                        <span class="icon">📊</span>
+                        <strong>View Logs</strong>
+                        <p style="font-size: 0.9em; margin-top: 10px;">
+                            Logs/governance_log.csv
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <h3 style="color: #0066cc; margin-bottom: 15px;">⚠️ Common Mistakes to Avoid</h3>
+                    <div class="alert alert-danger">
+                        <ul style="margin-left: 20px;">
+                            <li>❌ Don't run governance check while report is open in Power BI Desktop</li>
+                            <li>❌ Don't skip measure descriptions - ALL measures need them</li>
+                            <li>❌ Don't use bidirectional relationships</li>
+                            <li>❌ Don't forget to disable Auto Date/Time</li>
+                            <li>❌ Don't commit without running governance check first</li>
+                            <li>❌ Don't delete your PBIX until PBIP is verified working</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <h3 style="color: #0066cc; margin-bottom: 15px;">🎯 Success Criteria</h3>
+                    <div class="alert alert-success">
+                        <strong>Your report is ready when:</strong>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>✅ Governance check shows 100% PASS</li>
+                            <li>✅ Documentation auto-generated (MD + HTML)</li>
+                            <li>✅ Committed to GitHub with clear message</li>
+                            <li>✅ Published to Power BI workspace</li>
+                            <li>✅ All visuals display correctly</li>
+                            <li>✅ Users can access the report</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>Need Help?</h3>
+            <p>Contact the BI Team or check the <code>README.md</code> in the repository.</p>
+            <p style="margin-top: 20px; opacity: 0.8;">
+                <strong>BI Factory</strong> - AB InBev Power BI Governance Framework<br>
+                Generated: 2026-02-01
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

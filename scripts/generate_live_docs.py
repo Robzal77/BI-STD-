@@ -376,35 +376,47 @@ def generate_report_documentation(semantic_model_dir, report_dir):
     return doc_path
 
 def generate_all_documentation(project_dir):
-    """Generate documentation for all reports in the project directory"""
+    """Generate documentation for all reports in the project directory (recursively)"""
     
     print(f"\n📚 Generating documentation for: {project_dir}\n")
     
     generated_count = 0
     
-    for item in os.listdir(project_dir):
-        item_path = os.path.join(project_dir, item)
+    # Walk through all subdirectories recursively
+    for root, dirs, files in os.walk(project_dir):
+        # Skip Archive and Templates folders - they're references only
+        dirs[:] = [d for d in dirs if d not in ['Archive', 'Templates']]
         
-        if os.path.isdir(item_path) and item.endswith('.SemanticModel'):
-            report_name = item.replace('.SemanticModel', '')
-            report_dir = os.path.join(project_dir, f"{report_name}.Report")
-            
-            if not os.path.exists(report_dir):
-                report_dir = None
-            
-            print(f"📄 Generating documentation for: {report_name}")
-            
-            try:
-                doc_path = generate_report_documentation(item_path, report_dir)
-                print(f"   ✅ Created: {doc_path}")
-                generated_count += 1
-            except Exception as e:
-                print(f"   ❌ Error: {e}")
-                import traceback
-                traceback.print_exc()
+        for item in dirs:
+            if item.endswith('.SemanticModel'):
+                item_path = os.path.join(root, item)
+                report_name = item.replace('.SemanticModel', '')
+                report_dir = os.path.join(root, f"{report_name}.Report")
+                
+                if not os.path.exists(report_dir):
+                    report_dir = None
+                
+                # Get relative path for display
+                rel_path = os.path.relpath(root, project_dir)
+                if rel_path == '.':
+                    location = 'Root'
+                else:
+                    location = rel_path
+                
+                print(f"📄 [{location}] Generating documentation for: {report_name}")
+                
+                try:
+                    doc_path = generate_report_documentation(item_path, report_dir)
+                    print(f"   ✅ Created: {doc_path}")
+                    generated_count += 1
+                except Exception as e:
+                    print(f"   ❌ Error: {e}")
+                    import traceback
+                    traceback.print_exc()
     
     print(f"\n🎉 Documentation generation complete! ({generated_count} reports)")
 
 if __name__ == "__main__":
     target_dir = sys.argv[1] if len(sys.argv) > 1 else "."
     generate_all_documentation(target_dir)
+

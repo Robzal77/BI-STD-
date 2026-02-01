@@ -75,6 +75,9 @@ def check_governance(start_dir, enable_logging=True):
     total_failures = 0
     
     for root, dirs, files in os.walk(start_dir):
+        # Skip Archive and Templates folders
+        dirs[:] = [d for d in dirs if d not in ['Archive', 'Templates']]
+        
         if 'model.tmdl' in files:
             models_found += 1
             model_path = os.path.join(root, 'model.tmdl')
