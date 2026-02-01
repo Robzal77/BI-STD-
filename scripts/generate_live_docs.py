@@ -360,6 +360,19 @@ def generate_report_documentation(semantic_model_dir, report_dir):
     with open(doc_path, 'w', encoding='utf-8') as f:
         f.write('\n'.join(doc_lines))
     
+    # Also generate HTML version
+    try:
+        import importlib.util
+        html_converter_path = os.path.join(os.path.dirname(__file__), 'markdown_to_html.py')
+        spec = importlib.util.spec_from_file_location("html_converter", html_converter_path)
+        html_converter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(html_converter)
+        
+        html_path = html_converter.convert_markdown_file(doc_path)
+        print(f"   📄 Also created HTML: {html_path}")
+    except Exception as e:
+        print(f"   ⚠️ HTML generation failed: {e}")
+    
     return doc_path
 
 def generate_all_documentation(project_dir):

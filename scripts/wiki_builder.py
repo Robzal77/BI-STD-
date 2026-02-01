@@ -18,7 +18,7 @@ import shutil
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 WIKI_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'wiki')
-PROJECTS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Project')
+PROJECTS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ActiveReports')
 LOGS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs')
 
 def ensure_wiki_structure():

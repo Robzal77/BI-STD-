@@ -1,3 +1,0 @@
-relationship 00000000-0000-0000-0000-000000000301
-	fromColumn: Sample_Data.DateKey
-	toColumn: DateTable.DateKey
