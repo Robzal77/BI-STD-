@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Standardization Initiative - Executive Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #1A1A1A;
+            background: linear-gradient(135deg, #1A1A1A 0%, #3d3d3d 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A1A1A 0%, #000000 100%);
+            color: white;
+            padding: 80px 60px;
+            text-align: center;
+            border-bottom: 8px solid #FFC20E;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #FFC20E;
+            text-shadow: 2px 2px 4px rgba(255, 194, 14, 0.3);
+            line-height: 1.2;
+        }
+
+        header .subtitle {
+            font-size: 1.8em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        header .tagline {
+            font-size: 1.2em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 60px;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe8b3 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            border: 3px solid #FFC20E;
+        }
+
+        .executive-summary h2 {
+            color: #1A1A1A;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .executive-summary p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            color: #1A1A1A;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #FFC20E;
+        }
+
+        .section h3 {
+            color: #1A1A1A;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section p,
+        .section li {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid #FFC20E;
+            box-shadow: 0 5px 15px rgba(255, 194, 14, 0.2);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 194, 14, 0.3);
+        }
+
+        .benefit-card .icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-card h3 {
+            color: #1A1A1A;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .roi-highlight {
+            background: linear-gradient(135deg, #FFC20E 0%, #e0a800 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+            color: #1A1A1A;
+        }
+
+        .roi-highlight h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .roi-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .roi-stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .roi-stat .number {
+            font-size: 4em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .roi-stat .label {
+            font-size: 1.3em;
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .problem {
+            background: #f8d7da;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #dc3545;
+        }
+
+        .solution {
+            background: #d4edda;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #28a745;
+        }
+
+        .problem h4,
+        .solution h4 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .problem ul,
+        .solution ul {
+            list-style-position: inside;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #FFC20E;
+        }
+
+        .timeline-item h4 {
+            color: #1A1A1A;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .phase {
+            display: inline-block;
+            background: #FFC20E;
+            color: #1A1A1A;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #1A1A1A;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-top: 8px solid #FFC20E;
+        }
+
+        footer h3 {
+            color: #FFC20E;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #FFC20E;
+            color: #1A1A1A;
+            padding: 20px 50px;
+            border-radius: 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 194, 14, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 194, 14, 0.5);
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .problem-solution {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .content {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🏆 Power BI Standardization Initiative</h1>
+            <p class="subtitle">BI Factory Framework</p>
+            <p class="tagline">Driving Quality, Efficiency, and Consistency Across AB InBev</p>
+        </header>
+
+        <div class="content">
+            <!-- EXECUTIVE SUMMARY -->
+            <div class="executive-summary">
+                <h2>📊 Executive Summary</h2>
+                <p><strong>The Challenge:</strong> Our organization creates dozens of Power BI reports, but lacks
+                    consistency in quality, design, and governance. This leads to increased costs, user confusion, and
+                    compliance risks.</p>
+
+                <p><strong>The Solution:</strong> The BI Factory Framework - an automated governance system that ensures
+                    every Power BI report meets AB InBev standards before deployment.</p>
+
+                <p><strong>The Impact:</strong> Reduce development time by 40%, eliminate quality issues at source, and
+                    provide stakeholders with consistent, reliable analytics across the organization.</p>
+            </div>
+
+            <!-- THE PROBLEM -->
+            <div class="section">
+                <h2>🎯 The Business Challenge</h2>
+
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4>❌ Current State Issues</h4>
+                        <ul>
+                            <li><strong>Inconsistent Quality:</strong> Reports vary widely in performance, design, and
+                                accuracy</li>
+                            <li><strong>No Standards:</strong> Each developer uses different approaches and best
+                                practices</li>
+                            <li><strong>Manual Reviews:</strong> Quality checks are time-consuming and error-prone</li>
+                            <li><strong>Documentation Gaps:</strong> Reports lack proper documentation, making
+                                maintenance difficult</li>
+                            <li><strong>Brand Inconsistency:</strong> Reports don't follow AB InBev visual standards
+                            </li>
+                            <li><strong>Hidden Costs:</strong> Poor reports require constant fixes and user support</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution">
+                        <h4>✅ BI Factory Solution</h4>
+                        <ul>
+                            <li><strong>Automated Quality Gates:</strong> Every report automatically checked before
+                                deployment</li>
+                            <li><strong>Enforced Standards:</strong> Governance rules built into the development process
+                            </li>
+                            <li><strong>Instant Validation:</strong> Developers get immediate feedback on issues</li>
+                            <li><strong>Auto-Documentation:</strong> Professional documentation generated automatically
+                            </li>
+                            <li><strong>Brand Compliance:</strong> Official AB InBev themes applied to all reports</li>
+                            <li><strong>Lower TCO:</strong> Build quality in from the start, reduce support costs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHAT IT IS -->
+            <div class="section">
+                <h2>💡 What is the BI Factory?</h2>
+
+                <p>The BI Factory is an <strong>automated governance and quality assurance system</strong> for Power BI
+                    development. Think of it as a "manufacturing quality control line" for analytics:</p>
+
+                <h3>Core Components:</h3>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <span class="icon">✅</span>
+                        <h3>Automated Checks</h3>
+                        <p>Validates reports against 20+ governance rules covering performance, logic, and
+                            documentation.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <span class="icon">🎨</span>
+                        <h3>Brand Standards</h3>
+                        <p>Enforces AB InBev visual identity with official themes and templates.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <span class="icon">📚</span>
+                        <h3>Auto-Documentation</h3>
+                        <p>Generates professional, searchable documentation for every report automatically.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <span class="icon">🚀</span>
+                        <h3>Developer Tools</h3>
+                        <p>One-click batch scripts that handle validation, documentation, and deployment.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <span class="icon">📊</span>
+                        <h3>Knowledge Base</h3>
+                        <p>Centralized wiki with all report documentation, standards, and best practices.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <span class="icon">🔄</span>
+                        <h3>Version Control</h3>
+                        <p>Git integration ensures all changes are tracked and reversible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUSINESS BENEFITS -->
+            <div class="section">
+                <h2>📈 Business Benefits</h2>
+
+                <h3>1. Quality & Consistency</h3>
+                <ul>
+                    <li><strong>Zero Defects at Deployment:</strong> Reports must pass 100% of checks before going live
+                    </li>
+                    <li><strong>Standardized User Experience:</strong> All reports look and feel professional</li>
+                    <li><strong>Brand Compliance:</strong> Automatic AB InBev styling on every report</li>
+                </ul>
+
+                <h3>2. Cost Savings</h3>
+                <ul>
+                    <li><strong>40% Faster Development:</strong> Templates and automation reduce build time</li>
+                    <li><strong>80% Less Rework:</strong> Catch issues early, not in production</li>
+                    <li><strong>50% Lower Support Costs:</strong> Fewer user complaints and maintenance requests</li>
+                </ul>
+
+                <h3>3. Knowledge Management</h3>
+                <ul>
+                    <li><strong>Institutional Knowledge:</strong> Every report self-documents its logic and purpose</li>
+                    <li><strong>Easier Handoffs:</strong> New team members can understand reports quickly</li>
+                    <li><strong>Searchable Repository:</strong> Find any metric or calculation across all reports</li>
+                </ul>
+
+                <h3>4. Risk Mitigation</h3>
+                <ul>
+                    <li><strong>Compliance Assurance:</strong> Automated checks prevent governance violations</li>
+                    <li><strong>Audit Trail:</strong> Full version history of all changes</li>
+                    <li><strong>Performance Monitoring:</strong> No slow reports reach production</li>
+                </ul>
+
+                <div class="roi-highlight">
+                    <h3>💰 Expected ROI</h3>
+                    <div class="roi-stats">
+                        <div class="roi-stat">
+                            <span class="number">40%</span>
+                            <span class="label">Faster Development</span>
+                        </div>
+                        <div class="roi-stat">
+                            <span class="number">80%</span>
+                            <span class="label">Fewer Defects</span>
+                        </div>
+                        <div class="roi-stat">
+                            <span class="number">50%</span>
+                            <span class="label">Lower Support Costs</span>
+                        </div>
+                        <div class="roi-stat">
+                            <span class="number">100%</span>
+                            <span class="label">Brand Compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOW IT WORKS -->
+            <div class="section">
+                <h2>⚙️ How It Works (Simple View)</h2>
+
+                <p><strong>For Developers:</strong></p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="phase">Step 1</span>
+                        <h4>Build Report</h4>
+                        <p>Developer creates Power BI report using official AB InBev theme and templates.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="phase">Step 2</span>
+                        <h4>Run Validation</h4>
+                        <p>One-click batch script checks report against all governance rules (performance, logic,
+                            documentation).</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="phase">Step 3</span>
+                        <h4>Fix Issues</h4>
+                        <p>System shows exactly what needs to be fixed with clear instructions. Developer makes
+                            corrections.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="phase">Step 4</span>
+                        <h4>Auto-Document</h4>
+                        <p>Upon passing validation, professional documentation is generated automatically.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="phase">Step 5</span>
+                        <h4>Deploy</h4>
+                        <p>Report is published to Power BI Service and documentation synced to knowledge base.</p>
+                    </div>
+                </div>
+
+                <p><strong>For Stakeholders:</strong> You receive high-quality, consistent, well-documented reports that
+                    meet all AB InBev standards - automatically.</p>
+            </div>
+
+            <!-- GOVERNANCE RULES -->
+            <div class="section">
+                <h2>📋 What We Check (Governance Rules)</h2>
+
+                <h3>Performance Rules</h3>
+                <ul>
+                    <li>Auto Date/Time features must be disabled (improves load speed)</li>
+                    <li>Efficient relationship structures</li>
+                    <li>Optimized data models</li>
+                </ul>
+
+                <h3>Logic & Quality Rules</h3>
+                <ul>
+                    <li>No bidirectional relationships (prevents data integrity issues)</li>
+                    <li>Proper measure documentation</li>
+                    <li>Consistent naming conventions</li>
+                </ul>
+
+                <h3>Documentation Rules</h3>
+                <ul>
+                    <li>Every measure must have a description</li>
+                    <li>Report purpose documented</li>
+                    <li>Data sources identified</li>
+                </ul>
+
+                <h3>Brand Standards</h3>
+                <ul>
+                    <li>AB InBev official theme applied</li>
+                    <li>Consistent color palette</li>
+                    <li>Professional layout templates</li>
+                </ul>
+            </div>
+
+            <!-- IMPLEMENTATION -->
+            <div class="section">
+                <h2>🚀 Implementation Status</h2>
+
+                <h3>✅ Completed</h3>
+                <ul>
+                    <li>Core governance engine developed and tested</li>
+                    <li>AB InBev official theme created</li>
+                    <li>Automated documentation system built</li>
+                    <li>Developer guides and training materials ready</li>
+                    <li>Batch automation scripts deployed</li>
+                    <li>Git version control integrated</li>
+                </ul>
+
+                <h3>🔄 Current Phase</h3>
+                <ul>
+                    <li>Piloting with development team</li>
+                    <li>Refining based on feedback</li>
+                    <li>Building knowledge base</li>
+                </ul>
+
+                <h3>📅 Next Steps</h3>
+                <ul>
+                    <li>Roll out to all BI developers</li>
+                    <li>Integrate with Azure DevOps CI/CD</li>
+                    <li>Expand governance rules based on needs</li>
+                    <li>Quarterly compliance reporting dashboard</li>
+                </ul>
+            </div>
+
+            <!-- TEAM IMPACT -->
+            <div class="section">
+                <h2>👥 Impact on Teams</h2>
+
+                <h3>For BI Developers</h3>
+                <ul>
+                    <li>Clear guidelines - no guessing what "good" looks like</li>
+                    <li>Instant feedback - fix issues immediately, not weeks later</li>
+                    <li>Less repetitive work - automation handles documentation</li>
+                    <li>Professional output - always deliver quality work</li>
+                </ul>
+
+                <h3>For Business Users</h3>
+                <ul>
+                    <li>Consistent experience across all reports</li>
+                    <li>Faster, more reliable reports</li>
+                    <li>Easy-to-find documentation</li>
+                    <li>Professional AB InBev branding</li>
+                </ul>
+
+                <h3>For IT Leadership</h3>
+                <ul>
+                    <li>Compliance assurance without manual oversight</li>
+                    <li>Reduced technical debt</li>
+                    <li>Lower total cost of ownership</li>
+                    <li>Scalable quality standards</li>
+                </ul>
+            </div>
+
+            <!-- SUCCESS METRICS -->
+            <div class="section">
+                <h2>📊 Success Metrics</h2>
+
+                <p>We measure success through:</p>
+
+                <table style="width: 100%; margin: 30px 0; border-collapse: collapse;">
+                    <tr>
+                        <th style="background: #1A1A1A; color: #FFC20E; padding: 15px; text-align: left;">Metric</th>
+                        <th style="background: #1A1A1A; color: #FFC20E; padding: 15px; text-align: left;">Target</th>
+                        <th style="background: #1A1A1A; color: #FFC20E; padding: 15px; text-align: left;">Benefit</th>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 15px; border: 1px solid #ddd;">Governance Compliance Rate</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;"><strong>100%</strong></td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Zero non-compliant reports in production</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Documentation Coverage</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;"><strong>100%</strong></td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Every report fully documented</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 15px; border: 1px solid #ddd;">Development Time Reduction</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;"><strong>40%</strong></td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Faster time to value</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Production Defects</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;"><strong>-80%</strong></td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Catch issues before deployment</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 15px; border: 1px solid #ddd;">Support Ticket Reduction</td>
+                        <td style="padding: 15px; border: 1px solid #ddd;"><strong>50%</strong></td>
+                        <td style="padding: 15px; border: 1px solid #ddd;">Higher quality = fewer issues</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <footer>
+            <h3>BI Factory Framework</h3>
+            <p style="font-size: 1.3em; margin: 20px 0;">Delivering Quality, Consistency, and Excellence in Power BI</p>
+            <p style="opacity: 0.8; margin-top: 30px;">AB InBev | Power BI Standardization Initiative | 2026</p>
+        </footer>
+    </div>
+</body>
+
+</html>
