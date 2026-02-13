@@ -1,0 +1,330 @@
+table 'Operations Extract'
+	lineageTag: f18d8dbe-1ded-40d3-8757-aab0987588e6
+
+	measure 'All scopes carbon emi intensity' = SUM('Operations Extract'[All Scopes Emissions intensity])
+		lineageTag: e5e96009-5c0d-4212-ac0a-052e288492fa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total production volume(Khl)' = SUM('Operations Extract'[All Scopes Production Volume (hl)])/1000
+		lineageTag: a8c079cb-302b-4203-aafb-85c2d50aefb6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Emissions Intensity' = (SUM('Operations Extract'[All Scopes Carbon Emissions ])*1000)/'Operations Extract'[Total production volume]
+		lineageTag: bbb3155d-95bc-4ac3-94de-359028cb16ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total production volume' = SUM('Operations Extract'[All Scopes Production Volume (hl)])
+		lineageTag: 67b4aca8-be97-4cf3-8d75-514d48f29823
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Siteranking = ```
+			
+			VAR SelectedScope = [All scopes carbon emi intensity]
+			VAR FilteredSites =
+			    FILTER(
+			        ALLSELECTED('Operations Extract'),
+			        'Operations Extract'[All scopes carbon emi intensity] > 0  
+			    )
+			RETURN
+			IF(
+			    SelectedScope > 0,  
+			    RANKX(
+			        FilteredSites,
+			        [All scopes carbon emi intensity],
+			        ,
+			        ASC,  -- Rank in ascending order
+			        DENSE  -- Use dense ranking to avoid gaps
+			    ),
+			    BLANK()  -- Return blank for sites with 0 scope
+			)
+			```
+		formatString: 0
+		lineageTag: bcad8901-4c05-4d18-a3c4-31de7fa2e679
+
+	measure 'Bottom Ranking' = RANKX(ALLSELECTED('Operations Extract'),[All scopes carbon emi intensity],,DESC)
+		formatString: 0
+		lineageTag: 0a14878a-1ca1-4d95-b299-b9031786283b
+
+	measure 'S1 carbon emissions intensity' = SUM('Operations Extract'[Scope 1 Carbon Emissions intensity (kgCO2e/hl)])
+		lineageTag: 5fa8184c-378f-4e73-9763-162fc6367cb8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'S1 Bottom Ranking' = RANKX(ALLSELECTED('Operations Extract'),[S1 carbon emissions intensity],,DESC)
+		formatString: 0
+		lineageTag: cbf87cce-61ab-42fa-b57a-a3721a54a90a
+
+	measure 'S1 Siteranking' = ```
+			
+			VAR SelectedScope = [S1 carbon emissions intensity]
+			VAR FilteredSites =
+			    FILTER(
+			        ALLSELECTED('Operations Extract'),
+			        'Operations Extract'[S1 carbon emissions intensity] > 0  
+			    )
+			RETURN
+			IF(
+			    SelectedScope > 0,  
+			    RANKX(
+			        FilteredSites,
+			        [S1 carbon emissions intensity],
+			        ,
+			        ASC,  -- Rank in ascending order
+			        DENSE  -- Use dense ranking to avoid gaps
+			    ),
+			    BLANK()  -- Return blank for sites with 0 scope
+			)
+			```
+		formatString: 0
+		lineageTag: dd9bed05-ab4d-42db-b397-647c1f07a478
+
+	measure WelcomeMeasure =
+			
+			"Hello! "
+			    & SUBSTITUTE (
+			        MID ( USERPRINCIPALNAME (), 1, SEARCH ( "@", USERPRINCIPALNAME (), 1, 0 ) - 1 ),
+			        ".",
+			        " "
+			    )
+		lineageTag: ecb968e9-d78a-4f6a-a095-9fc6953c43b2
+
+	measure 'S2 carbon emissions intensity' = SUM('Operations Extract'[Scope 2 Carbon Emissions intensity (kgCO2e/hl)])
+		lineageTag: 3e54a4c6-033f-4b62-b641-a4624c216e33
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'S2 Siteranking' = ```
+			
+			VAR SelectedScope = [S2 carbon emissions intensity]
+			VAR FilteredSites =
+			    FILTER(
+			        ALLSELECTED('Operations Extract'),
+			        'Operations Extract'[S2 carbon emissions intensity] > 0  
+			    )
+			RETURN
+			IF(
+			    SelectedScope > 0,  
+			    RANKX(
+			        FilteredSites,
+			        [S2 carbon emissions intensity],
+			        ,
+			        ASC,  -- Rank in ascending order
+			        DENSE  -- Use dense ranking to avoid gaps
+			    ),
+			    BLANK()  -- Return blank for sites with 0 scope
+			)
+			```
+		formatString: 0
+		lineageTag: c29dd8f6-0017-4240-874f-16b10de5240c
+
+	measure 'S2 Bottom Ranking' = RANKX(ALLSELECTED('Operations Extract'),[S2 carbon emissions intensity],,DESC)
+		formatString: 0
+		lineageTag: 9674b5ad-1c92-4680-8bce-9e7d562755cf
+
+	column Country
+		dataType: string
+		lineageTag: bd460236-9bb4-4a9d-ac68-68d90aeea8e8
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 0fa6acae-cc22-49ac-bda0-8b107379d906
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Site type'
+		dataType: string
+		lineageTag: 9a54b23b-7ec2-4f77-aff4-57d9123b6726
+		summarizeBy: none
+		sourceColumn: Site type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'All Scopes Production Volume (hl)'
+		dataType: double
+		lineageTag: f1bbb785-40b5-4685-969b-205f2dd439fc
+		summarizeBy: sum
+		sourceColumn: All Scopes Production Volume (hl)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Scope 1 Carbon Emissions (tCO2e)'
+		dataType: double
+		lineageTag: ce302c4a-b3f7-4982-848b-bc24d64ba5c4
+		summarizeBy: sum
+		sourceColumn: Scope 1 Carbon Emissions (tCO2e)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Scope 2 Carbon Emissions (tCO2e)'
+		dataType: double
+		lineageTag: 77ec7556-bf11-4133-952e-1ff8f287cbcf
+		summarizeBy: sum
+		sourceColumn: Scope 2 Carbon Emissions (tCO2e)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Scope 1 Carbon Emissions intensity (kgCO2e/hl)'
+		dataType: double
+		lineageTag: 92241e55-0fe3-4d3a-b21c-ecc3a794f158
+		summarizeBy: sum
+		sourceColumn: Scope 1 Carbon Emissions intensity (kgCO2e/hl)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Scope 2 Carbon Emissions intensity (kgCO2e/hl)'
+		dataType: double
+		lineageTag: 248208b9-c2c8-4a3b-9f78-fec858e56710
+		summarizeBy: sum
+		sourceColumn: Scope 2 Carbon Emissions intensity (kgCO2e/hl)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Zone
+		dataType: string
+		lineageTag: f9cde80b-9d4c-4a1a-9e8a-7b392c336464
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: fe4f7b21-7f01-4599-a40d-8e4f1aabff48
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'All Scopes Emissions intensity'
+		dataType: double
+		lineageTag: 22077a70-ff73-439c-a4d3-5f11e0d0dd14
+		summarizeBy: sum
+		sourceColumn: All Scopes Emissions intensity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'All Scopes Carbon Emissions '
+		dataType: double
+		lineageTag: bcfe8523-d5f9-458e-9b78-21e45a64e24f
+		summarizeBy: sum
+		sourceColumn: "All Scopes Carbon Emissions "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FY23 All Scopes Production Volume' =
+			
+			CALCULATE(
+			    MAX('Operations Extract'[All Scopes Production Volume (hl)]),
+			    'Operations Extract'[Period] = "FY23",
+			    ALLEXCEPT('Operations Extract', 'Operations Extract'[Sites])
+			)
+		lineageTag: 39fc394c-fd16-42fa-b9eb-c3fbc3040a76
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Leagues = IF('Operations Extract'[FY23 All Scopes Production Volume]>=2000000,"Premier","Super")
+		lineageTag: 7aeb4cd5-cffd-45c4-82fa-abf8e300d5eb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sites
+		dataType: string
+		lineageTag: d3e51fe3-6732-4bef-a770-c569b56c2666
+		summarizeBy: none
+		sourceColumn: Sites
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sites basis'
+		dataType: string
+		lineageTag: 95d8548d-346b-4a11-9b8e-da1c9ddcfc1d
+		summarizeBy: none
+		sourceColumn: Sites basis
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		dataType: string
+		lineageTag: d89c0a81-47fb-4852-87f9-de95c241086a
+		summarizeBy: none
+		sourceColumn: Period
+		sortByColumn: 'Period Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: c8ed169a-890e-4784-bf3d-92db4b7d5edf
+		summarizeBy: sum
+		sourceColumn: Period Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column League
+		dataType: string
+		lineageTag: d7c5ea5f-56fd-4d38-bd35-4af627110f47
+		summarizeBy: none
+		sourceColumn: League
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Operations Extract' = m
+		mode: import
+		source =
+				let
+				    Source = AzureStorage.DataLake("https://brewdatsupchnrawbrzd.dfs.core.windows.net/raw/data/ghq/sustainability/csrd/emissionranking/input_file"),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "EXP - Extract to Azure Blob.xlsx")),
+				    #"https://brewdatsupchnrawbrzd dfs core windows net/raw/data/ghq/sustainability/csrd/emissionranking/input_file/_EXP - Extract to Azure Blob xlsx" = #"Filtered Rows"{[#"Folder Path"="https://brewdatsupchnrawbrzd.dfs.core.windows.net/raw/data/ghq/sustainability/csrd/emissionranking/input_file/",Name="EXP - Extract to Azure Blob.xlsx"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"https://brewdatsupchnrawbrzd dfs core windows net/raw/data/ghq/sustainability/csrd/emissionranking/input_file/_EXP - Extract to Azure Blob xlsx"),
+				    #"Sheet 1_Sheet" = #"Imported Excel Workbook"{[Item="Sheet 1",Kind="Sheet"]}[Data],
+				    #"Removed Top Rows" = Table.Skip(#"Sheet 1_Sheet",1),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Site L5", type text}, {"OPS - Market/Location Based", type text}, {"Time", type text}, {"Country", type text}, {"Region", type text}, {"Site type", type text}, {"Production Volume (hl)", type any}, {"Carbon Emissions (tCO2e)", type any}, {"Carbon Emissions (tCO2e)_1", type any}, {"Carbon Emissions intensity (kgCO2e/hl)", type any}, {"Carbon Emissions intensity (kgCO2e/hl)_2", type any}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Site L5", "Sites"}, {"OPS - Market/Location Based", "Sites basis"}, {"Time", "Period"}, {"Production Volume (hl)", "All Scopes Production Volume (hl)"}, {"Carbon Emissions (tCO2e)", "Scope 1 Carbon Emissions (tCO2e)"}, {"Carbon Emissions (tCO2e)_1", "Scope 2 Carbon Emissions (tCO2e)"}, {"Carbon Emissions intensity (kgCO2e/hl)", "Scope 1 Carbon Emissions intensity (kgCO2e/hl)"}, {"Carbon Emissions intensity (kgCO2e/hl)_2", "Scope 2 Carbon Emissions intensity (kgCO2e/hl)"}}),
+				    #"Removed Top Rows1" = Table.Skip(#"Renamed Columns",1),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Top Rows1", {"Sites"}, #"Mapping file", {"Site#(lf)"}, "Mapping file", JoinKind.LeftOuter),
+				    #"Expanded Mapping file" = Table.ExpandTableColumn(#"Merged Queries", "Mapping file", {"Zone", "Type#(cr)#(lf)", "League#(cr)#(lf)"}, {"Zone", "Type#(cr)#(lf)", "League#(cr)#(lf)"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Expanded Mapping file",{{"All Scopes Production Volume (hl)", type number}, {"Scope 1 Carbon Emissions (tCO2e)", type number}, {"Scope 2 Carbon Emissions (tCO2e)", type number}, {"Scope 1 Carbon Emissions intensity (kgCO2e/hl)", type number}, {"Scope 2 Carbon Emissions intensity (kgCO2e/hl)", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type2", "All Scopes Emissions intensity", each [#"Scope 1 Carbon Emissions intensity (kgCO2e/hl)"]+[#"Scope 2 Carbon Emissions intensity (kgCO2e/hl)"]),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "All Scopes Carbon Emissions ", each [#"Scope 1 Carbon Emissions (tCO2e)"]+[#"Scope 2 Carbon Emissions (tCO2e)"]),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Added Custom1",{{"All Scopes Emissions intensity", type number}, {"All Scopes Carbon Emissions ", type number}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type3", "Period Sort", each if [Period] = "Q1 FY23" then 1 else if [Period] = "Q2 FY23" then 2 else if [Period] = "Q3 FY23" then 3 else if [Period] = "Q4 FY23" then 4 else if [Period] = "Q1 FY24" then 5 else if [Period] = "Q2 FY24" then 6 else if [Period] = "Q3 FY24" then 7 else if [Period] = "FY23" then 8 else 9),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Period Sort", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

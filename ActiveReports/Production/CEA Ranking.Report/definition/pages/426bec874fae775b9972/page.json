@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "426bec874fae775b9972",
+  "displayName": "Complete Data",
+  "displayOption": "FitToPage",
+  "height": 1000,
+  "width": 1580,
+  "visibility": "HiddenInViewMode"
+}

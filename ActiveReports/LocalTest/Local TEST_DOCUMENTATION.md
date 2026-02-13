@@ -1,58 +1,40 @@
-# Local TEST - Documentation
+# Local TEST - Technical Design Document
 
-> **Generated:** 2026-02-13 08:21:37
-> **Context:** This document is auto-generated from the model's metadata.
-
-## 📑 Quick Navigation
-
-- [Relationship Map](#-relationship-map)
-- [Model Blueprint](#-model-blueprint)
-- [Factory Data (Facts)](#-factory-data-facts)
-- [Business Context (Dimensions)](#-business-context-dimensions)
+**Report Name:** Local TEST
+**Version:** 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
+**Generated:** February 13, 2026
+**Architect:** 40103427
 
 ---
 
-## 📋 Model Blueprint
+## 1. 🏗️ High-Level Architecture
 
-*Overview of all tables, their types, and item counts.*
+### Star Schema Diagram
 
-| Table Type | Table Name | Items | Description |
-| 📈 **Fact** | [result](#result) | 7 | - |
+*No core fact-dimension relationships found.*
 
----
+### 🎯 Business Purpose
 
-## 📈 Factory Data (Facts)
+This report is a business intelligence dashboard providing analytical insights and performance metrics for data-driven decision making.
 
-*Tables containing transactional data and metrics (measures).*
+## 2. 📊 The Data Flow (ETL Analysis)
 
-### result
-*Path: `result.tmdl`*
+### result Data Pipeline
 
-#### 📐 Measures
+**Source:** Not explicitly identified in M code
 
-**📁 Other Measures**
-<details><summary><b>test measure</b>: <i>this is test measure</i></summary>
+**Transformations:**
 
-</details>
+## 3. 🧠 Measure Logic (The "Why", not just "What")
 
-<details><summary><b>second test</b>: <i>second test</i></summary>
+### A. Core Financials (Values & Costs)
 
-```dax
-second test = 
-```
-  				" test"
-  	```
-```
-</details>
+**Name:** `test measure`
+**Logic:** Direct column reference
 
-
-#### 📋 Columns
-
-| Name | Type | Folder | Description |
-| Workspace | `string` | - | - |
-| Report | `string` | - | - |
-| Report_ID | `int64` | - | - |
-| Distinct_User_Count(Jan 2025 - Jan 2026) | `int64` | - | - |
-| Total_View_Count(Jan 2025 - Jan 2026) | `int64` | - | - |
+**Name:** `second test`
+**Logic:** Direct column reference
 
 ---
+
+*This Technical Design Document focuses on the core star schema and business logic for Local TEST. All utility tables and helper measures have been excluded for clarity.*

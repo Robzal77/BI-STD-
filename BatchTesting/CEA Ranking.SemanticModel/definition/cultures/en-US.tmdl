@@ -1,0 +1,3929 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "3.5.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "operations_extract": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "operations extract": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "operation extract": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "extract": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "operation quotation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "operation citation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "quotation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "citation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "operation excerpt": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "operation cutting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "operation abstract": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "excerpt": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "cutting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "abstract": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.country": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Country"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "country": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.region": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Region"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "region": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.818
+			          }
+			        },
+			        {
+			          "province": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "area": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "district": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "section": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "continent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.site_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Site type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "site type": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "site category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "site genre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "site manner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "site variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "site brand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "site class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "site kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "site style": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "site form": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "site grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.all_scopes_production_volume_hl": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "All Scopes Production Volume (hl)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "all scopes production volume (hl)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "all scope production volume (hl)": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "all scopes production volume": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.scope_1_carbon_emissions_tCO2e": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Scope 1 Carbon Emissions (tCO2e)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "scope 1 carbon emissions (tCO2e)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "scope 1 carbon emission (tCO2e)": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "scope 1 carbon emissions": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.scope_2_carbon_emissions_tCO2e": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Scope 2 Carbon Emissions (tCO2e)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "scope 2 carbon emissions (tCO2e)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "scope 2 carbon emission (tCO2e)": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "scope 2 carbon emissions": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.scope_1_carbon_emissions_intensity_kgCO2e_hl": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Scope 1 Carbon Emissions intensity (kgCO2e/hl)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "scope 1 carbon emissions intensity (kgCO2e/hl)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "scope 1 carbon emission intensity (kgCO2e/hl)": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "scope 1 carbon emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "scope 1 carbon emissions intensity (kgCO2e": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scope 1 carbon emission intensity (kgCO2e": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.7566
+			          }
+			        },
+			        {
+			          "scope 1 carbon emissions intensity ( kgCO2e hl )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scope 1 carbon emission intensity ( kgCO2e hl )": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.7566
+			          }
+			        },
+			        {
+			          "hl)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.scope_2_carbon_emissions_intensity_kgCO2e_hl": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Scope 2 Carbon Emissions intensity (kgCO2e/hl)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "scope 2 carbon emissions intensity (kgCO2e/hl)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "scope 2 carbon emission intensity (kgCO2e/hl)": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "scope 2 carbon emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "scope 2 carbon emissions intensity (kgCO2e": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scope 2 carbon emission intensity (kgCO2e": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.7566
+			          }
+			        },
+			        {
+			          "scope 2 carbon emissions intensity ( kgCO2e hl )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scope 2 carbon emission intensity ( kgCO2e hl )": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.7566
+			          }
+			        },
+			        {
+			          "hl)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.zone": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Zone"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "zone": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "precinct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "district": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "sector": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "neighborhood": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "area": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "type": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "genre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "manner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "brand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "style": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "form": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.all_scopes_emissions_intensity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "All Scopes Emissions intensity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "all scopes emissions intensity": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "all scope emission intensity": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "emission intensity": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.7566
+			          }
+			        },
+			        {
+			          "scopes emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scope emission intensity": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.7566
+			          }
+			        },
+			        {
+			          "all scope emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "all scope emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "all scope emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "all scope emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "scope emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "scope emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "scope emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "scope emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.all_scopes_carbon_emission": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "All Scopes Carbon Emissions "
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "all scopes carbon emission": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "all scope carbon emission": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "All Scopes Carbon Emissions": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "emission": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "carbon emission": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scopes carbon emission": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scope carbon emission": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.7566
+			          }
+			        },
+			        {
+			          "Emissions": {
+			            "State": "Generated",
+			            "Weight": 0.96029999999999993
+			          }
+			        },
+			        {
+			          "Carbon Emissions": {
+			            "State": "Generated",
+			            "Weight": 0.96029999999999993
+			          }
+			        },
+			        {
+			          "Scopes Carbon Emissions": {
+			            "State": "Generated",
+			            "Weight": 0.96029999999999993
+			          }
+			        },
+			        {
+			          "all scope carbon production": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "all scope carbon emanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "all scope carbon secretion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "all scope carbon radiation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "scope carbon production": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "scope carbon emanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "scope carbon secretion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "scope carbon radiation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon production": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "carbon emanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.FY23_all_scopes_production_volume": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "FY23 All Scopes Production Volume"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "FY23 all scopes production volume": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "FY23 all scope production volume": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "fy23 all scope production capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "fy23 all scope production size": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "fy23 all scope production bulk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "fy23 all scope production tome": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.494
+			          }
+			        },
+			        {
+			          "fy23 all scope production book": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "fy23 all scope production work": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "fy23 all scope production edition": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.469
+			          }
+			        },
+			        {
+			          "fy23 all scope production part": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.455
+			          }
+			        },
+			        {
+			          "fy23 all scope production section": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.455
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.league": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Leagues"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "league": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "association": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "confederation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "confederacy": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "alliance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "coalition": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "federation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "union": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "club": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.all_scopes_carbon_emi_intensity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "All scopes carbon emi intensity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "all scopes carbon emi intensity": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "emi intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "carbon emi intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "scopes carbon emi intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "all scope carbon emi strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.52
+			          }
+			        },
+			        {
+			          "all scope carbon emi concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.52
+			          }
+			        },
+			        {
+			          "all scope carbon emi passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.52
+			          }
+			        },
+			        {
+			          "all scope carbon emi greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.52
+			          }
+			        },
+			        {
+			          "scope carbon emi strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "scope carbon emi concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "scope carbon emi passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "scope carbon emi greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carbon emi strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon emi concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "Scope 1+2 Carbon Emissions intensity (kgCO2e/hl)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.total_production_volumekhl": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Total production volume(Khl)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total production volume(khl)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total production volume": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "Total production volume(Khl) -  Scope1+2": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total production volume(Khl) - Scope1+2": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.average_emissions_intensity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Average Emissions Intensity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "average emissions intensity": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "average emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "average emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "average emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "average emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "average emission power": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "average emission force": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "Average Emissions Intensity - Scope1+2": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.total_production_volume": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Total production volume"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total production volume": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "volume": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "production volume": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "aggregate production volume": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "overall production volume": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "total production capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "total production size": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "total production bulk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "production capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "production size": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "production bulk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "total production tome": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.siteranking": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Siteranking"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "siteranking": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ranking": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.bottom_ranking": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Bottom Ranking"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "bottom ranking": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "bottom status": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "bottom classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "bottom position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bottom place": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bottom grade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bottom standing": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bottom level": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bottom rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "Ranking": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.S1_carbon_emissions_intensity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "S1 carbon emissions intensity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "S1 carbon emissions intensity": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "carbon emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "s1 carbon emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "s1 carbon emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "s1 carbon emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "s1 carbon emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carbon emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "Scope 1 Carbon Emissions intensity (kgCO2e/hl)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.S1_bottom_ranking": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "S1 Bottom Ranking"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "S1 bottom ranking": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "s1 bottom status": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "s1 bottom classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "s1 bottom position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s1 bottom place": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s1 bottom grade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s1 bottom standing": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s1 bottom level": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s1 bottom rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "Ranking": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.S1_siteranking": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "S1 Siteranking"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "S1 siteranking": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ranking": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.welcome_measure": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "WelcomeMeasure"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "welcome measure": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "WelcomeMeasure": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "measure": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "welcome degree": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "welcome quantity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "welcome quota": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "welcome extent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "degree": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "quota": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "extent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "welcome amount": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "welcome portion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "welcome ration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.S2_carbon_emissions_intensity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "S2 carbon emissions intensity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "S2 carbon emissions intensity": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "carbon emissions intensity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "s2 carbon emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "s2 carbon emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "s2 carbon emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "s2 carbon emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carbon emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon emission passion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "carbon emission greatness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "emission strength": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "emission concentration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "Scope 2 Carbon Emissions intensity (kgCO2e/hl)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.S2_siteranking": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "S2 Siteranking"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "S2 siteranking": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ranking": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.S2_bottom_ranking": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "S2 Bottom Ranking"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "S2 bottom ranking": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "s2 bottom status": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "s2 bottom classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "s2 bottom position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s2 bottom place": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s2 bottom grade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s2 bottom standing": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s2 bottom level": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "s2 bottom rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "Ranking": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.site": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Sites"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "site": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "website": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "campus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "homepage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "locale": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "place": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "spot": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.sites_basis": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Sites basis"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sites basis": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "site basis": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "basis": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "site origin": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "origin": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "site foundation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "site base": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "site root": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "site source": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "site beginning": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "site center": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "site heart": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "site core": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "operations_extract.period": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Operations Extract",
+			          "ConceptualProperty": "Period"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "period": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "era": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "epoch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "age": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "stage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "phase": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "operations_extract_has_period": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.period": {
+			          "Target": {
+			            "Entity": "operations_extract.period"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.period"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_periods"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_sites_basis": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.sites_basis": {
+			          "Target": {
+			            "Entity": "operations_extract.sites_basis"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.sites_basis"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_sites_bases"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_site": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.site": {
+			          "Target": {
+			            "Entity": "operations_extract.site"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.site"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_sites"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_S2_bottom_ranking": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.S2_bottom_ranking": {
+			          "Target": {
+			            "Entity": "operations_extract.S2_bottom_ranking"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.S2_bottom_ranking"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_S2_bottom_ranking"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_S2_siteranking": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.S2_siteranking": {
+			          "Target": {
+			            "Entity": "operations_extract.S2_siteranking"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.S2_siteranking"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_S2_siteranking"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_S2_carbon_emissions_intensity": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.S2_carbon_emissions_intensity": {
+			          "Target": {
+			            "Entity": "operations_extract.S2_carbon_emissions_intensity"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.S2_carbon_emissions_intensity"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_S2_carbon_emissions_intensity"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_welcome_measure": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.welcome_measure": {
+			          "Target": {
+			            "Entity": "operations_extract.welcome_measure"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.welcome_measure"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_welcome_measure"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_S1_siteranking": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.S1_siteranking": {
+			          "Target": {
+			            "Entity": "operations_extract.S1_siteranking"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.S1_siteranking"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_S1_siteranking"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_S1_bottom_ranking": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.S1_bottom_ranking": {
+			          "Target": {
+			            "Entity": "operations_extract.S1_bottom_ranking"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.S1_bottom_ranking"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_S1_bottom_ranking"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_S1_carbon_emissions_intensity": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.S1_carbon_emissions_intensity": {
+			          "Target": {
+			            "Entity": "operations_extract.S1_carbon_emissions_intensity"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.S1_carbon_emissions_intensity"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_S1_carbon_emissions_intensity"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_bottom_ranking": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.bottom_ranking": {
+			          "Target": {
+			            "Entity": "operations_extract.bottom_ranking"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.bottom_ranking"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_bottom_ranking"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_siteranking": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.siteranking": {
+			          "Target": {
+			            "Entity": "operations_extract.siteranking"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.siteranking"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_siteranking"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_total_production_volume": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.total_production_volume": {
+			          "Target": {
+			            "Entity": "operations_extract.total_production_volume"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.total_production_volume"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_total_production_volume"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_average_emissions_intensity": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.average_emissions_intensity": {
+			          "Target": {
+			            "Entity": "operations_extract.average_emissions_intensity"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.average_emissions_intensity"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_average_emissions_intensity"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_total_production_volumekhl": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.total_production_volumekhl": {
+			          "Target": {
+			            "Entity": "operations_extract.total_production_volumekhl"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.total_production_volumekhl"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_total_production_volumekhl"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_all_scopes_carbon_emi_intensity": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.all_scopes_carbon_emi_intensity": {
+			          "Target": {
+			            "Entity": "operations_extract.all_scopes_carbon_emi_intensity"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.all_scopes_carbon_emi_intensity"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_all_scopes_carbon_emi_intensity"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_league": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.league": {
+			          "Target": {
+			            "Entity": "operations_extract.league"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.league"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_leagues"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_FY23_all_scopes_production_volume": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.FY23_all_scopes_production_volume": {
+			          "Target": {
+			            "Entity": "operations_extract.FY23_all_scopes_production_volume"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.FY23_all_scopes_production_volume"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_FY23_all_scopes_production_volumes"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_all_scopes_carbon_emission": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.all_scopes_carbon_emission": {
+			          "Target": {
+			            "Entity": "operations_extract.all_scopes_carbon_emission"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.all_scopes_carbon_emission"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_all_scopes_carbon_emissions"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_all_scopes_emissions_intensity": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.all_scopes_emissions_intensity": {
+			          "Target": {
+			            "Entity": "operations_extract.all_scopes_emissions_intensity"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.all_scopes_emissions_intensity"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_all_scopes_emissions_intensities"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_type": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.type": {
+			          "Target": {
+			            "Entity": "operations_extract.type"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.type"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_types"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_zone": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.zone": {
+			          "Target": {
+			            "Entity": "operations_extract.zone"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.zone"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_zones"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_scope_2_carbon_emissions_intensity_kgCO2e_hl": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.scope_2_carbon_emissions_intensity_kgCO2e_hl": {
+			          "Target": {
+			            "Entity": "operations_extract.scope_2_carbon_emissions_intensity_kgCO2e_hl"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.scope_2_carbon_emissions_intensity_kgCO2e_hl"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_scope_2_carbon_emissions_intensity_kgCO2e_hl"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_scope_1_carbon_emissions_intensity_kgCO2e_hl": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.scope_1_carbon_emissions_intensity_kgCO2e_hl": {
+			          "Target": {
+			            "Entity": "operations_extract.scope_1_carbon_emissions_intensity_kgCO2e_hl"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.scope_1_carbon_emissions_intensity_kgCO2e_hl"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_scope_1_carbon_emissions_intensity_kgCO2e_hl"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_scope_2_carbon_emissions_tCO2e": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.scope_2_carbon_emissions_tCO2e": {
+			          "Target": {
+			            "Entity": "operations_extract.scope_2_carbon_emissions_tCO2e"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.scope_2_carbon_emissions_tCO2e"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_scope_2_carbon_emissions_tCO2e"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_scope_1_carbon_emissions_tCO2e": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.scope_1_carbon_emissions_tCO2e": {
+			          "Target": {
+			            "Entity": "operations_extract.scope_1_carbon_emissions_tCO2e"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.scope_1_carbon_emissions_tCO2e"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_scope_1_carbon_emissions_tCO2e"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_all_scopes_production_volume_hl": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.all_scopes_production_volume_hl": {
+			          "Target": {
+			            "Entity": "operations_extract.all_scopes_production_volume_hl"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.all_scopes_production_volume_hl"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_all_scopes_production_volume_hl"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_site_type": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.site_type": {
+			          "Target": {
+			            "Entity": "operations_extract.site_type"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.site_type"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_site_types"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_region": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.region": {
+			          "Target": {
+			            "Entity": "operations_extract.region"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_regions"
+			        }
+			      ]
+			    },
+			    "operations_extract_has_country": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.country": {
+			          "Target": {
+			            "Entity": "operations_extract.country"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Object": {
+			              "Role": "operations_extract.country"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_have_countries"
+			        }
+			      ]
+			    },
+			    "operations_extract_in_region": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.region": {
+			          "Target": {
+			            "Entity": "operations_extract.region"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "operations_extract.region"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "operations_extract.region"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_are_in_regions"
+			        }
+			      ]
+			    },
+			    "operations_extract_in_country": {
+			      "Binding": {
+			        "ConceptualEntity": "Operations Extract"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "operations_extract": {
+			          "Target": {
+			            "Entity": "operations_extract"
+			          }
+			        },
+			        "operations_extract.country": {
+			          "Target": {
+			            "Entity": "operations_extract.country"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "operations_extract.country"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "operations_extract"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "operations_extract.country"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "operations_extracts_are_in_countries"
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

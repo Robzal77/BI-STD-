@@ -1,0 +1,350 @@
+table fact_scope1_mobile_combustion
+	lineageTag: 6bad04b9-d87c-4f72-9785-980b41f0140f
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 48f521ba-7b32-4225-93f7-ab3fd86e19d3
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: f7e4de27-49f2-462d-b69e-baa331b0f320
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_type
+		dataType: string
+		lineageTag: bce254dd-4f8b-451c-8ca2-a946de510131
+		summarizeBy: none
+		sourceColumn: period_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Code
+		dataType: string
+		lineageTag: c59bdddf-e0ae-4355-9d63-ae70f3457e95
+		summarizeBy: none
+		sourceColumn: Site_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Name
+		dataType: string
+		lineageTag: 956a15d5-0b9c-4903-9117-977f7e9deb0f
+		summarizeBy: none
+		sourceColumn: Site_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_of_Plant
+		dataType: string
+		lineageTag: 67178e9b-a31d-47a6-865d-b50a226391dc
+		summarizeBy: none
+		sourceColumn: Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_Type_of_Plant
+		dataType: string
+		lineageTag: d59d9d57-0ff6-406b-8778-a47041c49fee
+		summarizeBy: none
+		sourceColumn: Sub_Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 48be554c-36ab-41cb-8290-a95f84ea9fc2
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 8eec4659-79d1-4ff8-bab4-350fbb7dd8c4
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 8a1374c2-fedf-4d7b-9a24-89f8c3f9e453
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: 9c044007-d0d3-426f-9166-c453f651f924
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column GHG_Category
+		dataType: string
+		lineageTag: 64ca7189-5702-4747-b470-c6a0c084e1fa
+		summarizeBy: none
+		sourceColumn: GHG_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Activity
+		dataType: string
+		lineageTag: e5a41531-0c64-4a1a-9422-eb8c42729bdd
+		summarizeBy: none
+		sourceColumn: Activity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Energy_Type
+		dataType: string
+		lineageTag: 4bdb3e8b-f201-4a36-af84-78b3d36d1e68
+		summarizeBy: none
+		sourceColumn: Energy_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emission_Type
+		dataType: string
+		lineageTag: 5f57e464-75c9-479f-bb60-9d9015095359
+		summarizeBy: none
+		sourceColumn: Emission_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI
+		dataType: string
+		lineageTag: a9ed6051-cc27-42ba-96a4-cba66b65d0a2
+		summarizeBy: none
+		sourceColumn: KPI
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI_value
+		dataType: double
+		lineageTag: eb9906ad-6e16-4f5d-9bf1-e3aa4540214a
+		summarizeBy: sum
+		sourceColumn: KPI_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI_Unit
+		dataType: string
+		lineageTag: 9114cf02-7d28-4bf7-98ad-c7d5bae4d258
+		summarizeBy: none
+		sourceColumn: KPI_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calorific_Code
+		dataType: string
+		lineageTag: 5eb7cce7-346c-4732-a0e9-7349af035a23
+		summarizeBy: none
+		sourceColumn: Calorific_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column calorific_value_MJ_Unit
+		dataType: double
+		lineageTag: 5c2da233-1a2b-4e49-a30a-6d9c9ab7bf66
+		summarizeBy: sum
+		sourceColumn: calorific_value_MJ_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Converted_Data_MJ
+		dataType: double
+		lineageTag: 52a32355-9e4e-4e50-b313-494af687fd6c
+		summarizeBy: sum
+		sourceColumn: Converted_Data_MJ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgCO2_per_Unit
+		dataType: double
+		lineageTag: 31094d7e-d2b3-4d3f-9033-bafb4480e5ce
+		summarizeBy: sum
+		sourceColumn: EF_kgCO2_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCO2
+		dataType: double
+		lineageTag: f524d058-51bd-427d-b5dc-738eadff2f1a
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCO2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgCH4_per_Unit
+		dataType: double
+		lineageTag: 9ad08d02-1b4c-49f6-9968-9efbdc122aff
+		summarizeBy: sum
+		sourceColumn: EF_kgCH4_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCH4
+		dataType: double
+		lineageTag: 8e7c9ffb-b7b5-43c7-b41c-4c16a7e9b26d
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCH4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgN2O_per_Unit
+		dataType: double
+		lineageTag: 75ec8d21-d5d2-49e4-bca6-aa42e183a364
+		summarizeBy: sum
+		sourceColumn: EF_kgN2O_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tN2O
+		dataType: double
+		lineageTag: 89da8ba6-8bce-437d-a512-5746ede9f03c
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tN2O
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgCO2e_per_Unit
+		dataType: double
+		lineageTag: db1821a4-e84f-431e-b2dd-b99c774640bf
+		summarizeBy: sum
+		sourceColumn: EF_kgCO2e_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emissions_tCO2e
+		dataType: double
+		lineageTag: ac6b593e-6fe5-4c77-a3ef-6af73049ca9b
+		summarizeBy: sum
+		sourceColumn: GHG_Emissions_tCO2e
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column __start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: faebd312-b2a8-4fec-8b2c-df2ca78c8b7e
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: b67cfe71-8a36-4660-a551-7b6239a7b110
+			defaultHierarchy: LocalDateTable_c1b9f7d7-77c3-46be-a30a-d38ab82b213f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __hash_key
+		dataType: string
+		lineageTag: a23e087a-ed8f-4343-b24b-7610e48a709c
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fe740e01-dc95-4c77-93f4-89417e77b49c
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: 4cc71f79-15f2-4abc-9673-f3aa56f005b2
+			defaultHierarchy: LocalDateTable_122ff113-4fbf-485e-a79b-9d0b45af2b90.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6183d273-5bb8-40f7-a04b-eed401f52d6b
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: f1daad19-d6d2-4881-b0d8-619aeccae9c9
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		dataType: string
+		lineageTag: 1b0d074d-f7df-4ba8-a53c-71494034e964
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 96fb14ab-6917-4da2-83a3-113cc942c147
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition fact_scope1_mobile_combustion = m
+		mode: import
+		queryGroup: 'Scope 1'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"8fa89595-17da-449f-a0ef-5a6683c519c6" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="8fa89595-17da-449f-a0ef-5a6683c519c6"]}[Data],
+				    fact_scope1_mobile_combustion_ = #"8fa89595-17da-449f-a0ef-5a6683c519c6"{[entity="fact_scope1_mobile_combustion",version=""]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(fact_scope1_mobile_combustion_, each ([__is_active] = true)),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Date", each #date([year],[Month],1), type date)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

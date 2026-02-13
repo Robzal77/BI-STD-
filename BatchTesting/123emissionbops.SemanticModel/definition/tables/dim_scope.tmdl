@@ -1,0 +1,96 @@
+table dim_scope
+	lineageTag: d5662480-207f-458d-b415-bba9963df4ab
+
+	column Scope_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: bf145c36-0c91-4f6c-bc87-a8e1ec70372c
+		summarizeBy: none
+		sourceColumn: Scope_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: d09ba06b-b796-44dd-afff-8f8e5e419da4
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column __start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6f2664bf-ec83-446a-a41a-4f322c5d6bbc
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: 9e376c68-2b12-4929-81c7-e4d42d8023f0
+			defaultHierarchy: LocalDateTable_d8741105-6f47-4b2a-9a42-873017c2097e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __hash_key
+		dataType: string
+		lineageTag: fd5555d4-6df7-46a0-9c5f-5b3ca3096476
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 74f3d92e-afe8-4a64-a0d0-0d23c4b1e0b4
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: df93833a-170f-48ef-bf7e-2a7c288df52d
+			defaultHierarchy: LocalDateTable_7414bb24-9d91-4c00-b2e2-06556b8f7084.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e06477c9-09cd-4601-a25e-1a9004822473
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: 5dda1017-2425-45e1-aa9e-8892c64b1997
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_scope = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"8518fc90-5a95-4545-ba26-d48f0ff30949" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="8518fc90-5a95-4545-ba26-d48f0ff30949"]}[Data],
+				    dim_scope_Table = #"8518fc90-5a95-4545-ba26-d48f0ff30949"{[entity="dim_scope",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dim_scope_Table,{{"__start_date", type date}, {"__end_date", type date}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Scope] = "BOP" or [Scope] = "SOP" or [Scope] = "VOP")),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","SOP","SOP+OTVOP (Estimate)",Replacer.ReplaceText,{"Scope"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

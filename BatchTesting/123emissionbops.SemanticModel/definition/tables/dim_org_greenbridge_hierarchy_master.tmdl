@@ -1,0 +1,213 @@
+table dim_org_greenbridge_hierarchy_master
+	lineageTag: b9dacb12-a39f-4c8e-bf90-8022dc7ac3dd
+
+	column Hier_Id
+		dataType: string
+		lineageTag: 1075ceed-680f-4a7a-8d12-86b7cffad1a4
+		summarizeBy: none
+		sourceColumn: Hier_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 87690c53-6dd5-4580-83ae-5637765c3872
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Name
+		dataType: string
+		lineageTag: 41c300c2-09a5-449c-82be-63344b7743c2
+		summarizeBy: none
+		sourceColumn: Site_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entity
+		dataType: string
+		lineageTag: 3b489c75-cb24-42e8-b927-6fe0aa9f5116
+		summarizeBy: none
+		sourceColumn: Entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entity_Name
+		dataType: string
+		lineageTag: 4afce0e1-3277-4cc7-ac4e-097bf0c2548e
+		summarizeBy: none
+		sourceColumn: Entity_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 3726dd10-dff2-4cea-b963-0852b87d355f
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 871e0325-8332-4e42-91a2-e3ed282946e4
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Code
+		dataType: string
+		lineageTag: c51b0e91-2da4-4257-8f83-61991c6a8f44
+		summarizeBy: none
+		sourceColumn: Site_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_Code
+		dataType: string
+		lineageTag: 6bea6610-b04e-40b3-851c-6b51471d0389
+		summarizeBy: none
+		sourceColumn: Currency_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant_Type
+		dataType: string
+		lineageTag: 00e7b5f4-40ab-4a54-8982-9f32de531cd0
+		summarizeBy: none
+		sourceColumn: Plant_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Type
+		dataType: string
+		lineageTag: 1e03dea0-5a23-402b-a753-349193442712
+		summarizeBy: none
+		sourceColumn: Site_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Sub_Type
+		dataType: string
+		lineageTag: b15b89ed-89b1-4f73-8cf2-e11c973b478c
+		summarizeBy: none
+		sourceColumn: Site_Sub_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: ea178e54-ceb2-4950-90ec-ae10d17a9c08
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relevant_For_Reporting
+		dataType: string
+		lineageTag: 5a491bdf-567d-4c64-9ce0-db44a087b7ed
+		summarizeBy: none
+		sourceColumn: Relevant_For_Reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	column __start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7ca30764-95b5-4780-93b1-42cfa09071a0
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: 34ed0f76-533a-43fd-ab72-31c59a779277
+			defaultHierarchy: LocalDateTable_2845cd39-4541-4ed1-89b0-c22704122ac5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __hash_key
+		dataType: string
+		lineageTag: e714ef60-ea70-4fa7-9c9d-70ec10fb74a0
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e5ae2d18-1e4a-4da8-ab9e-abdc6ed7cef0
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: 6ba43821-2b14-486e-8860-7d914e0622ad
+			defaultHierarchy: LocalDateTable_c103a34e-25a6-457f-83fb-a210f01e0aff.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e68c7909-60a2-428f-9f16-f1c4a896f87f
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: e87cae59-28b0-4f1a-aa94-7d296ef1a307
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Applicable_for_Estimation
+		dataType: string
+		lineageTag: 48b4b0bb-7023-466c-b1b4-363957029379
+		summarizeBy: none
+		sourceColumn: Applicable_for_Estimation
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Zone Hierarchy'
+		lineageTag: 368192e5-d4bd-4dc0-beb0-4bb625adfceb
+
+		level Zone
+			lineageTag: 12f7076a-dfc8-4363-a603-a70ab265e2ca
+			column: Zone
+
+		level Country
+			lineageTag: ed99678d-f349-4605-afe3-debaede6d9bb
+			column: Country
+
+		level Site_Name
+			lineageTag: c1b5d942-d810-4531-88bf-b3d002df00b8
+			column: Site_Name
+
+	partition dim_org_greenbridge_hierarchy_master = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"8518fc90-5a95-4545-ba26-d48f0ff30949" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="8518fc90-5a95-4545-ba26-d48f0ff30949"]}[Data],
+				    dim_org_greenbridge_hierarchy_master_Table = #"8518fc90-5a95-4545-ba26-d48f0ff30949"{[entity="dim_org_greenbridge_hierarchy_master",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dim_org_greenbridge_hierarchy_master_Table,{{"__start_date", type date}, {"__end_date", type date}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([__is_active] = true))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

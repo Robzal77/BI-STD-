@@ -1,0 +1,742 @@
+table dim_account
+	lineageTag: b7498ada-376e-4da2-92a4-2f103eea1b12
+
+	column account_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 273d5665-30c2-4d3e-8e2a-4152884fc0ac
+		summarizeBy: sum
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_code
+		dataType: string
+		lineageTag: bfe304f2-68f7-40d5-ad18-fec0f49708c9
+		summarizeBy: none
+		sourceColumn: account_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_name
+		dataType: string
+		lineageTag: 8ca85336-7aed-4187-bba7-8033277ca8ce
+		summarizeBy: none
+		sourceColumn: account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column UOM
+		dataType: string
+		lineageTag: dc5468be-3dc5-470e-a800-1c9b0d895926
+		summarizeBy: none
+		sourceColumn: UOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Classification
+		dataType: string
+		lineageTag: 94b390b9-6a4c-434d-afdb-8721e7bef20a
+		summarizeBy: none
+		sourceColumn: Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chapter_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: c8989f30-d7c9-48c2-8195-03802bfc6f95
+		summarizeBy: count
+		sourceColumn: Chapter_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 03f156fd-9075-441f-9f19-253353f62c9a
+		summarizeBy: none
+		sourceColumn: Scope_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column system_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: b08dae5f-9de8-4b4b-9787-1c40b07a0288
+		summarizeBy: count
+		sourceColumn: system_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column __start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 754b05b8-4e60-43b7-a7ea-f89eeb90b6f7
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: cc260c9f-d7cc-41e5-8cdc-cf7881f2f220
+			defaultHierarchy: LocalDateTable_a14bb859-68a0-4ef8-9c18-e3bdde24bdf1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __hash_key
+		dataType: string
+		lineageTag: 185316b1-5fa4-496e-bc09-737b2650f98d
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b75640e1-c2fb-47a1-89f4-f83a23a114e5
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: 8a5989c2-9d2c-47c9-8cd4-9836888287f4
+			defaultHierarchy: LocalDateTable_7f12d8c3-54e4-48e2-8be5-b7a264f3f13a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3d6191df-3940-4e42-85a8-75d65e9037a3
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: 97c387f7-37e6-48c7-8b21-e1010f1fb66c
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AccountName with Unit'
+		dataType: string
+		lineageTag: 03057521-f1d6-47cb-bd88-c6ce7710e16a
+		summarizeBy: none
+		sourceColumn: AccountName with Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Group
+		dataType: string
+		lineageTag: 78c41a22-78d3-4478-8e12-f8d458d7fde5
+		summarizeBy: none
+		sourceColumn: Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClassificationRank
+		dataType: double
+		lineageTag: 4a56949f-0f8c-4921-bda3-df5144a17796
+		summarizeBy: sum
+		sourceColumn: ClassificationRank
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Level 1' =
+			
+			
+			VAR g1 = {
+			    "PG-R2070",
+			    "PG-R2413",
+			    "PG-R2080",
+			    "CA-R6044",
+			    "CA-R6059",
+			    "CA-R2151",
+			    "GL-R6013",
+			    "GL-R6028",
+			    "GL-R2136",
+			    "MA-R2070",
+			    "MA-R5997",
+			    "MA-R2080"
+			}
+			
+			VAR g2 = {
+			    "PG-R5917",
+			    "PG-R2407",
+			    "PG-R5918",
+			    "PG-R2023",
+			    "PG-R2024",
+			    "PG-R2010",
+			    "PG-R2020",
+			    "PG-R5972",
+			    "PG-R5973",
+			    "PG-R2021",
+			    "PG-R2406",
+			    "PG-R2411",
+			    "PG-R2414",
+			    "PG-R2022",
+			    "PG-R2405",
+			    "PG-R2410",
+			    "PG-R2122",
+			
+			    "CA-R6046",
+			    "CA-R6054",
+			    "CA-R2153",
+			    "CA-R6047",
+			    "CA-R2154",
+			    "CA-R6048",
+			    "CA-R2155",
+			    "CA-R6049",
+			    "CA-R2156",
+			    "CA-R6050",
+			    "CA-R6053",
+			    "CA-R6056",
+			    "CA-R6058",
+			    "CA-R2157",
+			    "CA-R6052",
+			    "CA-R6055",
+			    "CA-R2163",
+			
+			    "GL-R6015",
+			    "GL-R6023",
+			    "GL-R2138",
+			    "GL-R6016",
+			    "GL-R2139",
+			    "GL-R6017",
+			    "GL-R2141",
+			    "GL-R6018",
+			    "GL-R2128",
+			    "GL-R6019",
+			    "GL-R6022",
+			    "GL-R6025",
+			    "GL-R6027",
+			    "GL-R2142",
+			    "GL-R6021",
+			    "GL-R6024",
+			    "GL-R2149",
+			
+			    "MA-R5984",
+			    "MA-R5992",
+			    "MA-R2125",
+			    "MA-R5985",
+			    "MA-R2126",
+			    "MA-R5986",
+			    "MA-R2127",
+			    "MA-R5987",
+			    "MA-R2128",
+			    "MA-R5988",
+			    "MA-R5991",
+			    "MA-R5994",
+			    "MA-R5996",
+			    "MA-R2129",
+			    "MA-R5990",
+			    "MA-R5993",
+			    "MA-R2134"
+			}
+			
+			VAR g3 = {
+			    "PG-R2030",
+			    "PG-R2040",
+			    "PG-R2408",
+			    "PG-R5935",
+			    "PG-R2409",
+			    "PG-R5933",
+			
+			    "CA-R2030",
+			    "CA-R2040",
+			    "CA-R6060",
+			    "CA-R2159",
+			    "CA-R6061",
+			    "CA-R2158",
+			
+			    "GL-R6020",
+			    "GL-R2145",
+			    "GL-R6029",
+			    "GL-R2144",
+			    "GL-R6030",
+			    "GL-R2143",
+			
+			    "MA-R2030",
+			    "MA-R2040",
+			    "MA-R5998",
+			    "MA-R5935",
+			    "MA-R5999",
+			    "MA-R2131"
+			}
+			
+			VAR g4 = {
+			    "PG-R5982",
+			    "PG-R2124",
+			
+			    "CA-R6073",
+			    "CA-R2164",
+			
+			    "GL-R6042",
+			    "GL-R2150",
+			
+			    "MA-R6011",
+			    "MA-R2135"
+			}
+			
+			VAR g5 = {
+			    "PG-R5899",
+			    "MA-R5981",
+			    "GL-R6012",
+			    "CA-R6043"
+			}
+			
+			VAR g6 = {
+			    "PG-R2050",
+			    "PG-R2060",
+			    "PG-R2025",
+			    "PG-R2026",
+			    "PG-R5966",
+			    "PG-R5967",
+			    "PG-R2035",
+			    "PG-R2110",
+			    "PG-R5726",
+			    "PG-R2120",
+			    "PG-R5981",
+			    "PG-R2124",
+			
+			    "CA-R2152",
+			    "CA-R6045",
+			    "CA-R6068",
+			    "CA-R2106",
+			    "CA-R6069",
+			    "CA-R2162",
+			    "CA-R6070",
+			    "CA-R6071",
+			    "CA-R6051",
+			    "CA-R2161",
+			    "CA-R6072",
+			    "CA-R2164",
+			
+			    "GL-R2137",
+			    "GL-R6014",
+			    "GL-R6037",
+			    "GL-R2146",
+			    "GL-R6038",
+			    "GL-R2148",
+			    "GL-R6039",
+			    "GL-R6040",
+			    "GL-R2140",
+			    "GL-R2147",
+			    "GL-R6041",
+			    "GL-R2150",
+			
+			    "MA-R2060",
+			    "MA-R2050",
+			    "MA-R6006",
+			    "MA-R2132",
+			    "MA-R6007",
+			    "MA-R2133",
+			    "MA-R6008",
+			    "MA-R6009",
+			    "MA-R5721",
+			    "MA-R2120",
+			    "MA-R6010",
+			    "MA-R2135"
+			}
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    [account_code] IN g1, "TOT-KEN001 - Total Coal and coal products (CSRD)",
+			    [account_code] IN g2, "TOT-KEN002 - Total crude oil and petroleum products (CSRD)",
+			    [account_code] IN g3, "TOT-KEN003 - Total Natural gas (CSRD)",
+			    [account_code] IN g4, "TOT-KEN004 - Total Other fossil sources (CSRD)",
+			    [account_code] IN g5, "TOT-REN001 - Total energy consumption of nuclear sources",
+			    [account_code] IN g6, "TOT-KEN009 - Total Fuel consumption for renewable sources",
+			    BLANK()
+			)
+		lineageTag: 0a22511c-95d8-47d5-83bf-632260650936
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Level 2' =
+			
+			
+			VAR g1 = {
+			    "PG-R2070",
+			    "PG-R2413",
+			    "PG-R2080"
+			}
+			
+			VAR g2 = {
+			    "CA-R6044",
+			    "CA-R6059",
+			    "CA-R2151"
+			}
+			
+			VAR g3 = {
+			    "GL-R6013",
+			    "GL-R6028",
+			    "GL-R2136"
+			}
+			
+			VAR g4 = {
+			    "MA-R2070",
+			    "MA-R5997",
+			    "MA-R2080"
+			}
+			
+			VAR g5 = {
+			    "PG-R5917",
+			    "PG-R2407",
+			    "PG-R5918",
+			    "PG-R2023",
+			    "PG-R2024",
+			    "PG-R2010",
+			    "PG-R2020",
+			    "PG-R5972",
+			    "PG-R5973",
+			    "PG-R2021",
+			    "PG-R2406",
+			    "PG-R2411",
+			    "PG-R2414",
+			    "PG-R2022",
+			    "PG-R2405",
+			    "PG-R2410",
+			    "PG-R2122"
+			}
+			
+			VAR g6 = {
+			    "CA-R6046",
+			    "CA-R6054",
+			    "CA-R2153",
+			    "CA-R6047",
+			    "CA-R2154",
+			    "CA-R6048",
+			    "CA-R2155",
+			    "CA-R6049",
+			    "CA-R2156",
+			    "CA-R6050",
+			    "CA-R6053",
+			    "CA-R6056",
+			    "CA-R6058",
+			    "CA-R2157",
+			    "CA-R6052",
+			    "CA-R6055",
+			    "CA-R2163"
+			}
+			
+			VAR g7 = {
+			    "GL-R6015",
+			    "GL-R6023",
+			    "GL-R2138",
+			    "GL-R6016",
+			    "GL-R2139",
+			    "GL-R6017",
+			    "GL-R2141",
+			    "GL-R6018",
+			    "GL-R2128",
+			    "GL-R6019",
+			    "GL-R6022",
+			    "GL-R6025",
+			    "GL-R6027",
+			    "GL-R2142",
+			    "GL-R6021",
+			    "GL-R6024",
+			    "GL-R2149"
+			}
+			
+			VAR g8 = {
+			    "MA-R5984",
+			    "MA-R5992",
+			    "MA-R2125",
+			    "MA-R5985",
+			    "MA-R2126",
+			    "MA-R5986",
+			    "MA-R2127",
+			    "MA-R5987",
+			    "MA-R2128",
+			    "MA-R5988",
+			    "MA-R5991",
+			    "MA-R5994",
+			    "MA-R5996",
+			    "MA-R2129",
+			    "MA-R5990",
+			    "MA-R5993",
+			    "MA-R2134"
+			}
+			
+			VAR g9 = {
+			    "PG-R2030",
+			    "PG-R2040",
+			    "PG-R2408",
+			    "PG-R5935",
+			    "PG-R2409",
+			    "PG-R5933"
+			}
+			
+			VAR g10 = {
+			    "CA-R2030",
+			    "CA-R2040",
+			    "CA-R6060",
+			    "CA-R2159",
+			    "CA-R6061",
+			    "CA-R2158"
+			}
+			
+			VAR g11 = {
+			    "GL-R6020",
+			    "GL-R2145",
+			    "GL-R6029",
+			    "GL-R2144",
+			    "GL-R6030",
+			    "GL-R2143"
+			}
+			
+			VAR g12 = {
+			    "MA-R2030",
+			    "MA-R2040",
+			    "MA-R5998",
+			    "MA-R5935",
+			    "MA-R5999",
+			    "MA-R2131"
+			}
+			
+			VAR g13 = {
+			    "PG-R5982",
+			    "PG-R2124"
+			}
+			
+			VAR g14 = {
+			    "CA-R6073",
+			    "CA-R2164"
+			}
+			
+			VAR g15 = {
+			    "GL-R6042",
+			    "GL-R2150"
+			}
+			
+			VAR g16 = {
+			    "MA-R6011",
+			    "MA-R2135"
+			}
+			
+			VAR g17 = {
+			    "PG-R2050",
+			    "PG-R2060",
+			    "PG-R2025",
+			    "PG-R2026",
+			    "PG-R5966",
+			    "PG-R5967",
+			    "PG-R2035",
+			    "PG-R2110",
+			    "PG-R5726",
+			    "PG-R2120",
+			    "PG-R5981",
+			    "PG-R2124"
+			}
+			
+			VAR g18 = {
+			    "CA-R2152",
+			    "CA-R6045",
+			    "CA-R6068",
+			    "CA-R2106",
+			    "CA-R6069",
+			    "CA-R2162",
+			    "CA-R6070",
+			    "CA-R6071",
+			    "CA-R6051",
+			    "CA-R2161",
+			    "CA-R6072",
+			    "CA-R2164"
+			}
+			
+			VAR g19 = {
+			    "GL-R2137",
+			    "GL-R6014",
+			    "GL-R6037",
+			    "GL-R2146",
+			    "GL-R6038",
+			    "GL-R2148",
+			    "GL-R6039",
+			    "GL-R6040",
+			    "GL-R2140",
+			    "GL-R2147",
+			    "GL-R6041",
+			    "GL-R2150"
+			}
+			
+			VAR g20 = {
+			    "MA-R2060",
+			    "MA-R2050",
+			    "MA-R6006",
+			    "MA-R2132",
+			    "MA-R6007",
+			    "MA-R2133",
+			    "MA-R6008",
+			    "MA-R6009",
+			    "MA-R5721",
+			    "MA-R2120",
+			    "MA-R6010",
+			    "MA-R2135"
+			}
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    [account_code] IN g1, "PG-KEN001 - Coal and coal products (CSRD) BOPS",
+			    [account_code] IN g2, "CA-KEN001 - Coal and coal products (CSRD) CANS",
+			    [account_code] IN g3, "GL-KEN001 - Coal and coal products (CSRD) GLASS",
+			    [account_code] IN g4, "MA-KEN001 - Coal and coal products (CSRD) MALT",
+			    [account_code] IN g5, "PG-KEN002 - Crude oil and petroleum products (CSRD) BOPS",
+			    [account_code] IN g6, "CA-KEN002 - Crude oil and petroleum products (CSRD) CANS",
+			    [account_code] IN g7, "GL-KEN002 - Crude oil and petroleum products (CSRD) GLASS",
+			    [account_code] IN g8, "MA-KEN002 - Crude oil and petroleum products (CSRD) MALT",
+			    [account_code] IN g9, "PG-KEN003 - Natural gas (CSRD) BOPS",
+			    [account_code] IN g10, "CA-KEN003 - Natural gas (CSRD) CANS",
+			    [account_code] IN g11, "GL-KEN003 - Natural gas (CSRD) GLASS",
+			    [account_code] IN g12, "MA-KEN003 - Natural gas (CSRD) MALT",
+			    [account_code] IN g13, "PG-KEN004 - Other fossil sources (CSRD) BOPS",
+			    [account_code] IN g14, "CA-KEN004 - Other fossil sources (CSRD) CANS",
+			    [account_code] IN g15, "GL-KEN004 - Other fossil sources (CSRD) GLASS",
+			    [account_code] IN g16, "MA-KEN004 - Other fossil sources (CSRD) MALT",
+			    [account_code] IN g17, "PG-KEN009 - Fuel consumption for renewable sources BOPS",
+			    [account_code] IN g18, "CA-KEN009 - Fuel consumption for renewable sources CANS",
+			    [account_code] IN g19, "GL-KEN009 - Fuel consumption for renewable sources GLASS",
+			    [account_code] IN g20, "MA-KEN009 - Fuel consumption for renewable sources MALT",
+			    BLANK()
+			)
+		lineageTag: 8f3fe57c-733b-4adc-a269-5b5b0ed150dd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_account = m
+		mode: import
+		source = ```
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"8518fc90-5a95-4545-ba26-d48f0ff30949" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="8518fc90-5a95-4545-ba26-d48f0ff30949"]}[Data],
+				    dim_account_Table = #"8518fc90-5a95-4545-ba26-d48f0ff30949"{[entity="dim_account",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dim_account_Table,{{"__start_date", type date}, {"__end_date", type date}, {"account_id", Int64.Type}}),
+				    Custom1 = Table.SelectRows(#"Changed Type", 
+				each 
+				[account_code] = "TOT-KEN001" or [account_code] = "TOT-KEN002" or [account_code] = "TOT-KEN003" or 
+				[account_code] = "TOT-KEN004" or [account_code] = "TOT-KEN005" or [account_code] = "TOT-KEN006" or 
+				[account_code] = "TOT-KEN007" or [account_code] = "TOT-REN001" or 
+				
+				[account_code] = "PG-KEN001" or [account_code] = "PG-KEN002" or [account_code] = "PG-KEN003" or 
+				[account_code] = "PG-KEN004" or [account_code] = "PG-KEN005" or [account_code] = "PG-KEN006" or 
+				[account_code] = "PG-KEN009" or [account_code] = "PG-KEN010" or [account_code] = "PG-KEN011" or 
+				[account_code] = "PG-KEN012" or [account_code] = "PG-KEN014" or 
+				[account_code] = "PG-KRE001" or 
+				[account_code] = "PG-R2010" or [account_code] = "PG-R2020" or [account_code] = "PG-R2021" or 
+				[account_code] = "PG-R2022" or [account_code] = "PG-R2023" or [account_code] = "PG-R2024" or 
+				[account_code] = "PG-R2025" or [account_code] = "PG-R2026" or [account_code] = "PG-R2030" or 
+				[account_code] = "PG-R2035" or [account_code] = "PG-R2040" or [account_code] = "PG-R2050" or 
+				[account_code] = "PG-R2060" or [account_code] = "PG-R2070" or [account_code] = "PG-R2080" or 
+				[account_code] = "PG-R2090" or [account_code] = "PG-R2091" or [account_code] = "PG-R2092" or 
+				[account_code] = "PG-R2093" or [account_code] = "PG-R2100" or [account_code] = "PG-R2110" or 
+				[account_code] = "PG-R2120" or [account_code] = "PG-R2122" or [account_code] = "PG-R2124" or 
+				[account_code] = "PG-R2405" or [account_code] = "PG-R2406" or [account_code] = "PG-R2407" or 
+				[account_code] = "PG-R2408" or [account_code] = "PG-R2409" or [account_code] = "PG-R2410" or 
+				[account_code] = "PG-R2411" or [account_code] = "PG-R2413" or [account_code] = "PG-R2414" or 
+				[account_code] = "PG-R5726" or [account_code] = "PG-R5899" or [account_code] = "PG-R5917" or 
+				[account_code] = "PG-R5918" or [account_code] = "PG-R5933" or [account_code] = "PG-R5935" or 
+				[account_code] = "PG-R5961" or [account_code] = "PG-R5966" or [account_code] = "PG-R5967" or 
+				[account_code] = "PG-R5972" or [account_code] = "PG-R5973" or [account_code] = "PG-R5981" or 
+				[account_code] = "PG-R5982" or [account_code] = "PG-K0541" or 
+				
+				[account_code] = "CA-KEN001" or [account_code] = "CA-KEN002" or [account_code] = "CA-KEN003" or 
+				[account_code] = "CA-KEN004" or [account_code] = "CA-KEN005" or [account_code] = "CA-KEN006" or 
+				[account_code] = "CA-KEN009" or [account_code] = "CA-KEN010" or [account_code] = "CA-KEN011" or 
+				[account_code] = "CA-KEN012" or [account_code] = "CA-KEN014" or 
+				[account_code] = "CA-KRE001" or 
+				[account_code] = "CA-R2030" or [account_code] = "CA-R2040" or [account_code] = "CA-R2100" or 
+				[account_code] = "CA-R2151" or [account_code] = "CA-R2152" or [account_code] = "CA-R2153" or 
+				[account_code] = "CA-R2154" or [account_code] = "CA-R2155" or [account_code] = "CA-R2156" or 
+				[account_code] = "CA-R2157" or [account_code] = "CA-R2158" or [account_code] = "CA-R2159" or 
+				[account_code] = "CA-R2161" or [account_code] = "CA-R2162" or [account_code] = "CA-R2163" or 
+				[account_code] = "CA-R2164" or [account_code] = "CA-R6043" or [account_code] = "CA-R6044" or 
+				[account_code] = "CA-R6045" or [account_code] = "CA-R6046" or [account_code] = "CA-R6047" or 
+				[account_code] = "CA-R6048" or [account_code] = "CA-R6049" or [account_code] = "CA-R6050" or 
+				[account_code] = "CA-R6051" or [account_code] = "CA-R6052" or [account_code] = "CA-R6053" or 
+				[account_code] = "CA-R6054" or [account_code] = "CA-R6055" or [account_code] = "CA-R6056" or 
+				[account_code] = "CA-R6058" or [account_code] = "CA-R6059" or [account_code] = "CA-R6060" or 
+				[account_code] = "CA-R6061" or [account_code] = "CA-R6062" or [account_code] = "CA-R6063" or 
+				[account_code] = "CA-R6064" or [account_code] = "CA-R6065" or [account_code] = "CA-R6067" or 
+				[account_code] = "CA-R6068" or [account_code] = "CA-R6069" or [account_code] = "CA-R6070" or 
+				[account_code] = "CA-R6071" or [account_code] = "CA-R6072" or [account_code] = "CA-R6073" or 
+				
+				[account_code] = "GL-KEN001" or [account_code] = "GL-KEN002" or [account_code] = "GL-KEN003" or 
+				[account_code] = "GL-KEN004" or [account_code] = "GL-KEN005" or [account_code] = "GL-KEN006" or 
+				[account_code] = "GL-KEN009" or [account_code] = "GL-KEN010" or [account_code] = "GL-KEN011" or 
+				[account_code] = "GL-KEN012" or [account_code] = "GL-KEN014" or 
+				[account_code] = "GL-KRE001" or 
+				[account_code] = "GL-R2128" or [account_code] = "GL-R2136" or [account_code] = "GL-R2137" or 
+				[account_code] = "GL-R2138" or [account_code] = "GL-R2139" or [account_code] = "GL-R2140" or 
+				[account_code] = "GL-R2141" or [account_code] = "GL-R2142" or [account_code] = "GL-R2143" or 
+				[account_code] = "GL-R2144" or [account_code] = "GL-R2145" or [account_code] = "GL-R2146" or 
+				[account_code] = "GL-R2147" or [account_code] = "GL-R2148" or [account_code] = "GL-R2149" or 
+				[account_code] = "GL-R2150" or [account_code] = "GL-R6012" or [account_code] = "GL-R6013" or 
+				[account_code] = "GL-R6014" or [account_code] = "GL-R6015" or [account_code] = "GL-R6016" or 
+				[account_code] = "GL-R6017" or [account_code] = "GL-R6018" or [account_code] = "GL-R6019" or 
+				[account_code] = "GL-R6020" or [account_code] = "GL-R6021" or [account_code] = "GL-R6022" or 
+				[account_code] = "GL-R6023" or [account_code] = "GL-R6024" or [account_code] = "GL-R6025" or 
+				[account_code] = "GL-R6027" or [account_code] = "GL-R6028" or [account_code] = "GL-R6029" or 
+				[account_code] = "GL-R6030" or [account_code] = "GL-R6031" or [account_code] = "GL-R6032" or 
+				[account_code] = "GL-R6033" or [account_code] = "GL-R6034" or [account_code] = "GL-R6035" or 
+				[account_code] = "GL-R6036" or [account_code] = "GL-R6037" or [account_code] = "GL-R6038" or 
+				[account_code] = "GL-R6039" or [account_code] = "GL-R6040" or [account_code] = "GL-R6041" or 
+				[account_code] = "GL-R6042" or 
+				
+				[account_code] = "MA-KEN001" or [account_code] = "MA-KEN002" or [account_code] = "MA-KEN003" or 
+				[account_code] = "MA-KEN004" or [account_code] = "MA-KEN005" or [account_code] = "MA-KEN006" or 
+				[account_code] = "MA-KEN009" or [account_code] = "MA-KEN010" or [account_code] = "MA-KEN011" or 
+				[account_code] = "MA-KEN012" or [account_code] = "MA-KEN014" or 
+				[account_code] = "MA-KRE001" or 
+				[account_code] = "MA-R2030" or [account_code] = "MA-R2040" or [account_code] = "MA-R2050" or 
+				[account_code] = "MA-R2060" or [account_code] = "MA-R2070" or [account_code] = "MA-R2080" or 
+				[account_code] = "MA-R2100" or [account_code] = "MA-R2120" or [account_code] = "MA-R2125" or 
+				[account_code] = "MA-R2126" or [account_code] = "MA-R2127" or [account_code] = "MA-R2128" or 
+				[account_code] = "MA-R2129" or [account_code] = "MA-R2131" or [account_code] = "MA-R2132" or 
+				[account_code] = "MA-R2133" or [account_code] = "MA-R2134" or [account_code] = "MA-R2135" or 
+				[account_code] = "MA-R5721" or [account_code] = "MA-R5935" or [account_code] = "MA-R5981" or 
+				[account_code] = "MA-R5984" or [account_code] = "MA-R5985" or [account_code] = "MA-R5986" or 
+				[account_code] = "MA-R5987" or [account_code] = "MA-R5988" or [account_code] = "MA-R5990" or 
+				[account_code] = "MA-R5991" or [account_code] = "MA-R5992" or [account_code] = "MA-R5993" or 
+				[account_code] = "MA-R5994" or [account_code] = "MA-R5996" or [account_code] = "MA-R5997" or 
+				[account_code] = "MA-R5998" or [account_code] = "MA-R5999" or [account_code] = "MA-R6000" or 
+				[account_code] = "MA-R6001" or [account_code] = "MA-R6002" or [account_code] = "MA-R6003" or 
+				[account_code] = "MA-R6006" or [account_code] = "MA-R6007" or [account_code] = "MA-R6008" or 
+				[account_code] = "MA-R6009" or [account_code] = "MA-R6010" or [account_code] = "MA-R6011" or 
+				[account_code] = "MA-R6010" or [account_code] = "MA-R6011" or [account_code] = "MA-R6010" or 
+				[account_code] = "MA-R6011"
+				
+				),
+				    #"Texto Inserido Após o Delimitador" = Table.AddColumn(Custom1, "Group", each Text.AfterDelimiter([account_name], "-", 1), type text),
+				    #"Texto Aparado" = Table.TransformColumns(#"Texto Inserido Após o Delimitador",{{"Group", Text.Trim, type text}}),
+				    #"Texto Limpo" = Table.TransformColumns(#"Texto Aparado",{{"Group", Text.Clean, type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Texto Limpo","Top","Calculated",Replacer.ReplaceValue,{"Classification"}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Valor Substituído", "ClassificationRank", each if
+				    [Classification] = "Raw" then 1 else 
+				if  [Classification] = "Calculated" then 2 else
+				    null, type number),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Personalização Adicionada", each ([__is_active] = true))
+				in
+				    #"Linhas Filtradas"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

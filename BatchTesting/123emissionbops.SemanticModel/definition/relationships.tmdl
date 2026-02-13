@@ -1,0 +1,303 @@
+relationship cc260c9f-d7cc-41e5-8cdc-cf7881f2f220
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_account.__start_date
+	toColumn: LocalDateTable_a14bb859-68a0-4ef8-9c18-e3bdde24bdf1.Date
+
+relationship 8a5989c2-9d2c-47c9-8cd4-9836888287f4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_account.__end_date
+	toColumn: LocalDateTable_7f12d8c3-54e4-48e2-8be5-b7a264f3f13a.Date
+
+relationship 87604ef2-1a2e-4dd6-9ad3-740125649459
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_calendar.__start_date
+	toColumn: LocalDateTable_b5d6e321-080c-4837-8cda-4d1a34b5d7d1.Date
+
+relationship 9484d073-7ec1-4cc6-ad35-7d8118f3237f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_calendar.__end_date
+	toColumn: LocalDateTable_ff9e2d61-9df8-4adf-89d3-5195aeaff9fc.Date
+
+relationship 34ed0f76-533a-43fd-ab72-31c59a779277
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_org_greenbridge_hierarchy_master.__start_date
+	toColumn: LocalDateTable_2845cd39-4541-4ed1-89b0-c22704122ac5.Date
+
+relationship 6ba43821-2b14-486e-8860-7d914e0622ad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_org_greenbridge_hierarchy_master.__end_date
+	toColumn: LocalDateTable_c103a34e-25a6-457f-83fb-a210f01e0aff.Date
+
+relationship 9e376c68-2b12-4929-81c7-e4d42d8023f0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_scope.__start_date
+	toColumn: LocalDateTable_d8741105-6f47-4b2a-9a42-873017c2097e.Date
+
+relationship df93833a-170f-48ef-bf7e-2a7c288df52d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_scope.__end_date
+	toColumn: LocalDateTable_7414bb24-9d91-4c00-b2e2-06556b8f7084.Date
+
+relationship 7d3eed65-4870-7422-f4d0-472d710792fa
+	fromColumn: dim_account.Scope_Id
+	toColumn: dim_scope.Scope_Id
+
+relationship d53781b5-8e0c-4f3a-8aae-535b9b36dad2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DataLastRefreshed.'Date Time'
+	toColumn: LocalDateTable_ef2b808d-2eee-47e0-a352-9fcff0dfc65a.Date
+
+relationship b65abd22-299f-4326-b23c-bc6a6711974b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_calendar.Date
+	toColumn: LocalDateTable_cd69199f-d111-4505-aaad-6ac13614edd9.Date
+
+relationship 6b83af20-e482-4d62-a323-cc73340ee19e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_fugitive_emission_co2_percentage.__start_date
+	toColumn: LocalDateTable_4844b30f-dd78-40a1-afb5-704110efac9d.Date
+
+relationship 05d8b5b4-7c69-49d5-ba78-1f1db5532b77
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_fugitive_emission_co2_percentage.__end_date
+	toColumn: LocalDateTable_4aa4013f-6a53-44e4-8723-3f5c0e35cedc.Date
+
+relationship 7d379d89-ca56-40a1-9e43-b4292e335803
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_stationary_combustion.__start_date
+	toColumn: LocalDateTable_3c52ae6c-c6c2-4a7a-9563-17505da7ad34.Date
+
+relationship 7c0183ea-262f-45e2-9a90-1cd5bbdd17e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_stationary_combustion.__end_date
+	toColumn: LocalDateTable_360a0a7e-f6c7-4970-814a-ed5ca84b4e58.Date
+
+relationship b67cfe71-8a36-4660-a551-7b6239a7b110
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_mobile_combustion.__start_date
+	toColumn: LocalDateTable_c1b9f7d7-77c3-46be-a30a-d38ab82b213f.Date
+
+relationship 4cc71f79-15f2-4abc-9673-f3aa56f005b2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_mobile_combustion.__end_date
+	toColumn: LocalDateTable_122ff113-4fbf-485e-a79b-9d0b45af2b90.Date
+
+relationship 950cf76c-56a9-410e-b820-f4169b103004
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_process_emission_acetylene_welding.__start_date
+	toColumn: LocalDateTable_33e7d502-1d01-42fb-b649-a8372cf53b8b.Date
+
+relationship a3e9e2d2-3fb4-4b27-bd84-0d52d7a6ec08
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_process_emission_acetylene_welding.__end_date
+	toColumn: LocalDateTable_1eb1b3d0-4f6c-470f-ad8a-d95f1f5425e4.Date
+
+relationship 66abd2c5-9e57-4c8f-93e1-1e9c6f7664d1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_process_emission_glass_production.__start_date
+	toColumn: LocalDateTable_48a90c18-a687-4fd4-8727-9c678e101dc7.Date
+
+relationship c49dab18-8487-4a4c-bdd8-300b73a256cb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_process_emission_glass_production.__end_date
+	toColumn: LocalDateTable_453fbc27-ef8f-479b-ba01-7ad9e912a333.Date
+
+relationship 7a6dac84-5c11-4a91-bb35-bb87f4bd49f6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope2_purchased_steam.__start_date
+	toColumn: LocalDateTable_f5053155-09d0-44f3-9d36-41b16f975602.Date
+
+relationship 0ff1c88e-92ad-49c6-bec7-1588dd2bb2da
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope2_purchased_steam.__end_date
+	toColumn: LocalDateTable_3bfba67d-daa2-44a4-95b7-81bd09c3d3ee.Date
+
+relationship f64a7ecd-5357-4e04-b1b1-f211bb068960
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope2_purchased_electricity.__start_date
+	toColumn: LocalDateTable_b07c7641-4777-459f-9173-a6836fa10a17.Date
+
+relationship 7ac0a22a-2004-4019-a3ac-212923eba67d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope2_purchased_electricity.__end_date
+	toColumn: LocalDateTable_a4715756-1545-4d54-b12e-f67a42caa5db.Date
+
+relationship AutoDetected_4b43418b-3b20-4cc1-9ce1-a24932b5234a
+	fromColumn: fact_scope1_fugitive_emission_co2_percentage.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship AutoDetected_581fa449-8546-4456-9a85-0bafb64af62b
+	fromColumn: fact_scope1_process_emission_acetylene_welding.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship AutoDetected_d6a91f6a-aaaf-4bfa-9bc4-b72e6364db05
+	fromColumn: fact_scope1_process_emission_glass_production.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship AutoDetected_e08379f7-dfe0-4211-8aef-4221f96a22d9
+	fromColumn: fact_scope2_purchased_steam.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship AutoDetected_3cb66768-8943-44c6-9788-12bbcf8a6913
+	fromColumn: fact_scope2_purchased_electricity.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship 4c08e61e-7079-795d-12c3-db24f2dfb3ff
+	fromColumn: fact_scope1_stationary_combustion.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship 6f128f97-07a6-a5c7-eb1e-e898c88e3635
+	fromColumn: fact_scope1_mobile_combustion.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship cf7784b6-8a50-371a-7341-050c8e720ebf
+	fromColumn: fact_scope1_fugitive_emission_co2_percentage.period_type
+	toColumn: 'Period Filter'.ViewType
+
+relationship db6322fd-49a8-ca66-56b0-add765aa5190
+	fromColumn: fact_scope2_purchased_steam.Period_Type
+	toColumn: 'Period Filter'.ViewType
+
+relationship 538612e6-6179-077c-6cdf-bc993e36df5a
+	fromColumn: fact_scope1_mobile_combustion.period_type
+	toColumn: 'Period Filter'.ViewType
+
+relationship 4bad5475-62b5-36ca-5b23-2decc072708c
+	fromColumn: fact_scope1_process_emission_acetylene_welding.period_type
+	toColumn: 'Period Filter'.ViewType
+
+relationship 695db8d8-b054-22f1-a0a2-1e39fcd236b1
+	fromColumn: fact_scope1_process_emission_glass_production.period_type
+	toColumn: 'Period Filter'.ViewType
+
+relationship cc4cd19d-6624-55c4-e524-d53cc4e4410c
+	fromColumn: fact_scope1_stationary_combustion.period_type
+	toColumn: 'Period Filter'.ViewType
+
+relationship d0734aea-63d9-2047-f79a-775e3781d0b1
+	fromColumn: fact_scope2_purchased_electricity.Period_Type
+	toColumn: 'Period Filter'.ViewType
+
+relationship AutoDetected_2416479f-ef36-465a-b44c-a8cf7ca774b5
+	fromColumn: fact_scope2_purchased_electricity.Location_Market_Based
+	toColumn: dim_location_market_based.Location_Market_Based
+
+relationship b7a3cb30-957a-4dfa-9f78-3dd0ea3a5c19
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_fugitive_emission_refrigerants.__start_date
+	toColumn: LocalDateTable_957df140-cdb1-4fd4-966b-b71c97af64f6.Date
+
+relationship 8ca66e43-c169-4399-b1ad-8cb07974f0cd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_scope1_fugitive_emission_refrigerants.__end_date
+	toColumn: LocalDateTable_729182a7-b757-4279-898d-57f58414ee03.Date
+
+relationship ce8d7437-3009-126e-7cb6-c766bd152217
+	fromColumn: fact_scope1_fugitive_emission_refrigerants.Site_Code
+	toColumn: dim_org_greenbridge_hierarchy_master.Site_Code
+
+relationship d0b3eba5-bbb3-a7e6-00d0-de9a05553c67
+	fromColumn: fact_scope1_fugitive_emission_refrigerants.period_type
+	toColumn: 'Period Filter'.ViewType
+
+relationship 93859c59-2621-72d5-de2b-951047410398
+	fromColumn: fact_scope1_fugitive_emission_refrigerants.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship 98de0ad5-cb90-b6b8-c360-2c64b42c73ee
+	fromColumn: fact_scope1_mobile_combustion.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship 79e2c0d0-923b-777d-11f6-c267bbd6ee92
+	fromColumn: fact_scope1_fugitive_emission_co2_percentage.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship 129a78ba-322d-763b-2b37-7175c9a6eafe
+	fromColumn: fact_scope2_purchased_steam.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship 5794e62e-77b7-faec-8421-d64fecfd825d
+	fromColumn: fact_scope1_process_emission_acetylene_welding.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship edcb9585-9565-e780-c078-6ae9452766e1
+	fromColumn: fact_scope1_process_emission_glass_production.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship 13ddc451-47f6-6c72-d952-8b34742cb65c
+	fromColumn: fact_scope1_stationary_combustion.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship ac2333db-765f-6aa7-4440-9c3c039bc31f
+	fromColumn: fact_scope2_purchased_electricity.Scope
+	toColumn: dim_ScopeName.Scope
+
+relationship e0f99710-ae03-45f1-ab09-7b65a84555ac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Period 1'.__start_date
+	toColumn: LocalDateTable_3a6dd186-cc64-4a15-9784-374554b95f51.Date
+
+relationship 51c3ea4c-28f6-497e-84bb-9b4bd8509dce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Period 1'.__end_date
+	toColumn: LocalDateTable_421d2a2a-46a4-45aa-a066-73c10622a5d1.Date
+
+relationship 69f8eef1-336a-4687-8344-230e1bd64d96
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Period 1'.Date
+	toColumn: LocalDateTable_a4b953eb-2576-4d34-8d88-4c7a0821f03d.Date
+
+relationship 91e766bd-b622-4d6d-9737-37817de5465a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Period 2'.__start_date
+	toColumn: LocalDateTable_df832a5e-acdd-4b62-8c7a-03b8f0eaaa81.Date
+
+relationship 78eeb99f-7a1b-4c22-8119-da120c51189d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Period 2'.__end_date
+	toColumn: LocalDateTable_10838651-ccc6-42ae-b6fc-d0ea5897a203.Date
+
+relationship 47478058-9d79-4e20-9c13-5bc659d4520e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Period 2'.Date
+	toColumn: LocalDateTable_f638b879-a8c0-4853-b892-11638614d420.Date
+
+relationship 5af7c58b-63f5-6064-bcbb-45dbc908e07c
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: dim_org_greenbridge_hierarchy_master.Site_Name
+	toColumn: Aux_Site_Filter_Table.SiteName
+
+relationship 042ed03b-93fa-eea2-e7be-75705fb1a3a9
+	fromColumn: fact_scope2_purchased_electricity.Date
+	toColumn: dim_calendar.Date
+
+relationship 7697dd23-4ec0-55eb-68be-c299f81b9861
+	fromColumn: fact_scope1_process_emission_acetylene_welding.Date
+	toColumn: dim_calendar.Date
+
+relationship 75ed8972-1d46-074b-f762-ada86885cde9
+	fromColumn: fact_scope1_fugitive_emission_refrigerants.Date
+	toColumn: dim_calendar.Date
+
+relationship 3326cbf1-cce2-7ffc-b4ed-6d732e107938
+	fromColumn: fact_scope1_mobile_combustion.Date
+	toColumn: dim_calendar.Date
+
+relationship 5d0461d1-bcc4-8025-1d4f-c236e8305b38
+	fromColumn: fact_scope1_process_emission_glass_production.Date
+	toColumn: dim_calendar.Date
+
+relationship 6d07e701-fb14-8d9a-2596-aa46dc2dbce1
+	fromColumn: fact_scope1_stationary_combustion.Date
+	toColumn: dim_calendar.Date
+
+relationship c80da84d-67ff-1b52-289b-44c3a663724a
+	fromColumn: fact_scope1_fugitive_emission_co2_percentage.Date
+	toColumn: dim_calendar.Date
+
+relationship 16c0a2b0-c795-a2f3-98d7-f67ef48819be
+	fromColumn: fact_scope2_purchased_steam.Date
+	toColumn: dim_calendar.Date
+

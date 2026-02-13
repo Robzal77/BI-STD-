@@ -1,0 +1,319 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 197.14285714285717,
+        "y": 3248.5714285714289
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 469.38316581106608,
+            "y": 3052.0098397013562
+          },
+          "nodeIndex": "dim_account",
+          "nodeLineageTag": "b7498ada-376e-4da2-92a4-2f103eea1b12",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 1421.4450353198577,
+            "y": 3218.0774908387821
+          },
+          "nodeIndex": "dim_calendar",
+          "nodeLineageTag": "a9b69b6d-a5ab-48f1-af46-7b681d322047",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 8.2733922597603851,
+            "y": 3767.8391912988395
+          },
+          "nodeIndex": "dim_org_greenbridge_hierarchy_master",
+          "nodeLineageTag": "b9dacb12-a39f-4c8e-bf90-8022dc7ac3dd",
+          "size": {
+            "height": 491.42857142857156,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 821.63682212378251,
+            "y": 3052.0934736799777
+          },
+          "nodeIndex": "dim_scope",
+          "nodeLineageTag": "d5662480-207f-458d-b415-bba9963df4ab",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 1568.3270070892113,
+            "y": 4264.3204717503795
+          },
+          "nodeIndex": "Period Filter",
+          "nodeLineageTag": "1b109666-67e0-41f3-9708-20ed1b49cf5b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2497.7467253758036,
+            "y": 3911.9211828195471
+          },
+          "nodeIndex": "DataLastRefreshed",
+          "nodeLineageTag": "d30a2236-3f55-4dfa-b6e6-4d2114600cb5",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 2781.7467253758036,
+            "y": 3875.9211828195471
+          },
+          "nodeIndex": "MeasuresTable",
+          "nodeLineageTag": "110da4dc-ff8f-4490-80e4-270392c4aa2d",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1005.4403757227924,
+            "y": 3866.4033091103952
+          },
+          "nodeIndex": "fact_scope1_fugitive_emission_co2_percentage",
+          "nodeLineageTag": "79d4421b-563b-4652-be83-ea4188f43c2e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 393.20730872494721,
+            "y": 3486.4754331549216
+          },
+          "nodeIndex": "fact_scope1_mobile_combustion",
+          "nodeLineageTag": "6bad04b9-d87c-4f72-9785-980b41f0140f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 992.73135702570471,
+            "y": 3483.3847527723919
+          },
+          "nodeIndex": "fact_scope1_process_emission_acetylene_welding",
+          "nodeLineageTag": "9feee19b-9fea-4637-8540-297f02efa75d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 697.47295277436342,
+            "y": 3861.7342613532123
+          },
+          "nodeIndex": "fact_scope1_process_emission_glass_production",
+          "nodeLineageTag": "0df22399-39f4-4d58-9284-449b2fd6c788",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 389.85980520752378,
+            "y": 3873.2071083930837
+          },
+          "nodeIndex": "fact_scope1_stationary_combustion",
+          "nodeLineageTag": "e9d9eede-faf9-40d4-91c8-d9b40f088bec",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 1321.9399804886696,
+            "y": 3863.52606991441
+          },
+          "nodeIndex": "fact_scope2_purchased_electricity",
+          "nodeLineageTag": "dbf2427b-b93f-44c6-93c8-a965f6d5e06f",
+          "size": {
+            "height": 300,
+            "width": 315.42857142857133
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 1778.3241790249995,
+            "y": 3678.4830606572264
+          },
+          "nodeIndex": "fact_scope2_purchased_steam",
+          "nodeLineageTag": "a489604b-b9d3-4f70-b216-86a91c60fd9b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 2065.2283965766651,
+            "y": 4447.06348894126
+          },
+          "nodeIndex": "dim_location_market_based",
+          "nodeLineageTag": "9667725a-f9f0-4dc1-85ec-f88e319921c3",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 686.81844893403184,
+            "y": 3487.0661282665424
+          },
+          "nodeIndex": "fact_scope1_fugitive_emission_refrigerants",
+          "nodeLineageTag": "5eef3c31-7d4c-41ac-9a5a-de8465f50279",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 2053.0685000693638,
+            "y": 3241.90758668629
+          },
+          "nodeIndex": "dim_ScopeName",
+          "nodeLineageTag": "6a42cb48-8b01-431d-aeea-3ac3fa34cc04",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 300.80002774700642,
+            "y": 4769.2729097389329
+          },
+          "nodeIndex": "Aux_Site_Filter_Table",
+          "nodeLineageTag": "99f573e5-2015-42fa-bfae-7a419aeccea4",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 3884.6531563367621,
+            "y": 3749.4294211001475
+          },
+          "nodeIndex": "Parameter2",
+          "nodeLineageTag": "e160282b-8360-4a3b-b2b2-22b58154070d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 4160.3797640770026,
+            "y": 3632.1403613499065
+          },
+          "nodeIndex": "Period 1",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 4168.9635146743858,
+            "y": 3849.5537725312893
+          },
+          "nodeIndex": "Period 2",
+          "nodeLineageTag": "ddaf6576-a671-43df-abff-a99f97eaa4c4",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 4720.4167301548659,
+            "y": 2981.9969216043337
+          },
+          "nodeIndex": "DateType",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 4996.143337895106,
+            "y": 1837.6369679354107
+          },
+          "nodeIndex": "User",
+          "nodeLineageTag": "6bf428c3-0de9-412c-8e29-ea6a3b550a40",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

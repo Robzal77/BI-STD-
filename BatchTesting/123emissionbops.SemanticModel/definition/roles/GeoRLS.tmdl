@@ -1,0 +1,65 @@
+role GeoRLS
+	modelPermission: read
+
+	tablePermission dim_org_greenbridge_hierarchy_master = ```
+			-- RLS rule for dim_org_greenbridge_hierarchy_master with multiple permissions:
+			
+			VAR CurrentUser = USERPRINCIPALNAME()
+			
+			-- Get ALL user permissions
+			VAR UserAccessNodes = 
+			    CALCULATETABLE(
+			        VALUES(User[AccessNodeID]),
+			        User[User Email Account] = CurrentUser
+			    )
+			
+			-- Check if the user exists
+			VAR UserExists = NOT ISEMPTY(UserAccessNodes)
+			
+			-- Check for global access (any row with "Global")
+			VAR HasGlobalAccess = 
+			    NOT ISEMPTY(
+			        FILTER(
+			            UserAccessNodes,
+			            User[AccessNodeID] = "Global"
+			        )
+			    )
+			
+			-- Build the Path for the current record in the original table
+			VAR CurrentRowPath = 
+			    "Global|" & 
+			    dim_org_greenbridge_hierarchy_master[Zone] & "|" & 
+			    dim_org_greenbridge_hierarchy_master[Country]
+			
+			-- For sites, add the site to the path
+			VAR CurrentRowPathWithSite = 
+			    IF(
+			        NOT ISBLANK(dim_org_greenbridge_hierarchy_master[Site_Name]),
+			        CurrentRowPath & "|" & dim_org_greenbridge_hierarchy_master[Country] & "_" & dim_org_greenbridge_hierarchy_master[Site_Name],
+			        CurrentRowPath
+			    )
+			
+			-- Check if any of the user's permissions grant access to this record
+			VAR HasPathAccess = 
+			    SUMX(
+			        UserAccessNodes,
+			        IF(
+			            PATHCONTAINS(CurrentRowPathWithSite, User[AccessNodeID]),
+			            1,
+			            0
+			        )
+			    ) > 0
+			
+			RETURN
+			    IF(
+			        NOT UserExists,
+			        FALSE(),
+			        OR(
+			            HasGlobalAccess,
+			            HasPathAccess
+			        )
+			    )
+			```
+
+	annotation PBI_Id = 0b9b421fe0b040609f9f1002f78d24fb
+

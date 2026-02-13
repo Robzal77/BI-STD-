@@ -1,0 +1,175 @@
+table 'Period 2'
+	lineageTag: ddaf6576-a671-43df-abff-a99f97eaa4c4
+
+	column Period_Id
+		formatString: 0
+		lineageTag: 4d595ad4-b2eb-4ed1-9064-27f35e0f073d
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: dim_calendar[Period_Id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		lineageTag: b72657ce-8c6b-429f-83de-79fae77ce02c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[Period]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: e94576cc-2197-41f3-b079-7fd3c8cb632b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: dim_calendar[Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		formatString: 0
+		lineageTag: 2883e95c-3a6f-44d7-9a5c-b118479d596c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: dim_calendar[Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		formatString: 0
+		lineageTag: c46f49b1-9a33-4a52-90b2-6c71a460b6af
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: dim_calendar[Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column __start_date
+		formatString: General Date
+		lineageTag: da944abc-5fd4-4ddd-9215-cc607ad371fa
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[__start_date]
+
+		variation Variation
+			isDefault
+			relationship: 91e766bd-b622-4d6d-9737-37817de5465a
+			defaultHierarchy: LocalDateTable_df832a5e-acdd-4b62-8c7a-03b8f0eaaa81.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __hash_key
+		lineageTag: ab382edd-492f-4a28-adba-f8709f2a4417
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[__hash_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		formatString: General Date
+		lineageTag: a826a1d7-7299-4e4c-b54c-532c9dcda233
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[__end_date]
+
+		variation Variation
+			isDefault
+			relationship: 78eeb99f-7a1b-4c22-8119-da120c51189d
+			defaultHierarchy: LocalDateTable_10838651-ccc6-42ae-b6fc-d0ea5897a203.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __is_active
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 008bf4b6-bba0-4c80-bd03-d11b3a150668
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[__is_active]
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		lineageTag: a98ef1bb-0ae1-4a9b-a9f4-9ccf7098321e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[__merge_action]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		lineageTag: a7a41b27-1bb9-490c-8292-67310e1de01e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Display'
+		lineageTag: ad14af2f-e86f-4214-87a5-0e83a3488350
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[Period Display]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Number'
+		formatString: 0
+		lineageTag: 39829e99-fcd4-4fd6-b7e9-54c7866df390
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: dim_calendar[Period Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateFilter
+		formatString: 0
+		lineageTag: 61aa9289-620b-43b0-a9e1-ec57bbf6d577
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: dim_calendar[DateFilter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		formatString: General Date
+		lineageTag: e9e63e70-3f59-416f-a5b2-79a19f106252
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[Date]
+
+		variation Variation
+			isDefault
+			relationship: 47478058-9d79-4e20-9c13-5bc659d4520e
+			defaultHierarchy: LocalDateTable_f638b879-a8c0-4853-b892-11638614d420.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterName
+		lineageTag: f18df3db-e33e-49d0-b1c9-0b67f0fa9016
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[QuarterName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Number'
+		lineageTag: 856d142f-1eb8-4bc9-9203-770882c8f2b0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_calendar[Quarter Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Period 2' = calculated
+		mode: import
+		source =
+				
+				FILTER(
+				    dim_calendar,
+				    dim_calendar[DateFilter] = 1
+				)
+
+	annotation PBI_Id = 293a989c5c2b4de2b81fa28db135d0b7
+

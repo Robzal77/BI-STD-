@@ -1,0 +1,234 @@
+table dim_calendar
+	lineageTag: a9b69b6d-a5ab-48f1-af46-7b681d322047
+
+	column Period_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: a1bfdd75-8c4d-453e-badf-3e4a170e5e80
+		summarizeBy: count
+		sourceColumn: Period_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		dataType: string
+		lineageTag: 74d8f66b-a0a4-4b2c-aa60-d2b1b17ad2eb
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d7000c4-9211-42cc-bc12-001bb4f59a3f
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 1be437f4-78f2-4783-9708-9e3a476758b8
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: a5a8ea29-3807-44e3-ba2a-5ec8e15ab815
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column __start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e8c575f0-b40c-4b1f-8ad7-01a2e22e7bbc
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: 87604ef2-1a2e-4dd6-9ad3-740125649459
+			defaultHierarchy: LocalDateTable_b5d6e321-080c-4837-8cda-4d1a34b5d7d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __hash_key
+		dataType: string
+		lineageTag: cb4d3e08-e2cd-481c-9299-64e45e33b790
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a08f6793-eb46-4586-8c7f-5c8aaf53f802
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: 9484d073-7ec1-4cc6-ad35-7d8118f3237f
+			defaultHierarchy: LocalDateTable_ff9e2d61-9df8-4adf-89d3-5195aeaff9fc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7c62052b-a9b5-490f-997f-d7006e0c15b1
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: bb6765ab-0e71-4d5a-bcfe-9ec495ae1a17
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Display' = ```
+			
+			FORMAT(DATE(LEFT('Dim_Calendar'[Period], 4), RIGHT('Dim_Calendar'[Period], 2), 1), "MMM-YYYY")
+			
+			```
+		lineageTag: 12cbfb1b-89a7-4b82-aea8-40b76036e21b
+		summarizeBy: none
+		sortByColumn: 'Period Number'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period Number' = ```
+			
+			YEAR(DATE(LEFT('Dim_Calendar'[Period], 4), RIGHT('Dim_Calendar'[Period], 2), 1)) * 100 +
+			MONTH(DATE(LEFT('Dim_Calendar'[Period], 4), RIGHT('Dim_Calendar'[Period], 2), 1))
+			
+			```
+		formatString: 0
+		lineageTag: 878db507-f79e-48d0-99d9-b4dc09861f6c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateFilter =
+			
+			VAR DatesWithEmission =
+			    UNION (
+			        CALCULATETABLE (
+			            VALUES ( fact_scope2_purchased_steam[Date] ),
+			            fact_scope2_purchased_steam[GHG_Emission_tCO2e] > 0
+			        ),
+			        CALCULATETABLE (
+			            VALUES ( fact_scope2_purchased_electricity[Date] ),
+			            fact_scope2_purchased_electricity[GHG_Emission_tCO2e] > 0
+			        ),
+			        CALCULATETABLE (
+			            VALUES ( fact_scope1_fugitive_emission_co2_percentage[Date] ),
+			            fact_scope1_fugitive_emission_co2_percentage[GHG_Emission_tCO2e] > 0
+			        ),
+			        CALCULATETABLE (
+			            VALUES ( fact_scope1_fugitive_emission_refrigerants[Date] ),
+			            fact_scope1_fugitive_emission_refrigerants[GHG_Emission_tCO2e] > 0
+			        ),
+			        CALCULATETABLE (
+			            VALUES ( fact_scope1_mobile_combustion[Date] ),
+			            fact_scope1_mobile_combustion[GHG_Emissions_tCO2e] > 0
+			        ),
+			        CALCULATETABLE (
+			            VALUES ( fact_scope1_process_emission_acetylene_welding[Date] ),
+			            fact_scope1_process_emission_acetylene_welding[GHG_Emission_tCO2e] > 0
+			        ),
+			        CALCULATETABLE (
+			            VALUES ( fact_scope1_process_emission_glass_production[Date] ),
+			            fact_scope1_process_emission_glass_production[GHG_Emission_tCO2e] > 0
+			        ),
+			        CALCULATETABLE (
+			            VALUES ( fact_scope1_stationary_combustion[Date] ),
+			            fact_scope1_stationary_combustion[GHG_Emissions_tCO2e] > 0
+			        )
+			    )
+			RETURN
+			IF (
+			    [Date] IN DatesWithEmission,
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 1fbbefb6-92fe-4f10-9b16-8625a5f93bdc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date = ```
+			DATE('Dim_Calendar'[Year], 'dim_calendar'[Month], 1)
+			
+			```
+		formatString: General Date
+		lineageTag: 978bfe16-51b7-4f2a-acf9-9cbae9fcf49f
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: b65abd22-299f-4326-b23c-bc6a6711974b
+			defaultHierarchy: LocalDateTable_cd69199f-d111-4505-aaad-6ac13614edd9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterName = ```
+			"Q"&QUARTER([Date])&"-"&[Year] 
+			```
+		lineageTag: 2aa72d91-2d4a-41b5-b2fb-c7662a3b3837
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Number' =
+			
+			[Year] & FORMAT(QUARTER([Date]), "00")
+		lineageTag: 40c6c398-3300-4e44-bd92-ba71e8d4ea26
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: string
+		lineageTag: b3725c65-7852-487c-8ee8-4b671a16c0cb
+		summarizeBy: none
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_calendar = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"8518fc90-5a95-4545-ba26-d48f0ff30949" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="8518fc90-5a95-4545-ba26-d48f0ff30949"]}[Data],
+				    dim_calendar_Table = #"8518fc90-5a95-4545-ba26-d48f0ff30949"{[entity="dim_calendar",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dim_calendar_Table,{{"__start_date", type date}, {"__end_date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -36,8 +36,8 @@ def generate_documentation_for_report(semantic_model_dir, report_dir, developer)
         doc_gen = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(doc_gen)
         
-        doc_path = doc_gen.generate_report_documentation(semantic_model_dir, report_dir)
-        return doc_path
+        md_path, html_path = doc_gen.generate_report_documentation(semantic_model_dir, report_dir)
+        return md_path
     except Exception as e:
         print_colored(f"  ⚠️ Warning: Failed to generate documentation: {e}", Colors.YELLOW)
         return None
@@ -249,7 +249,15 @@ def check_governance(start_dir, enable_logging=True):
             
             # Auto-generate documentation for this report ONLY if all checks passed
             if '.SemanticModel' in root and model_failures == 0:
-                potential_report_dir = root.replace('.SemanticModel', '.Report')
+                # Extract the parent directory (where .pbip lives)
+                parts = root.split(os.sep)
+                for i, part in enumerate(parts):
+                    if part.endswith('.SemanticModel'):
+                        parent_dir = os.sep.join(parts[:i])
+                        semantic_model_name = part.replace('.SemanticModel', '')
+                        potential_report_dir = os.path.join(parent_dir, f"{semantic_model_name}.Report")
+                        break
+                
                 if os.path.exists(potential_report_dir):
                     print_colored("  📝 Generating documentation...", Colors.GREY)
                     doc_path = generate_documentation_for_report(root, potential_report_dir, developer)

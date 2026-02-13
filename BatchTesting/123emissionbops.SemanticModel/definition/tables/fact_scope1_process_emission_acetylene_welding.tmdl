@@ -1,0 +1,322 @@
+table fact_scope1_process_emission_acetylene_welding
+	lineageTag: 9feee19b-9fea-4637-8540-297f02efa75d
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 07b2a801-d23e-483e-bff5-7d104d8bf6a8
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 895d064d-8e36-43b4-a9d8-8536e1f85c9f
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_type
+		dataType: string
+		lineageTag: d7b92ca3-76f8-41f2-a35d-ee8c6b2f5039
+		summarizeBy: none
+		sourceColumn: period_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Code
+		dataType: string
+		lineageTag: ebf691b2-291c-4a49-ac88-1827087c2f43
+		summarizeBy: none
+		sourceColumn: Site_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Name
+		dataType: string
+		lineageTag: 03469390-97d9-49e9-ba18-4d6485eb094c
+		summarizeBy: none
+		sourceColumn: Site_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_of_Plant
+		dataType: string
+		lineageTag: 2fd4cb8b-61af-4c84-b7f9-058741da4dee
+		summarizeBy: none
+		sourceColumn: Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_Type_of_Plant
+		dataType: string
+		lineageTag: 4548db0b-5008-4864-b819-158e9f157781
+		summarizeBy: none
+		sourceColumn: Sub_Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 15388a7b-b621-4a78-805b-b5810cfdd80d
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 426c48f9-990d-43bf-91f8-1ef1fbc22db2
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 494d1979-0e73-461a-b437-497516200b64
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: 4f995791-712a-4e7b-98b0-469ff205990f
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column GHG_category
+		dataType: string
+		lineageTag: e9ca8b11-860c-4344-9df9-9552b62da4da
+		summarizeBy: none
+		sourceColumn: GHG_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Activity
+		dataType: string
+		lineageTag: a54f085c-c12d-4c49-87cb-802fc05a7da4
+		summarizeBy: none
+		sourceColumn: Activity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Energy_Type
+		dataType: string
+		lineageTag: 64cd8c87-1d5f-45c0-b3f3-cf134e5938cd
+		summarizeBy: none
+		sourceColumn: Energy_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emission_Type
+		dataType: string
+		lineageTag: f2c824f9-cdcd-4945-b4d8-88f1907df93e
+		summarizeBy: none
+		sourceColumn: Emission_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI
+		dataType: string
+		lineageTag: f811a373-13c0-4c07-90d3-50aad7c82464
+		summarizeBy: none
+		sourceColumn: KPI
+
+		annotation SummarizationSetBy = Automatic
+
+	column kpi_value
+		dataType: double
+		lineageTag: c4641889-9075-43a8-bf2d-ac29657b663a
+		summarizeBy: sum
+		sourceColumn: kpi_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI_Unit
+		dataType: string
+		lineageTag: 0d9f2d51-6a25-464f-ae64-f6eabbead8fc
+		summarizeBy: none
+		sourceColumn: KPI_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column EF_kgCO2_per_Unit
+		dataType: double
+		lineageTag: 8a03f4e9-cb6e-4571-8c7d-88df0e5878a7
+		summarizeBy: sum
+		sourceColumn: EF_kgCO2_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCO2
+		dataType: double
+		lineageTag: 505e7596-59b9-478b-ad17-e0be1799b0f3
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCO2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgCH4_per_Unit
+		dataType: double
+		lineageTag: b5185e78-db48-40db-9f2d-f469fa122b22
+		summarizeBy: sum
+		sourceColumn: EF_kgCH4_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCH4
+		dataType: double
+		lineageTag: 2b7b10ac-635f-4697-8827-7252bae7b6ff
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCH4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgN2O_per_Unit
+		dataType: double
+		lineageTag: 133084a7-7754-4853-a317-826363ca08f8
+		summarizeBy: sum
+		sourceColumn: EF_kgN2O_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tN2O
+		dataType: double
+		lineageTag: fe7aa775-3cfb-41c7-8c13-99093971a1f5
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tN2O
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgCO2e_per_Unit
+		dataType: double
+		lineageTag: 81d83bda-7088-448b-8918-27f9e1099323
+		summarizeBy: sum
+		sourceColumn: EF_kgCO2e_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCO2e
+		dataType: double
+		lineageTag: 168bb69d-c95a-48ba-a53d-5a674128a959
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCO2e
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column __start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 319acd3c-890c-4d93-a98b-84d4f20e117e
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: 950cf76c-56a9-410e-b820-f4169b103004
+			defaultHierarchy: LocalDateTable_33e7d502-1d01-42fb-b649-a8372cf53b8b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __hash_key
+		dataType: string
+		lineageTag: a56dc4ca-b6a2-4516-b41a-42b4b6cf24eb
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2441549e-90fc-42df-bee2-c508b406cd0e
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: a3e9e2d2-3fb4-4b27-bd84-0d52d7a6ec08
+			defaultHierarchy: LocalDateTable_1eb1b3d0-4f6c-470f-ad8a-d95f1f5425e4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6456b8e3-0ffd-4dcb-984d-81a4dc74cc6b
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: 04a4c01a-4555-4640-b0a7-935dea37588b
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		dataType: string
+		lineageTag: a555ae45-f25c-4059-92f9-5747283b4977
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dd749c05-2d1b-4677-abc3-7717e82d070d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition fact_scope1_process_emission_acetylene_welding = m
+		mode: import
+		queryGroup: 'Scope 1'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"8fa89595-17da-449f-a0ef-5a6683c519c6" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="8fa89595-17da-449f-a0ef-5a6683c519c6"]}[Data],
+				    fact_scope1_process_emission_acetylene_welding_ = #"8fa89595-17da-449f-a0ef-5a6683c519c6"{[entity="fact_scope1_process_emission_acetylene_welding",version=""]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(fact_scope1_process_emission_acetylene_welding_, each ([__is_active] = true)),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Date", each #date([year],[Month],1), type date)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

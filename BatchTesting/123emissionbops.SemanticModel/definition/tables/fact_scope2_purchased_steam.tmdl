@@ -1,0 +1,314 @@
+table fact_scope2_purchased_steam
+	lineageTag: a489604b-b9d3-4f70-b216-86a91c60fd9b
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: fcebd287-4597-4c2f-9e4e-98a71ed88033
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: abf397c3-c795-4c1a-9797-51815c855834
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period_Type
+		dataType: string
+		lineageTag: 0a1c0601-50ec-4792-ad8d-0a539e47b3e5
+		summarizeBy: none
+		sourceColumn: Period_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Code
+		dataType: string
+		lineageTag: a866489e-e750-4242-8cbf-b6371a83e7cd
+		summarizeBy: none
+		sourceColumn: Site_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Name
+		dataType: string
+		lineageTag: dc6f9b9c-3784-4f30-8398-65957d6c596b
+		summarizeBy: none
+		sourceColumn: Site_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_of_Plant
+		dataType: string
+		lineageTag: 1449d589-1b43-45a0-894d-abe2eb2d7685
+		summarizeBy: none
+		sourceColumn: Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_Type_of_Plant
+		dataType: string
+		lineageTag: 9799fe7a-5ce3-4a6d-9966-f4951df3d8e2
+		summarizeBy: none
+		sourceColumn: Sub_Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 07f5cba5-4200-4e26-9bc0-36d426931617
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: c0169338-58c6-4877-b5d3-21e07c57da6d
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 5fa30616-c649-44ff-95d7-988a8817d99a
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: cb65bad7-e35c-4c93-929b-e51e1c8db597
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column GHG_category
+		dataType: string
+		lineageTag: 9c922a10-70a6-4a9c-9724-948937eaf3c6
+		summarizeBy: none
+		sourceColumn: GHG_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Activity
+		dataType: string
+		lineageTag: 426d72f3-06f9-4e1d-a04c-faeb064f84d1
+		summarizeBy: none
+		sourceColumn: Activity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Energy_Type
+		dataType: string
+		lineageTag: a6d97d92-fc9d-4881-b081-5f8893107395
+		summarizeBy: none
+		sourceColumn: Energy_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emission_Type
+		dataType: string
+		lineageTag: b0875175-f86d-4df8-9528-144da498ac99
+		summarizeBy: none
+		sourceColumn: Emission_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI
+		dataType: string
+		lineageTag: 229d4ee2-a3b0-472f-9bf2-75c0dec5aa86
+		summarizeBy: none
+		sourceColumn: KPI
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI_Value
+		dataType: double
+		lineageTag: 9270b1ed-2842-4639-a717-2482089cd042
+		summarizeBy: sum
+		sourceColumn: KPI_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI_Unit
+		dataType: string
+		lineageTag: c17909e5-97d4-4caa-a4a3-e6c9f33c3053
+		summarizeBy: none
+		sourceColumn: KPI_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column EF_kgCO2_per_Unit
+		dataType: double
+		lineageTag: fcee22a8-4700-4c83-9fbe-ae648944b3b6
+		summarizeBy: sum
+		sourceColumn: EF_kgCO2_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCO2
+		dataType: double
+		lineageTag: e774ab41-af7c-4ad7-bd98-7dd6139a5f73
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCO2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgCH4_per_Unit
+		dataType: double
+		lineageTag: 6a36bfae-172b-46a5-8462-36be30878e89
+		summarizeBy: sum
+		sourceColumn: EF_kgCH4_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCH4
+		dataType: double
+		lineageTag: 10304196-c92e-4083-9182-4f11cdbcaed4
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCH4
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_kgN2O_per_Unit
+		dataType: double
+		lineageTag: d91a0197-46e3-4be3-8dc2-46b984b077c9
+		summarizeBy: sum
+		sourceColumn: EF_kgN2O_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tN2O
+		dataType: double
+		lineageTag: 72515050-cc36-4580-95b8-804c07c6212f
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tN2O
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EF_KgCO2e_per_Unit
+		dataType: double
+		lineageTag: a5bc608e-ec86-4a36-b5bf-48f52ca9790e
+		summarizeBy: sum
+		sourceColumn: EF_KgCO2e_per_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCO2e
+		dataType: double
+		lineageTag: 1814f8e0-bba8-4830-816a-306754aab5f0
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCO2e
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column __start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b0cbd92-3ce1-437c-a83b-ecbde6ab31b2
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: 7a6dac84-5c11-4a91-bb35-bb87f4bd49f6
+			defaultHierarchy: LocalDateTable_f5053155-09d0-44f3-9d36-41b16f975602.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __hash_key
+		dataType: string
+		lineageTag: bd5646af-42f5-41c9-afc5-bb64326d9f7a
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e84ec261-6327-4197-a2a9-43f6f590bb70
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: 0ff1c88e-92ad-49c6-bec7-1588dd2bb2da
+			defaultHierarchy: LocalDateTable_3bfba67d-daa2-44a4-95b7-81bd09c3d3ee.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cc65605c-bb1c-4e6b-a478-4bcb1ecd333d
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: 68b6e4b6-f7c0-4c3f-a12c-e96489df847e
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d4ca4e6b-fca0-4286-8825-3e5a409bfa2a
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition fact_scope2_purchased_steam = m
+		mode: import
+		queryGroup: 'Scope 2'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"3c89f432-a9d5-4e44-a3a5-fe94dbc85e1c" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="3c89f432-a9d5-4e44-a3a5-fe94dbc85e1c"]}[Data],
+				    fact_scope2_purchased_steam_ = #"3c89f432-a9d5-4e44-a3a5-fe94dbc85e1c"{[entity="fact_scope2_purchased_steam",version=""]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(fact_scope2_purchased_steam_, each ([__is_active] = true)),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Date", each #date([Year],[Month],1), type date)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

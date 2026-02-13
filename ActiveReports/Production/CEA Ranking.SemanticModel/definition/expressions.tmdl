@@ -1,0 +1,57 @@
+expression 'Mapping file' =
+		let
+		    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("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", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Site#(lf)" = _t, Zone = _t, #"Type#(cr)#(lf)" = _t, #"League#(cr)#(lf)" = _t])
+		in
+		    Source
+	lineageTag: 050bbe91-cc07-499f-a1a9-213f5736bb05
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 282daa83-8778-4946-8054-0b993d04d754
+	queryGroup: 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File' =
+		let
+		    Source = Excel.Workbook(Parameter1, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: e6ff8fbc-4f28-416f-afb3-4b2393897d4c
+	queryGroup: 'Transform File from Query1'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File' =
+		let
+		    Source = AzureStorage.DataLake("https://brewdatsupchnrawbrzd.dfs.core.windows.net/raw/data/ghq/sustainability/csrd/emissionranking/input_file"),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "EXP - Extract to Azure Blob.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 36a991b9-ab85-4d01-8987-3ee7a4a4a368
+	queryGroup: 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1 as binary) => let
+		    Source = Excel.Workbook(Parameter1, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: 6014a2e6-2535-4afb-a096-ba343cfd09e6
+	queryGroup: 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Function
+

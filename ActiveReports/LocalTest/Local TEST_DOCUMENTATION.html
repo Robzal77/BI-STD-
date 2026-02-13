@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local TEST - Documentation - Power BI Documentation</title>
+    <title>Local TEST - Technical Design Document - Power BI Documentation</title>
     <style>
         * {
             margin: 0;
@@ -244,73 +244,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Local TEST - Documentation</h1><blockquote><strong>Generated:</strong> 2026-02-13 08:21:37</blockquote>
-<blockquote><strong>Context:</strong> This document is auto-generated from the model's metadata.</blockquote><h2>📑 Quick Navigation</h2><p>- <a href="#-relationship-map">Relationship Map</a>
-- <a href="#-model-blueprint">Model Blueprint</a>
-- <a href="#-factory-data-facts">Factory Data (Facts)</a>
-- <a href="#-business-context-dimensions">Business Context (Dimensions)</a></p><hr><h2>📋 Model Blueprint</h2><p><em>Overview of all tables, their types, and item counts.</em></p><table>
-<thead><tr>
-<th>Table Type</th>
-<th>Table Name</th>
-<th>Items</th>
-<th>Description</th>
-</tr></thead><tbody>
-<tr>
-<td>📈 <strong>Fact</strong></td>
-<td><a href="#result">result</a></td>
-<td>7</td>
-<td>-</td>
-</tr>
-</tbody></table><hr><h2>📈 Factory Data (Facts)</h2><p><em>Tables containing transactional data and metrics (measures).</em></p><h3>result</h3>
-<em>Path: <code>result.tmdl</code></em></p><h4>📐 Measures</h4><p><strong>📁 Other Measures</strong>
-<details><summary><b>test measure</b>: <i>this is test measure</i></summary></p><p></details><details><summary><b>second test</b>: <i>second test</i></summary></p><pre class="dax-code"><code>
-second test = 
-</code></pre>
-  				" test"
-  	<pre><code>
-</code></pre>
-</details><p>
-<h4>📋 Columns</h4><table>
-<thead><tr>
-<th>Name</th>
-<th>Type</th>
-<th>Folder</th>
-<th>Description</th>
-</tr></thead><tbody>
-<tr>
-<td>Workspace</td>
-<td><code>string</code></td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Report</td>
-<td><code>string</code></td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Report_ID</td>
-<td><code>int64</code></td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Distinct<em>User</em>Count(Jan 2025 - Jan 2026)</td>
-<td><code>int64</code></td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Total<em>View</em>Count(Jan 2025 - Jan 2026)</td>
-<td><code>int64</code></td>
-<td>-</td>
-<td>-</td>
-</tr>
-</tbody></table><p><hr>
-</p>
+        <h1>Local TEST - Technical Design Document</h1><p><strong>Report Name:</strong> Local TEST
+<strong>Version:</strong> 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
+<strong>Generated:</strong> February 13, 2026
+<strong>Architect:</strong> 40103427</p><hr><h2>1. 🏗️ High-Level Architecture</h2><h3>Star Schema Diagram</h3><p><em>No core fact-dimension relationships found.</em></p><h3>🎯 Business Purpose</h3><p>This report is a business intelligence dashboard providing analytical insights and performance metrics for data-driven decision making.</p><h2>2. 📊 The Data Flow (ETL Analysis)</h2><h3>result Data Pipeline</h3><p><strong>Source:</strong> Not explicitly identified in M code</p><p><strong>Transformations:</strong></p><h2>3. 🧠 Measure Logic (The "Why", not just "What")</h2><h3>A. Core Financials (Values & Costs)</h3><p><strong>Name:</strong> <code>test measure</code>
+<strong>Logic:</strong> Direct column reference</p><p><strong>Name:</strong> <code>second test</code>
+<strong>Logic:</strong> Direct column reference</p><hr><p><em>This Technical Design Document focuses on the core star schema and business logic for Local TEST. All utility tables and helper measures have been excluded for clarity.</em></p>
         <footer>
-            <p>Generated on 2026-02-13 08:21:37 | Power BI BI Factory | AB InBev</p>
+            <p>Generated on 2026-02-13 09:35:50 | Power BI BI Factory | AB InBev</p>
         </footer>
     </div>
 </body>

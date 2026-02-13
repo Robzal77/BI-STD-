@@ -1,0 +1,48 @@
+table DataLastRefreshed
+	lineageTag: d30a2236-3f55-4dfa-b6e6-4d2114600cb5
+
+	measure 'Data Refresh' =
+			
+			"Last Power BI Refresh Date: "
+			& FORMAT(
+			    FIRSTDATE('DataLastRefreshed'[Date Time]),
+			    "mmm-dd-yyyy hh:mm"
+			)
+			& " (UTC)"
+		lineageTag: d8b4225a-3674-47c4-aacb-b736ee06e613
+
+	measure 'Data Refresh BM' =
+			
+			"Last BM Refresh Date: "
+			    & FORMAT ( TODAY(), "MMM-DD-YYYY")
+		lineageTag: ed621cf7-af4a-4ccb-9610-b964a743a90d
+
+	column 'Date Time'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 569bdb06-b953-4ad4-b7c6-10dc6bc2ed80
+		summarizeBy: none
+		sourceColumn: Date Time
+
+		variation Variation
+			isDefault
+			relationship: d53781b5-8e0c-4f3a-8aae-535b9b36dad2
+			defaultHierarchy: LocalDateTable_ef2b808d-2eee-47e0-a352-9fcff0dfc65a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DataLastRefreshed = m
+		mode: import
+		source =
+				let
+				    Source = DateTimeZone.UtcNow(),
+				    #"Converted to Table" = #table(1, {{Source}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Date Time"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date Time", type datetimezone}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

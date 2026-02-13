@@ -1,0 +1,293 @@
+table MeasuresTable
+	lineageTag: 110da4dc-ff8f-4490-80e4-270392c4aa2d
+
+	measure 'Total - Scope 1 and 2 Emissions' = ```
+			
+			SUM(fact_scope1_fugitive_emission_co2_percentage[GHG_Emission_tCO2e]) + 
+			SUM(fact_scope1_fugitive_emission_refrigerants[GHG_Emission_tCO2e]) + 
+			SUM(fact_scope1_mobile_combustion[GHG_Emissions_tCO2e]) + 
+			SUM(fact_scope1_process_emission_acetylene_welding[GHG_Emission_tCO2e]) + 
+			SUM(fact_scope1_process_emission_glass_production[GHG_Emission_tCO2e]) + 
+			SUM(fact_scope1_stationary_combustion[GHG_Emissions_tCO2e]) + 
+			SUM(fact_scope2_purchased_electricity[GHG_Emission_tCO2e]) +
+			SUM(fact_scope2_purchased_steam[GHG_Emission_tCO2e])
+			```
+		lineageTag: 3f5d4a3b-ef01-47ba-b60b-240881e9d8d1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Information = " "
+		lineageTag: 65bd8aaa-c060-4ac3-a34b-2b49fd800e5d
+
+	measure 'Information Drill YTD/MTD' = "For YTD, selecting multiple periods shows values for the latest month only."
+		lineageTag: dbc40d0c-0c77-47f2-b935-58e41828ee65
+
+	measure 'Emissions Period 1' = ```
+			
+			
+			VAR Period = MAX('Period 1'[Year])
+			
+			VAR FinalDate = 
+			    CALCULATE(
+			        MAX(dim_calendar[Date]),
+			        FILTER(
+			            ALLSELECTED(dim_calendar),
+			            dim_calendar[Year] = Period
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    [Total - Scope 1 and 2 Emissions],
+			    FILTER(
+			        ALLSELECTED(dim_calendar),
+			        dim_calendar[Date] = FinalDate
+			    ),
+			    'Period Filter'[ViewType] = "YTD",
+			    dim_org_greenbridge_hierarchy_master[Plant_Type] = "BOP"
+			)
+			```
+		lineageTag: d30cc045-5246-4a2e-8cd3-21d988f2a7c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Emissions Period 2' = ```
+			
+			
+			VAR Period = MAX('Period 2'[Year])
+			
+			VAR FinalDate = 
+			    CALCULATE(
+			        MAX(dim_calendar[Date]),
+			        FILTER(
+			            ALLSELECTED(dim_calendar),
+			            dim_calendar[Year] = Period
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    [Total - Scope 1 and 2 Emissions],
+			    FILTER(
+			        ALLSELECTED(dim_calendar),
+			        dim_calendar[Date] = FinalDate
+			    ),
+			    'Period Filter'[ViewType] = "YTD",
+			    dim_org_greenbridge_hierarchy_master[Plant_Type] = "BOP"
+			)
+			```
+		lineageTag: 4472ac0f-38af-49b9-a45f-01fc9ed804ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Change = ```
+			
+			[Emissions Period 2] - [Emissions Period 1]
+			
+			```
+		lineageTag: a3588e95-46d1-4520-83e7-6c1bfe173cb4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Graph Color' =
+			
+			SWITCH(
+			    TRUE(),
+			    SELECTEDVALUE('Aux_Site_Filter_Table'[Zone]) IN {"Period 2", "Period 1"}, "#B3B3B3",
+			    [Value] > 0, "#FD625E",
+			    [Value] < 0, "#01B8AA"
+			)
+		lineageTag: 01f21f93-3b1c-47a7-8526-e13936ac3884
+
+	measure 'Total Change Table %' =
+			
+			DIVIDE(
+			    [Change],
+			    [Emissions Period 1],
+			    0
+			)
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: 1db3b077-416f-47c9-b668-167499d87fe6
+
+	measure Value = ```
+			
+			
+			VAR Parameter = SELECTEDVALUE(Parameter2[Parameter2 Order])
+			
+			VAR TotalValues = 
+			    SWITCH(
+			        TRUE(),
+			        Parameter = 0, SELECTEDVALUE(Aux_Site_Filter_Table[Zone]),
+			        Parameter = 1, SELECTEDVALUE(Aux_Site_Filter_Table[Country]),
+			        Parameter = 2, SELECTEDVALUE(Aux_Site_Filter_Table[AxisLabel])
+			    )
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    TotalValues = "Period 1", [Emissions Period 1],
+			    CALCULATE(
+			        [Change],
+			        USERELATIONSHIP(dim_org_greenbridge_hierarchy_master[Site_Name], Aux_Site_Filter_Table[SiteName])
+			    )
+			)
+			```
+		formatString: #,0.00
+		lineageTag: d5b39145-dd94-44b8-8e5b-2ec423eea839
+
+	measure 'Value %' = ```
+			
+			
+			VAR Parameter = SELECTEDVALUE(Parameter2[Parameter2 Order])
+			
+			VAR TotalValues = 
+			    SWITCH(
+			        TRUE(),
+			        Parameter = 0, SELECTEDVALUE(Aux_Site_Filter_Table[Zone]),
+			        Parameter = 1, SELECTEDVALUE(Aux_Site_Filter_Table[Country]),
+			        Parameter = 2, SELECTEDVALUE(Aux_Site_Filter_Table[AxisLabel])
+			    )
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    TotalValues = "Period 1", BLANK(),
+			    TotalValues = "Period 2", BLANK(),
+			    DIVIDE(
+			        CALCULATE(
+			            [Change],
+			            USERELATIONSHIP(dim_org_greenbridge_hierarchy_master[Site_Name], Aux_Site_Filter_Table[SiteName])
+			        ),
+			        CALCULATE(
+			            [Emissions Period 1],
+			            dim_org_greenbridge_hierarchy_master[Site_Name] IN VALUES(Aux_Site_Filter_Table[SiteName])
+			        ),
+			        0
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 62404045-fbe5-4cca-a098-f582f91c1375
+
+	measure 'Y-axis Min' =
+			
+			//DIVIDE([Emissions Period 1], 2, 0)
+			IF(
+			    [Emissions Period 1] > [Emissions Period 2],
+			    [Emissions Period 2]*0.8,
+			    [Emissions Period 1]*0.8
+			)
+		formatString: 0
+		lineageTag: 42609629-efc7-4133-9a2a-5298e4c168f6
+
+	measure 'Emissions Period 1 - 2024' = ```
+			
+			
+			VAR Period = MAX('Period 1'[Year])
+			
+			VAR FinalDate = 
+			    CALCULATE(
+			        MAX(dim_calendar[Date]),
+			        FILTER(
+			            ALLSELECTED(dim_calendar),
+			            dim_calendar[Year] = 2024
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    [Total - Scope 1 and 2 Emissions],
+			    FILTER(
+			        ALLSELECTED(dim_calendar),
+			        dim_calendar[Date] = FinalDate
+			    ),
+			    'Period Filter'[ViewType] = "YTD",
+			    dim_org_greenbridge_hierarchy_master[Plant_Type] = "BOP"
+			)
+			```
+		lineageTag: f92c6062-7267-4002-8d27-ae1621c98fe3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Emissions Period 2 - 2024' = ```
+			
+			
+			VAR Period = MAX('Period 2'[Year])
+			
+			VAR FinalDate = 
+			    CALCULATE(
+			        MAX(dim_calendar[Date]),
+			        FILTER(
+			            ALLSELECTED(dim_calendar),
+			            dim_calendar[Year] = 2025
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    [Total - Scope 1 and 2 Emissions],
+			    FILTER(
+			        ALLSELECTED(dim_calendar),
+			        dim_calendar[Date] = FinalDate
+			    ),
+			    'Period Filter'[ViewType] = "YTD",
+			    dim_org_greenbridge_hierarchy_master[Plant_Type] = "BOP"
+			)
+			```
+		lineageTag: bf0eded7-e44d-4c18-b167-64662a3809fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Change 2024 2025' = ```
+			
+			[Emissions Period 2 - 2024] - [Emissions Period 1 - 2024]
+			
+			```
+		lineageTag: 83c06c92-82ff-49ea-ab4a-e04e484501c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Y-axis Max' =
+			
+			//DIVIDE([Emissions Period 1], 2, 0)
+			IF(
+			    [Emissions Period 1] > [Emissions Period 2],
+			    [Emissions Period 1]*1.05,
+			    [Emissions Period 2]*1.05
+			)
+		lineageTag: 436d966f-8b7e-474b-bc92-8ff54613078a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Filter Year' = ```
+			
+			VAR Year = SELECTEDVALUE('Period 1'[Year])
+			
+			RETURN
+			IF(
+			    SELECTEDVALUE('Period 2'[Year]) >= Year,
+			    1,                                                
+			    0
+			)
+			```
+		formatString: 0
+		lineageTag: 2f7aee04-94a6-45ba-947c-9cc340a5dc31
+
+	column Measure
+		isHidden
+		lineageTag: 886d2003-73b7-4fec-9afb-f7a0faa44758
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Measure]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasuresTable = calculated
+		mode: import
+		source = ```
+				SELECTCOLUMNS( { (1, "Dummy") }, "Measure", "Dummy" )
+				
+				```
+
+	annotation PBI_Id = 8bc0c028f7264b3cbad980ea99180922
+

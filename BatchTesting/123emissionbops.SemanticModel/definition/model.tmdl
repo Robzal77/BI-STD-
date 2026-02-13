@@ -1,0 +1,85 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Scope 1'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Scope 2'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["dim_account","dim_calendar","dim_org_greenbridge_hierarchy_master","dim_scope","DataLastRefreshed","fact_scope1_fugitive_emission_co2_percentage","fact_scope1_stationary_combustion","fact_scope1_mobile_combustion","fact_scope1_process_emission_acetylene_welding","fact_scope1_process_emission_glass_production","fact_scope2_purchased_steam","fact_scope2_purchased_electricity","dim_location_market_based","fact_scope1_fugitive_emission_refrigerants","dim_ScopeName","User"]
+
+annotation PBIDesktopVersion = 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_account
+ref table DateTableTemplate_08f0e546-d499-4a55-bd29-4cc7573dd9db
+ref table LocalDateTable_a14bb859-68a0-4ef8-9c18-e3bdde24bdf1
+ref table LocalDateTable_7f12d8c3-54e4-48e2-8be5-b7a264f3f13a
+ref table dim_calendar
+ref table LocalDateTable_b5d6e321-080c-4837-8cda-4d1a34b5d7d1
+ref table LocalDateTable_ff9e2d61-9df8-4adf-89d3-5195aeaff9fc
+ref table dim_org_greenbridge_hierarchy_master
+ref table LocalDateTable_2845cd39-4541-4ed1-89b0-c22704122ac5
+ref table LocalDateTable_c103a34e-25a6-457f-83fb-a210f01e0aff
+ref table dim_scope
+ref table LocalDateTable_d8741105-6f47-4b2a-9a42-873017c2097e
+ref table LocalDateTable_7414bb24-9d91-4c00-b2e2-06556b8f7084
+ref table 'Period Filter'
+ref table DataLastRefreshed
+ref table LocalDateTable_ef2b808d-2eee-47e0-a352-9fcff0dfc65a
+ref table LocalDateTable_cd69199f-d111-4505-aaad-6ac13614edd9
+ref table MeasuresTable
+ref table fact_scope1_fugitive_emission_co2_percentage
+ref table LocalDateTable_4844b30f-dd78-40a1-afb5-704110efac9d
+ref table LocalDateTable_4aa4013f-6a53-44e4-8723-3f5c0e35cedc
+ref table fact_scope1_stationary_combustion
+ref table LocalDateTable_3c52ae6c-c6c2-4a7a-9563-17505da7ad34
+ref table LocalDateTable_360a0a7e-f6c7-4970-814a-ed5ca84b4e58
+ref table fact_scope1_mobile_combustion
+ref table LocalDateTable_c1b9f7d7-77c3-46be-a30a-d38ab82b213f
+ref table LocalDateTable_122ff113-4fbf-485e-a79b-9d0b45af2b90
+ref table fact_scope1_process_emission_acetylene_welding
+ref table LocalDateTable_33e7d502-1d01-42fb-b649-a8372cf53b8b
+ref table LocalDateTable_1eb1b3d0-4f6c-470f-ad8a-d95f1f5425e4
+ref table fact_scope1_process_emission_glass_production
+ref table LocalDateTable_48a90c18-a687-4fd4-8727-9c678e101dc7
+ref table LocalDateTable_453fbc27-ef8f-479b-ba01-7ad9e912a333
+ref table fact_scope2_purchased_steam
+ref table LocalDateTable_f5053155-09d0-44f3-9d36-41b16f975602
+ref table LocalDateTable_3bfba67d-daa2-44a4-95b7-81bd09c3d3ee
+ref table fact_scope2_purchased_electricity
+ref table LocalDateTable_b07c7641-4777-459f-9173-a6836fa10a17
+ref table LocalDateTable_a4715756-1545-4d54-b12e-f67a42caa5db
+ref table dim_location_market_based
+ref table fact_scope1_fugitive_emission_refrigerants
+ref table LocalDateTable_957df140-cdb1-4fd4-966b-b71c97af64f6
+ref table LocalDateTable_729182a7-b757-4279-898d-57f58414ee03
+ref table dim_ScopeName
+ref table Aux_Site_Filter_Table
+ref table Parameter2
+ref table 'Period 1'
+ref table 'Period 2'
+ref table DateType
+ref table LocalDateTable_3a6dd186-cc64-4a15-9784-374554b95f51
+ref table LocalDateTable_421d2a2a-46a4-45aa-a066-73c10622a5d1
+ref table LocalDateTable_a4b953eb-2576-4d34-8d88-4c7a0821f03d
+ref table LocalDateTable_df832a5e-acdd-4b62-8c7a-03b8f0eaaa81
+ref table LocalDateTable_10838651-ccc6-42ae-b6fc-d0ea5897a203
+ref table LocalDateTable_f638b879-a8c0-4853-b892-11638614d420
+ref table User
+
+ref role GeoRLS
+
+ref cultureInfo en-US
+

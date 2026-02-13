@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEA Ranking - Technical Design Document - Power BI Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            border-bottom: 4px solid #FFC20E;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #1A1A1A;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #1A1A1A;
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #FFC20E;
+        }
+        
+        h3 {
+            color: #1A1A1A;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            color: #595959;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        blockquote {
+            background: #fff9e6;
+            border-left: 4px solid #FFC20E;
+            padding: 15px 20px;
+            margin: 20px 0;
+            color: #1A1A1A;
+        }
+        
+        code {
+            background: #fff9e6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #1A1A1A;
+            border: 1px solid #FFC20E;
+        }
+        
+        pre {
+            background: #1A1A1A;
+            color: #FFC20E;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid #FFC20E;
+        }
+        
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            border: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #1A1A1A;
+            color: #FFC20E;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        tr:hover {
+            background: #fff9e6;
+        }
+        
+        details {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 3px solid #FFC20E;
+            border-radius: 4px;
+        }
+        
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            padding: 5px 0;
+            color: #1A1A1A;
+        }
+        
+        summary:hover {
+            color: #FFC20E;
+        }
+        
+        details[open] {
+            background: #fff9e6;
+        }
+        
+        a {
+            color: #1A1A1A;
+            text-decoration: none;
+            border-bottom: 2px solid #FFC20E;
+        }
+        
+        a:hover {
+            background: #FFC20E;
+            color: #1A1A1A;
+        }
+        
+        nav {
+            background: #fff9e6;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+            border: 2px solid #FFC20E;
+        }
+        
+        nav h2 {
+            margin-top: 0;
+            font-size: 1.3em;
+            border-bottom: none;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        nav li {
+            margin: 8px 0;
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 3px solid #FFC20E;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .mermaid {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .dax-code {
+            background: #1e1e1e;
+            color: #dcdcaa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            details {
+                border: 1px solid #ddd;
+            }
+            
+            details[open] summary ~ * {
+                display: block;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+        
+        window.addEventListener('DOMContentLoaded', (event) => {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>CEA Ranking - Technical Design Document</h1><p><strong>Report Name:</strong> CEA Ranking
+<strong>Version:</strong> 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
+<strong>Generated:</strong> February 13, 2026
+<strong>Architect:</strong> 40103427</p><hr><h2>1. 🏗️ High-Level Architecture</h2><h3>Star Schema Diagram</h3><p><em>No core fact-dimension relationships found.</em></p><h3>🎯 Business Purpose</h3><p>This report is a business intelligence dashboard providing analytical insights and performance metrics for data-driven decision making.</p><h2>2. 📊 The Data Flow (ETL Analysis)</h2><h3>Operations Extract Data Pipeline</h3><p><strong>Source:</strong> Not explicitly identified in M code</p><p><strong>Transformations:</strong></p><h2>3. 🧠 Measure Logic (The "Why", not just "What")</h2><h3>A. Core Financials (Values & Costs)</h3><p><strong>Name:</strong> <code>All scopes carbon emi intensity</code>
+<strong>Logic:</strong> Sum aggregation</p><p><strong>Name:</strong> <code>Total production volume(Khl)</code>
+<strong>Logic:</strong> Sum aggregation divided by scale factor</p><p><strong>Name:</strong> <code>Average Emissions Intensity</code>
+<strong>Logic:</strong> Sum aggregation divided by scale factor</p><p><strong>Name:</strong> <code>Total production volume</code>
+<strong>Logic:</strong> Sum aggregation</p><p><strong>Name:</strong> <code>Siteranking</code>
+<strong>Logic:</strong> Direct column reference</p><p><strong>Name:</strong> <code>Bottom Ranking</code>
+<strong>Logic:</strong> Direct column reference</p><p><strong>Name:</strong> <code>S1 carbon emissions intensity</code>
+<strong>Logic:</strong> Sum aggregation divided by scale factor</p><p><strong>Name:</strong> <code>S1 Bottom Ranking</code>
+<strong>Logic:</strong> Direct column reference</p><p><strong>Name:</strong> <code>S1 Siteranking</code>
+<strong>Logic:</strong> Direct column reference</p><p><strong>Name:</strong> <code>WelcomeMeasure</code>
+<strong>Logic:</strong> Direct aggregation of source column</p><p><strong>Name:</strong> <code>S2 carbon emissions intensity</code>
+<strong>Logic:</strong> Sum aggregation divided by scale factor</p><p><strong>Name:</strong> <code>S2 Siteranking</code>
+<strong>Logic:</strong> Direct column reference</p><p><strong>Name:</strong> <code>S2 Bottom Ranking</code>
+<strong>Logic:</strong> Direct column reference</p><p><strong>Name:</strong> <code>TEST</code>
+<strong>Logic:</strong> Direct column reference</p><hr><p><em>This Technical Design Document focuses on the core star schema and business logic for CEA Ranking. All utility tables and helper measures have been excluded for clarity.</em></p>
+        <footer>
+            <p>Generated on 2026-02-13 09:35:50 | Power BI BI Factory | AB InBev</p>
+        </footer>
+    </div>
+</body>
+</html>

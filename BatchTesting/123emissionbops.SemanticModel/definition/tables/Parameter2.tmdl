@@ -1,0 +1,49 @@
+table Parameter2
+	lineageTag: e160282b-8360-4a3b-b2b2-22b58154070d
+
+	column Parameter2
+		lineageTag: 5e2d33ae-580d-45cc-adbb-36f420dc02ba
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter2 Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter2 Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter2 Fields'
+		isHidden
+		lineageTag: 51a8f4f9-bba1-43d5-b5de-084057807f24
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter2 Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter2 Order'
+		isHidden
+		formatString: 0
+		lineageTag: a7e45f99-47ee-44d1-a28c-118812825baf
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter2 = calculated
+		mode: import
+		source =
+				{
+				    ("Zone", NAMEOF('Aux_Site_Filter_Table'[Zone]), 0),
+				    ("Country", NAMEOF('Aux_Site_Filter_Table'[Country]), 1),
+				    ("Site", NAMEOF('Aux_Site_Filter_Table'[SiteName]), 2)
+				}
+
+	annotation PBI_Id = ea43b85c6056422a9039083010314308
+

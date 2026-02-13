@@ -1,0 +1,123 @@
+table User
+	lineageTag: 6bf428c3-0de9-412c-8e29-ea6a3b550a40
+
+	column 'User Name'
+		dataType: string
+		lineageTag: 2d68d3e8-c2ba-4874-9423-1e07393f2e29
+		summarizeBy: none
+		sourceColumn: User Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Email Account'
+		dataType: string
+		lineageTag: 4978f3aa-d06b-40ee-a143-5027751f41e0
+		summarizeBy: none
+		sourceColumn: User Email Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: 44567354-f2f0-4650-89d7-b5e953595684
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column1
+		dataType: string
+		lineageTag: 91cb940d-ed5d-4827-a8a3-82a002af21ce
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Geographic Access Level'
+		dataType: string
+		lineageTag: 5c1aa042-2b0e-413e-bacc-f7f9098234a2
+		summarizeBy: none
+		sourceColumn: Geographic Access Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 9cb0d81c-70a5-4efb-8529-7fbc3cc7d6a5
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: c879721f-a6e6-492d-b6fb-dffd7aa3bcdb
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entity
+		dataType: string
+		lineageTag: a5d4b27e-345d-4293-87d4-24ab6689cddb
+		summarizeBy: none
+		sourceColumn: Entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site
+		dataType: string
+		lineageTag: 43024d2f-be1d-4a82-b5ff-8531559b2f6e
+		summarizeBy: none
+		sourceColumn: Site
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Module Access Level'
+		dataType: string
+		lineageTag: c79f6f0e-0eaf-4196-9d8f-c880f1430a86
+		summarizeBy: none
+		sourceColumn: Module Access Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub-Module Access Level (for Scope 3)'
+		dataType: string
+		lineageTag: 6e149518-0e55-4f82-9e96-15ef81140987
+		summarizeBy: none
+		sourceColumn: Sub-Module Access Level (for Scope 3)
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccessNodeID =
+			
+			SWITCH(
+			    User[Geographic Access Level],
+			    "Global", "Global",
+			    "Zone", User[Zone],
+			    "Country", User[Country],
+			    "Site", User[Country] & "_" & User[Site],
+			    BLANK()
+			)
+		lineageTag: 706a796d-708e-497b-a07b-f4cd85b3547a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition User = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Source{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"0c7b7611-3fa1-4e41-ac1f-b8468d80a7fa" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="0c7b7611-3fa1-4e41-ac1f-b8468d80a7fa"]}[Data],
+				    User1 = #"0c7b7611-3fa1-4e41-ac1f-b8468d80a7fa"{[entity="User"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(User1, each ([Module Access Level] = "Climate") and ([#"Sub-Module Access Level (for Scope 3)"] = "Live Data")),
+				    #"Texto em Minúscula" = Table.TransformColumns(#"Filtered Rows",{{"User Email Account", Text.Lower, type text}})
+				in
+				    #"Texto em Minúscula"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

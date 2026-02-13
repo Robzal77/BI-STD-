@@ -1,0 +1,25 @@
+table DateType
+	lineageTag: 293ae26d-4ce9-465d-99c8-c796657106f3
+
+	column ViewType
+		lineageTag: e70b2da6-138b-4b6f-b53f-efa3acf8aa11
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ViewType]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateType = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "ViewType", STRING,
+				    {
+				        {"Year"},
+				        {"Month"}
+				    }
+				)
+
+	annotation PBI_Id = 90dd110d59934777be8f64900b659e1f
+

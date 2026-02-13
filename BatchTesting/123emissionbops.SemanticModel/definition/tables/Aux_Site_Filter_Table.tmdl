@@ -1,0 +1,279 @@
+table Aux_Site_Filter_Table
+	lineageTag: 99f573e5-2015-42fa-bfae-7a419aeccea4
+
+	column AxisType
+		lineageTag: d07ae8dc-f9eb-4c0c-bb46-5654a98080f8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AxisType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AxisLabel
+		lineageTag: 1c3f0339-67e2-4bef-ae16-2583841cf0c6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AxisLabel]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AxisOrder
+		formatString: 0
+		lineageTag: 7c2c1b74-8428-4ea4-bdff-29f5321281c2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [AxisOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_ID
+		lineageTag: 849cbc89-6015-4533-a9b1-38297377a84f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Site_ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		lineageTag: 73b23220-788c-4a53-a175-04466b4b3b06
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Zone]
+		sortByColumn: ZoneRank
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		lineageTag: 2cef5f1b-3ee9-407e-bdc3-a3f6dbf77777
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Country]
+		sortByColumn: CountryRank
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantType
+		lineageTag: 1ea44f3a-e7df-476e-a1f3-90feac113305
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [PlantType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		formatString: #,0.00
+		lineageTag: 0b399eea-d8e9-48ef-b678-5541a9d10587
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteName
+		lineageTag: b83f7669-05d4-45b0-b7bb-5adc75252301
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [SiteName]
+		sortByColumn: SiteRank
+
+		annotation SummarizationSetBy = Automatic
+
+	column AxisSortSite
+		formatString: 0
+		lineageTag: 0257c994-2abe-4ab9-ae7c-737c909fb0d9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [AxisSortSite]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteRank
+		formatString: 0
+		lineageTag: 750aa5c0-3ea9-40ca-83fb-680b3bf5fb4e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SiteRank]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZoneRank
+		formatString: 0
+		lineageTag: ef5d4f28-313d-4ccc-ba30-4f8cf835fd18
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [ZoneRank]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRank
+		formatString: 0
+		lineageTag: 62341678-0307-469a-8de2-fccf22024301
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [CountryRank]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Aux_Site_Filter_Table = calculated
+		mode: import
+		source = ```
+				
+				VAR SitesBase =
+				    FILTER (
+				        SUMMARIZE (
+				            dim_org_greenbridge_hierarchy_master,
+				            dim_org_greenbridge_hierarchy_master[Site_Code],
+				            "Site_Name", MAX ( dim_org_greenbridge_hierarchy_master[Site_Name] ),
+				            "Country",   MAX ( dim_org_greenbridge_hierarchy_master[Country] ),
+				            "Zone",      MAX ( dim_org_greenbridge_hierarchy_master[Zone] ),
+				            "PlantType", MAX ( dim_org_greenbridge_hierarchy_master[Plant_Type] ),
+				            "Value",     [Change 2024 2025]
+				        ),
+				        [PlantType] = "BOP"
+				    )
+				
+				
+				VAR SitesWithDelta =
+				    ADDCOLUMNS (
+				        SitesBase,
+				        "AxisType",  "Site",
+				        "AxisLabel", [Site_Name],
+				        "Site_ID",   [Site_Code],
+				        "DeltaValueSite",
+				            VAR curSite = [Site_Code]
+				            RETURN
+				                CALCULATE (
+				                    [Change 2024 2025],
+				                    TREATAS ( ROW ( "Site_Code", curSite ), dim_org_greenbridge_hierarchy_master[Site_Code] )
+				                )
+				    )
+				
+				
+				VAR SiteRankTable =
+				    SELECTCOLUMNS ( SitesWithDelta, "Site_ID", [Site_ID], "SiteMetric", [DeltaValueSite] )
+				
+				VAR SiteRanks =
+				    ADDCOLUMNS (
+				        SiteRankTable,
+				        "SiteRank", RANKX ( SiteRankTable, [SiteMetric], [SiteMetric], ASC, DENSE )
+				    )
+				
+				VAR SiteRanksSlim =
+				    SELECTCOLUMNS ( SiteRanks, "Site_ID", [Site_ID], "SiteRank", [SiteRank] )
+				
+				
+				VAR ZoneList =
+				    DISTINCT ( SELECTCOLUMNS ( SitesWithDelta, "Zone", [Zone] ) )
+				
+				VAR ZonesWithMetric =
+				    ADDCOLUMNS (
+				        ZoneList,
+				        "ZoneMetric",
+				            CALCULATE (
+				                [Change 2024 2025],
+				                TREATAS ( ROW ( "Zone", [Zone] ), dim_org_greenbridge_hierarchy_master[Zone] )
+				            )
+				    )
+				
+				VAR ZonesRanks =
+				    ADDCOLUMNS (
+				        ZonesWithMetric,
+				        "ZoneRank", RANKX ( ZonesWithMetric, [ZoneMetric], [ZoneMetric], ASC, DENSE )
+				    )
+				
+				VAR ZonesRanksSlim =
+				    SELECTCOLUMNS ( ZonesRanks, "Zone", [Zone], "ZoneRank", [ZoneRank] )
+				
+				
+				VAR CountryList =
+				    DISTINCT ( SELECTCOLUMNS ( SitesWithDelta, "Country", [Country] ) )
+				
+				VAR CountriesWithMetric =
+				    ADDCOLUMNS (
+				        CountryList,
+				        "CountryMetric",
+				            CALCULATE (
+				                [Change 2024 2025],
+				                TREATAS ( ROW ( "Country", [Country] ), dim_org_greenbridge_hierarchy_master[Country] )
+				            )
+				    )
+				
+				VAR CountriesRanks =
+				    ADDCOLUMNS (
+				        CountriesWithMetric,
+				        "CountryRank", RANKX ( CountriesWithMetric, [CountryMetric], [CountryMetric], ASC, DENSE )
+				    )
+				
+				VAR CountriesRanksSlim =
+				    SELECTCOLUMNS ( CountriesRanks, "Country", [Country], "CountryRank", [CountryRank] )
+				
+				
+				VAR WithSiteRank =
+				    NATURALLEFTOUTERJOIN ( SitesWithDelta, SiteRanksSlim )
+				
+				VAR WithZoneRank =
+				    NATURALLEFTOUTERJOIN ( WithSiteRank, ZonesRanksSlim )
+				
+				VAR FullRanked =
+				    NATURALLEFTOUTERJOIN ( WithZoneRank, CountriesRanksSlim )
+				
+				
+				VAR FinalRows =
+				    ADDCOLUMNS ( FullRanked, "AxisSortSite", [SiteRank] + 1000000, "AxisOrder", 1 )
+				
+				RETURN
+				UNION (
+				    ROW (
+				        "AxisType",     "Start",
+				        "AxisLabel",    "Period 1",
+				        "AxisOrder",    -1,
+				        "Site_ID",      BLANK (),
+				        "AxisSortSite", 0,
+				        "SiteRank",     0,
+				        "ZoneRank",     -1,
+				        "CountryRank",  -1,
+				        "Zone",         "Period 1",
+				        "Country",      "Period 1",
+				        "SiteName",     "Period 1",
+				        "PlantType",    "⟂ Totals",
+				        "Value",        [Emissions Period 1]
+				    ),
+				
+				    SELECTCOLUMNS (
+				        FinalRows,
+				        "AxisType",     [AxisType],
+				        "AxisLabel",    [AxisLabel],
+				        "AxisOrder",    [AxisOrder],
+				        "Site_ID",      [Site_ID],
+				        "AxisSortSite", [AxisSortSite],
+				        "SiteRank",     [SiteRank],
+				        "ZoneRank",     [ZoneRank],
+				        "CountryRank",  [CountryRank],
+				        "Zone",         [Zone],
+				        "Country",      [Country],
+				        "SiteName",     [Site_Name],
+				        "PlantType",    [PlantType],
+				        "Value",        [Value]
+				    ),
+				
+				    ROW (
+				        "AxisType",     "End",
+				        "AxisLabel",    "Period 2",
+				        "AxisOrder",    9999999999,
+				        "Site_ID",      BLANK (),
+				        "AxisSortSite", 2000000000,
+				        "SiteRank",     2000000000,
+				        "ZoneRank",     2000000000,
+				        "CountryRank",  2000000000,
+				        "Zone",         "Period 2",
+				        "Country",      "Period 2",
+				        "SiteName",     "Period 2",
+				        "PlantType",    "⟂ Totals",
+				        "Value",        [Emissions Period 2]
+				    )
+				)
+				
+				```
+
+	annotation PBI_Id = ddab52f9b48942d0a02466985cd8ae5b
+

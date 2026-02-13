@@ -1,0 +1,254 @@
+table fact_scope1_fugitive_emission_refrigerants
+	lineageTag: 5eef3c31-7d4c-41ac-9a5a-de8465f50279
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c2d9314-187f-4759-8010-225b0060866d
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 55403085-3067-4748-8639-bc46306ab65f
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_type
+		dataType: string
+		lineageTag: e1f28b7b-3099-495d-b972-1501179c45bb
+		summarizeBy: none
+		sourceColumn: period_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Code
+		dataType: string
+		lineageTag: 97902cfa-b2bf-4545-b909-e9e2d2883b0c
+		summarizeBy: none
+		sourceColumn: Site_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site_Name
+		dataType: string
+		lineageTag: 86880b8c-1a47-4c8a-80d3-19d172993ece
+		summarizeBy: none
+		sourceColumn: Site_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_of_Plant
+		dataType: string
+		lineageTag: 51ac26d8-ef80-480f-93fd-006dfeabc8ba
+		summarizeBy: none
+		sourceColumn: Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_Type_of_Plant
+		dataType: string
+		lineageTag: 6f7b2c0b-1fd7-440b-99f2-cc22908930a0
+		summarizeBy: none
+		sourceColumn: Sub_Type_of_Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 5985f491-35e1-4720-bad9-dfa331d19fb7
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: db02013f-43e3-46f7-9969-7f7f0fe2cebc
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: b73c10ac-ad36-40dc-b162-874b4ff5238a
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: 75176234-b2d7-4ad9-a87f-0b245aca6628
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column GHG_category
+		dataType: string
+		lineageTag: f22d2128-cb9e-451a-b7ba-8329304cb315
+		summarizeBy: none
+		sourceColumn: GHG_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Activity
+		dataType: string
+		lineageTag: dc08ab2f-21c8-41c8-9c15-67c614d4726d
+		summarizeBy: none
+		sourceColumn: Activity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Energy_Type
+		dataType: string
+		lineageTag: 9a4c397a-e8af-4e6b-9756-92d8d26c0f9d
+		summarizeBy: none
+		sourceColumn: Energy_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI
+		dataType: string
+		lineageTag: 5084ec32-8248-403a-a82b-5ae16e97edd6
+		summarizeBy: none
+		sourceColumn: KPI
+
+		annotation SummarizationSetBy = Automatic
+
+	column kpi_value
+		dataType: double
+		lineageTag: ca5a9173-c5fb-4c36-8450-a6dc403c9536
+		summarizeBy: sum
+		sourceColumn: kpi_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column KPI_Unit
+		dataType: string
+		lineageTag: 17545f59-ce1a-4708-835d-89312c0bd518
+		summarizeBy: none
+		sourceColumn: KPI_Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column GWP_kgCO2e_per_kg
+		dataType: double
+		lineageTag: c64b94a1-1292-44a3-98c8-4a2f9fea3440
+		summarizeBy: sum
+		sourceColumn: GWP_kgCO2e_per_kg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GHG_Emission_tCO2e
+		dataType: double
+		lineageTag: 0219ebff-93af-42f9-9413-6a7f56c2b4dd
+		summarizeBy: sum
+		sourceColumn: GHG_Emission_tCO2e
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column __start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2b811588-7be0-4915-b422-1353feb0d4c3
+		summarizeBy: none
+		sourceColumn: __start_date
+
+		variation Variation
+			isDefault
+			relationship: b7a3cb30-957a-4dfa-9f78-3dd0ea3a5c19
+			defaultHierarchy: LocalDateTable_957df140-cdb1-4fd4-966b-b71c97af64f6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __hash_key
+		dataType: string
+		lineageTag: 9595cb00-2587-4bf4-bc59-d00e38cf3e50
+		summarizeBy: none
+		sourceColumn: __hash_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column __end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cdbdd408-62c0-4e84-9458-370cb432787d
+		summarizeBy: none
+		sourceColumn: __end_date
+
+		variation Variation
+			isDefault
+			relationship: 8ca66e43-c169-4399-b1ad-8cb07974f0cd
+			defaultHierarchy: LocalDateTable_729182a7-b757-4279-898d-57f58414ee03.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column __is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 335ea55c-ff26-4df5-86d2-dd30496c9217
+		summarizeBy: none
+		sourceColumn: __is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column __merge_action
+		dataType: string
+		lineageTag: ef26d8a7-15dc-4c8a-8281-74a8739155a1
+		summarizeBy: none
+		sourceColumn: __merge_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		dataType: string
+		lineageTag: 2ad152d5-6f67-408a-9644-3c3cf174859d
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c2672d79-ef11-44f2-ab0e-fcdd282f79c0
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition fact_scope1_fugitive_emission_refrigerants = m
+		mode: import
+		queryGroup: 'Scope 1'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"48bb6b07-ee75-4878-8c69-69aebd14d8bd" = Workspaces{[workspaceId="48bb6b07-ee75-4878-8c69-69aebd14d8bd"]}[Data],
+				    #"8fa89595-17da-449f-a0ef-5a6683c519c6" = #"48bb6b07-ee75-4878-8c69-69aebd14d8bd"{[dataflowId="8fa89595-17da-449f-a0ef-5a6683c519c6"]}[Data],
+				    fact_scope1_fugitive_emission_refrigerants_ = #"8fa89595-17da-449f-a0ef-5a6683c519c6"{[entity="fact_scope1_fugitive_emission_refrigerants",version=""]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(fact_scope1_fugitive_emission_refrigerants_, each ([__is_active] = true)),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Date", each #date([year],[Month],1), type date)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

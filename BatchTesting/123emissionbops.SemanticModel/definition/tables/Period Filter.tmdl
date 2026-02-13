@@ -1,0 +1,43 @@
+table 'Period Filter'
+	lineageTag: 1b109666-67e0-41f3-9708-20ed1b49cf5b
+
+	column ViewType
+		lineageTag: 79cc0968-4732-4767-b793-0f3ee301196b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ViewType]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ViewTypeStandart
+		lineageTag: 6a1eda03-2778-4c63-b49d-147bdfd8ab1a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ViewTypeStandart]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Period Filter' = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS(
+				DATATABLE(
+				    "ViewType", STRING,
+				    {
+				        {"YTD"},
+				        {"MTH"}
+				    }
+				),
+				"ViewTypeStandart",
+				SWITCH(
+				    TRUE(),
+				    [ViewType] = "MTH", "MTD",
+				    [ViewType]
+				)
+				)
+				
+				```
+
+	annotation PBI_Id = 7777cac619e9491a8ee51712fe8b3cbd
+

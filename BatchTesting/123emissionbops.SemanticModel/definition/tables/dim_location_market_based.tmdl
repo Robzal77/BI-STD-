@@ -1,0 +1,24 @@
+table dim_location_market_based
+	lineageTag: 9667725a-f9f0-4dc1-85ec-f88e319921c3
+
+	column Location_Market_Based
+		dataType: string
+		lineageTag: e42b206f-31c4-4749-b1d9-5a2ca5454b9d
+		summarizeBy: none
+		sourceColumn: Location_Market_Based
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_location_market_based = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8slPTizJzM/TdUosTk1RitWJVvJNLMpOLYEJxAIA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Location_Market_Based = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Location_Market_Based", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

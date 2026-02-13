@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "123emissionbops"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "40142252-0502-4722-bc3c-2e38769cb8b6"
+  }
+}

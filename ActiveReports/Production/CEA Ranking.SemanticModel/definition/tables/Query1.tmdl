@@ -1,0 +1,51 @@
+table Query1
+	lineageTag: 94ab4ac9-79f0-4e06-980f-bb01950bc2e5
+
+	column Name
+		dataType: string
+		lineageTag: dc60bfb7-96a5-430f-8edb-d9dfe2902a4e
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: ee12f119-0081-43ed-8761-836f03103ad0
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kind
+		dataType: string
+		lineageTag: 40328b1a-e65f-4cfb-9069-58f8ada3db78
+		summarizeBy: none
+		sourceColumn: Kind
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hidden
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1ed93d1a-1fe1-4e4a-b7b5-83eb48368447
+		summarizeBy: none
+		sourceColumn: Hidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Query1 = m
+		mode: import
+		source =
+				let
+				    Source = AzureStorage.DataLake("https://brewdatsupchnrawbrzd.dfs.core.windows.net/raw/data/ghq/sustainability/csrd/emissionranking/input_file"),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "EXP - Extract to Azure Blob.xlsx")),
+				    #"https://brewdatsupchnrawbrzd dfs core windows net/raw/data/ghq/sustainability/csrd/emissionranking/input_file/_EXP - Extract to Azure Blob xlsx" = #"Filtered Rows"{[#"Folder Path"="https://brewdatsupchnrawbrzd.dfs.core.windows.net/raw/data/ghq/sustainability/csrd/emissionranking/input_file/",Name="EXP - Extract to Azure Blob.xlsx"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"https://brewdatsupchnrawbrzd dfs core windows net/raw/data/ghq/sustainability/csrd/emissionranking/input_file/_EXP - Extract to Azure Blob xlsx")
+				in
+				    #"Imported Excel Workbook"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
