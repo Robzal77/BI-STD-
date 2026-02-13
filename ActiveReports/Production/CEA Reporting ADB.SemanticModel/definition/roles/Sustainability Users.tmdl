@@ -1,0 +1,105 @@
+role 'Sustainability Users'
+	modelPermission: read
+
+	tablePermission PageLevelAccess = ```
+			[User Email] = USERPRINCIPALNAME() && [PageName] = "Agriculture" || 
+			([User Email] = USERPRINCIPALNAME() && [PageName] = "Packaging") || 
+			([User Email] = USERPRINCIPALNAME() && [PageName] = "Zonal Filters") || 
+			([User Email] = USERPRINCIPALNAME() && [PageName] = "New Vendor Creation") || 
+			([User Email] = USERPRINCIPALNAME() && [PageName] = "Trend Analysis")|| 
+			([User Email] = USERPRINCIPALNAME() && [PageName] = "Raw Data")||
+			([User Email] = USERPRINCIPALNAME() && [PageName] = "Vendor Mapping")
+			```
+
+	tablePermission 'Malt & Adjuncts' = ```
+			var user = USERPRINCIPALNAME()
+			var rls_type = CALCULATE(MIN('RLS Table'[RLS Type]), 'RLS Table'[User Email] = user)
+			var rls_zone = CALCULATETABLE(VALUES('RLS Table'[Zone]), 'RLS Table'[User Email] = user)
+			var rls_country = CALCULATETABLE(VALUES('RLS Table'[Country]), 'RLS Table'[User Email] = user)
+			
+			RETURN SWITCH (
+			        TRUE(),
+			        rls_type = "Global", TRUE,
+			        rls_type = "Zone" && 'Malt & Adjuncts'[Zone] IN rls_zone, TRUE,  
+			        rls_type = "Country" && 'Malt & Adjuncts'[Consumption Country] IN rls_country, TRUE,  
+			        FALSE  
+			    )
+			```
+
+	tablePermission 'PKG History Anaplan' = ```
+			var user = USERPRINCIPALNAME()
+			var rls_type = CALCULATE(MIN('RLS Table'[RLS Type]), 'RLS Table'[User Email] = user)
+			var rls_zone = CALCULATETABLE(VALUES('RLS Table'[Zone]), 'RLS Table'[User Email] = user)
+			var rls_country = CALCULATETABLE(VALUES('RLS Table'[Country]), 'RLS Table'[User Email] = user)
+			
+			RETURN SWITCH (
+			        TRUE(),
+			        rls_type = "Global", TRUE,
+			        rls_type = "Zone" && 'PKG History Anaplan'[Zone] IN rls_zone, TRUE,  
+			        rls_type = "Country" && 'PKG History Anaplan'[Country] IN rls_country, TRUE,  
+			        FALSE  
+			    )
+			```
+
+	tablePermission 'AGR History' = ```
+			var user = USERPRINCIPALNAME()
+			var rls_type = CALCULATE(MIN('RLS Table'[RLS Type]), 'RLS Table'[User Email] = user)
+			var rls_zone = CALCULATETABLE(VALUES('RLS Table'[Zone]), 'RLS Table'[User Email] = user)
+			var rls_country = CALCULATETABLE(VALUES('RLS Table'[Country]), 'RLS Table'[User Email] = user)
+			
+			RETURN SWITCH (
+			        TRUE(),
+			        rls_type = "Global", TRUE,
+			        rls_type = "Zone" && 'AGR History'[Zone] IN rls_zone, TRUE,  
+			        rls_type = "Country" && 'AGR History'[Country] IN rls_country, TRUE,  
+			        FALSE  
+			    )
+			```
+
+	tablePermission 'PKG History' = ```
+			var user = USERPRINCIPALNAME()
+			var rls_type = CALCULATE(MIN('RLS Table'[RLS Type]), 'RLS Table'[User Email] = user)
+			var rls_zone = CALCULATETABLE(VALUES('RLS Table'[Zone]), 'RLS Table'[User Email] = user)
+			var rls_country = CALCULATETABLE(VALUES('RLS Table'[Country]), 'RLS Table'[User Email] = user)
+			
+			RETURN SWITCH (
+			        TRUE(),
+			        rls_type = "Global", TRUE,
+			        rls_type = "Zone" && 'PKG History'[Zone] IN rls_zone, TRUE,  
+			        rls_type = "Country" && 'PKG History'[Country] IN rls_country, TRUE,  
+			        FALSE  
+			    )
+			```
+
+	tablePermission Country = ```
+			var user = USERPRINCIPALNAME()
+			var rls_type = CALCULATE(MIN('RLS Table'[RLS Type]), 'RLS Table'[User Email] = user)
+			var rls_zone = CALCULATETABLE(VALUES('RLS Table'[Zone]), 'RLS Table'[User Email] = user)
+			var rls_country = CALCULATETABLE(VALUES('RLS Table'[Country]), 'RLS Table'[User Email] = user)
+			
+			RETURN SWITCH (
+			        TRUE(),
+			        rls_type = "Global", TRUE,
+			        rls_type = "Zone" && 'Country'[Zone] IN rls_zone, TRUE,  
+			        rls_type = "Country" && 'Country'[Country] IN rls_country, TRUE,  
+			        FALSE  
+			    )
+			```
+
+	tablePermission 'Vendor Exclusion' = ```
+			var user = USERPRINCIPALNAME()
+			var rls_type = CALCULATE(MIN('RLS Table'[RLS Type]), 'RLS Table'[User Email] = user)
+			var rls_zone = CALCULATETABLE(VALUES('RLS Table'[Zone]), 'RLS Table'[User Email] = user)
+			var rls_country = CALCULATETABLE(VALUES('RLS Table'[Country]), 'RLS Table'[User Email] = user)
+			
+			RETURN SWITCH (
+			        TRUE(),
+			        rls_type = "Global", TRUE,
+			        rls_type = "Zone" && 'Vendor Exclusion'[Zone] IN rls_zone, TRUE,  
+			        rls_type = "Country" && 'Vendor Exclusion'[Country] IN rls_country, TRUE,  
+			        FALSE  
+			    )
+			```
+
+	annotation PBI_Id = c5abf9311d3b43439ecbb92114ae0fb5
+

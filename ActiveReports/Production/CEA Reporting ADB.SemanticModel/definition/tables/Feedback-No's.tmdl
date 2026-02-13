@@ -1,0 +1,76 @@
+table 'Feedback-No''s'
+	lineageTag: 96428e68-dfec-449f-818b-e8e538c75b43
+	sourceLineageTag: b9666813-4aee-4214-ad1b-e8644cbae2d2
+
+	column Title
+		dataType: string
+		lineageTag: fa91838c-de5b-455f-add8-048335b73baa
+		sourceLineageTag: 8081cbf4-0ef9-411b-b605-71f84ff1f552
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = User
+
+	column Feedbackdeclinetime
+		dataType: string
+		lineageTag: 26facc0c-4301-474d-8be5-b9f9ac182009
+		sourceLineageTag: 7fe20bac-4921-4677-bd88-56bdd1e226a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Feedbackdeclinetime
+
+		annotation SummarizationSetBy = User
+
+	column DashboardName
+		dataType: string
+		lineageTag: 4b55f7f7-f59b-4424-aa08-2c45ec4e4ccb
+		sourceLineageTag: d6b46112-a577-48f6-82ec-dfaf4b8577b5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DashboardName
+
+		annotation SummarizationSetBy = User
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: 07078f09-c655-4ac6-b712-64f1e72233b9
+		sourceLineageTag: c3a34ec5-3252-43da-b3cf-4e293ca602b7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = User
+
+	column Modified
+		dataType: string
+		lineageTag: 6f602b6c-a69b-4dda-9296-042653ee698e
+		sourceLineageTag: 05e5cd7e-f67f-4a16-a7f2-dde04cb5285b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Modified
+
+		annotation SummarizationSetBy = User
+
+	column Created
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5b10c140-878f-4c9f-a3de-7e9cb250a3ad
+		sourceLineageTag: 15031fe4-bd57-4560-94d9-a17ff7434f54
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variation
+			isDefault
+			relationship: 80579cc7-868b-4ee6-a06f-b61dc9c89075
+			defaultHierarchy: LocalDateTable_a52720a1-dff6-4091-af5d-15f8d03eff50.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Feedback-No''s' = entity
+		mode: directQuery
+		source
+			entityName: Feedback-No's
+			expressionSource: 'DirectQuery to AS - Product_NPS_Share_Point_List'
+

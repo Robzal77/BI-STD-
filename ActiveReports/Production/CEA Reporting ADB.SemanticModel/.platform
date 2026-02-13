@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "CEA Reporting ADB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "61ada98b-eef6-4c91-899b-19227f28866b"
+  }
+}

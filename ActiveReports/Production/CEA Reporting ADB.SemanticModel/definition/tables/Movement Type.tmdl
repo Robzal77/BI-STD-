@@ -1,0 +1,104 @@
+table 'Movement Type'
+	lineageTag: 124224f8-0047-4479-8de6-7f52b36af002
+
+	measure MappedMovementTypes =
+			
+			CONCATENATEX(
+			    SUMMARIZE('Movement Type', 'Movement Type'[Country], "MovementTypes",
+			        CONCATENATEX(
+			            VALUES('Movement Type'[MovementType]), 'Movement Type'[MovementType], ", "
+			        )
+			    ), [MovementTypes], ", "
+			)
+		lineageTag: 6f34417b-3c88-4a03-8a6e-9333f8874ecd
+
+	column MovementTypeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c37a162-ff1c-4939-bbd2-db21d9d15596
+		summarizeBy: count
+		sourceColumn: MovementTypeKey
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 0917870c-1653-4ab6-bd64-00042f857be9
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: 51b9907e-0a88-493f-82fe-9f2dbe244d5e
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementType
+		dataType: string
+		lineageTag: 10ff744d-ca5a-43ac-8842-52b0f6b721be
+		summarizeBy: none
+		sourceColumn: MovementType
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: d6b81ad5-04c5-4497-9c73-847ae02e7893
+		summarizeBy: none
+		sourceColumn: Scope
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 0eb1a126-3d4c-476c-97a0-b8942eb135a5
+		summarizeBy: none
+		sourceColumn: Zone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e6d6a032-78d4-416f-8978-6f92d6b50f27
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Movement Type' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Sql.Database("abi-sustainability-eus.database.windows.net", "anaplandb"),
+				    Carbon_Emissions_Reporting_MovementType = Source{[Schema="Carbon_Emissions_Reporting",Item="MovementType"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(Carbon_Emissions_Reporting_MovementType,{"SAP", "DateCreated", "DateUpdated", "UserCreated", "UserUpdated"}),
+				    #"Sorted Rows" = Table.Sort(#"Removed Columns",{{"MovementType", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_ResultType = Table
+

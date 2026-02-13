@@ -1,0 +1,113 @@
+table 'Vendor Mapping NAZ'
+	lineageTag: 6e97fea7-bb14-4d90-80b0-238f982b800b
+
+	column Zone
+		dataType: string
+		lineageTag: dcde42ad-5375-4930-820c-122eb0e00564
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: fde855eb-bdff-42ff-a8c5-d034dcd30df7
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: 3a457ee1-c6f8-42c6-b728-44dd70131269
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor ID'
+		dataType: string
+		lineageTag: 481bafdb-df0d-49cc-a471-1497764745ce
+		summarizeBy: none
+		sourceColumn: Vendor ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor Name'
+		dataType: string
+		lineageTag: 3f81daaa-5357-41e8-a170-ee7c0a46b5db
+		summarizeBy: none
+		sourceColumn: Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Anaplan Vendor Name'
+		dataType: string
+		lineageTag: 745bdbf5-6248-44e2-bfd6-efcda8f688d5
+		summarizeBy: none
+		sourceColumn: Anaplan Vendor Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Supplier'
+		dataType: string
+		lineageTag: 255949c2-2ddf-4081-bc02-8dd40343cf60
+		summarizeBy: none
+		sourceColumn: Master Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Malting Facility'
+		dataType: string
+		lineageTag: 274fe7f3-4879-42a1-b990-85c490a12578
+		summarizeBy: none
+		sourceColumn: Malting Facility
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location Of Maltings'
+		dataType: string
+		lineageTag: be83317d-d3d6-4b65-956e-92a0c12d747a
+		summarizeBy: none
+		sourceColumn: Location Of Maltings
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Of Maltings'
+		dataType: string
+		lineageTag: 532ffef4-a474-4489-b40d-356b0eb6854c
+		summarizeBy: none
+		sourceColumn: Country Of Maltings
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Barley Origin'
+		dataType: string
+		lineageTag: 4988f0b6-c4c8-43a1-af16-1dcee9878420
+		summarizeBy: none
+		sourceColumn: Barley Origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Type'
+		dataType: string
+		lineageTag: d6517c76-5c9e-44cd-ad52-d3b997b80ad5
+		summarizeBy: none
+		sourceColumn: Material Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Vendor Mapping NAZ' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3351803597239433.13.azuredatabricks.net", "sql/protocolv1/o/3351803597239433/1007-083530-q0c3rf79", [Catalog="brewdat_uc_supchn_dev", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="brewdat_uc_supchn_dev",Kind="Database"]}[Data], "select * from slv_ghq_sustainability_dataverse.manual_vendor_mapping where Zone='NAZ'", null, [EnableFolding=true]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"VendorID", "Vendor ID"}, {"VendorName", "Vendor Name"}, {"MasterSupplier", "Master Supplier"}, {"AnaplanVendorName", "Anaplan Vendor Name"}, {"MaltingFacility", "Malting Facility"}, {"LocationOfMaltings", "Location Of Maltings"}, {"CountryOfMaltings", "Country Of Maltings"}, {"BarleyOrigin", "Barley Origin"}, {"MaterialType", "Material Type"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

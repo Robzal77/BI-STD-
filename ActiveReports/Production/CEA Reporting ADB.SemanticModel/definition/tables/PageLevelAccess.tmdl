@@ -1,0 +1,71 @@
+table PageLevelAccess
+	lineageTag: 40ee64f1-fdc2-4710-9b9c-8315e8062d96
+
+	column 'User Email'
+		dataType: string
+		lineageTag: b6f7bcf0-084f-4c10-a514-aab5ad8754d7
+		summarizeBy: none
+		sourceColumn: User Email
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PageName
+		dataType: string
+		lineageTag: 2f4e8401-ab6b-4957-b789-94e3dce673b9
+		summarizeBy: none
+		sourceColumn: PageName
+		sortByColumn: ID
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: 3e39006f-19f3-4d7a-9b15-58b28ea93acc
+		summarizeBy: none
+		sourceColumn: ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 6e7816df-4f4e-40bc-9142-b684b1fad05d
+		summarizeBy: none
+		sourceColumn: Zone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PageLevelAccess-b915dcda-2ba5-46f0-98c6-ea60eb889fce = m
+		mode: import
+		queryGroup: 'Page Level Access'
+		source =
+				let
+				    Source = SharePoint.Files("https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each [Folder Path] = "https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"),
+				    #"RLS and PLS xlsx_https://anheuserbuschinbev sharepoint com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/" = #"Filtered Rows"{[Name="RLS and PLS.xlsx",#"Folder Path"="https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"RLS and PLS xlsx_https://anheuserbuschinbev sharepoint com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"),
+				    PLS_Sheet = #"Imported Excel Workbook"{[Item="PLS",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(PLS_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PageName", type text}, {"User Email", type text}, {"Zone", type text}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "ID", each if [PageName] = "Agriculture" then 1 else if [PageName] = "Packaging" then 2 else if [PageName] = "Zonal Filters" then 3 else if [PageName] = "Trend Analysis" then 4 else if [PageName] = "New Vendor Creation" then 5 else if [PageName] = "Raw Data" then 6 else if [PageName] = "Vendor Mapping" then 7 else if [PageName] = "Vendor Exclusion" then 8 else null),
+				    #"Filtered Rows1" = Table.SelectRows(#"Added Conditional Column", each [ID] <> null),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Filtered Rows1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Cleaned Text" = Table.TransformColumns(#"Removed Blank Rows",{{"PageName", Text.Clean, type text}})
+				in
+				    #"Cleaned Text"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

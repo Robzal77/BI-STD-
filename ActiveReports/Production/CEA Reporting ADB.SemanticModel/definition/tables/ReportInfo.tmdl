@@ -1,0 +1,24 @@
+table ReportInfo
+	lineageTag: 83c717ed-5722-45b0-bd20-08904da4fb3f
+
+	column ReportName
+		lineageTag: d96b78ba-55db-45fc-9759-e48df9db1e76
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ReportName]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ReportInfo = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				   "ReportName", STRING,
+				   {
+				       {"CARBON EMISSION REPORTING"}
+				   }
+				)
+
+	annotation PBI_Id = c3cfaa20d4b243ef9949878264743a61
+

@@ -1,0 +1,166 @@
+table 'Material Type'
+	lineageTag: ce1484c7-d254-48a3-9bf0-15fa201e80d5
+
+	measure MaterialCodes = ```
+			
+			    CONCATENATEX(
+			        SUMMARIZE(
+			            'Material Type',
+			            'Material Type'[Country],
+			            'Material Type'[MaterialType],
+			            "MaterialCodes",
+			            CONCATENATEX(
+			                VALUES('Material Type'[MaterialCode]),
+			                'Material Type'[MaterialCode],
+			                ", "
+			            )
+			        ),
+			        [MaterialCodes],
+			        ", "
+			    )
+			```
+		lineageTag: fd7d1dee-f548-4ecb-b4e1-066352ce93cf
+
+	column MaterialTypeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f4a92f7-70d0-4c01-a354-dd8d7830736d
+		summarizeBy: count
+		sourceColumn: MaterialTypeKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialCode
+		dataType: string
+		lineageTag: 25441dde-4d8c-4e43-91b9-7c6ff8443254
+		summarizeBy: none
+		sourceColumn: MaterialCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialNumber
+		dataType: string
+		lineageTag: d8dfb2d1-0945-42c1-b6ca-88e4e3c79af5
+		summarizeBy: none
+		sourceColumn: MaterialNumber
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialName
+		dataType: string
+		lineageTag: 6a6a5a51-90b3-4cc8-b1a3-510b8c0803e3
+		summarizeBy: none
+		sourceColumn: MaterialName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierCode
+		dataType: string
+		lineageTag: dcf206ea-4a26-4ad9-a124-f3001b37f69d
+		summarizeBy: none
+		sourceColumn: SupplierCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierName
+		dataType: string
+		lineageTag: ca3b8183-7a9d-4471-8c42-14a3f37b48c6
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 0f5efe4d-67c3-4ae7-9196-6165d82acbcf
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: 06fb5e30-5de3-4c6c-b4b7-643e043462ac
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialType
+		dataType: string
+		lineageTag: c4f82bd2-53c6-49c8-980a-59880ac7b66b
+		summarizeBy: none
+		sourceColumn: MaterialType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: cb1ac5bf-af36-4dae-aafe-d640e26dfe21
+		summarizeBy: none
+		sourceColumn: Zone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 777eb7ab-0cf6-4c00-b491-d0f1d13ddddc
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Number' = RIGHT('Material Type'[MaterialNumber],8)
+		lineageTag: 3aa28e70-e900-43dd-b31f-bc520c158ac0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MaterialNumber - Copy'
+		dataType: int64
+		formatString: 0
+		lineageTag: 91737504-ef56-4700-954c-835d79556e7c
+		summarizeBy: none
+		sourceColumn: MaterialNumber - Copy
+
+		annotation SummarizationSetBy = User
+
+	partition 'Material Type' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Sql.Database("abi-sustainability-eus.database.windows.net", "anaplandb"),
+				    Carbon_Emissions_Reporting_MaterialType = Source{[Schema="Carbon_Emissions_Reporting",Item="MaterialType"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(Carbon_Emissions_Reporting_MaterialType,{"SAP", "DateCreated", "DateUpdated", "UserCreated", "UserUpdated"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Removed Columns", "MaterialNumber", "MaterialNumber - Copy"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Duplicated Column",{{"MaterialNumber - Copy", Int64.Type}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"MaterialCode", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_ResultType = Table
+

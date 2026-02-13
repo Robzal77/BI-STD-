@@ -1,0 +1,69 @@
+table Country
+	lineageTag: 5a04851e-acd3-46d9-97ac-5f1deb4e29ad
+
+	column Zone =
+			IF(
+			   Country[Country] in {
+			        "Ecuador",
+			        "Peru",
+			        "Panama",
+			        "Guatemala",
+			        "Mexico",
+			        "El Salvador",
+			        "Dominican Republic",
+			        "Honduras",
+			        "Colombia"
+			    }, "MAZ",
+			    IF(
+			        Country[Country] in {
+			            "Argentina",
+			            "Brazil",
+			            "Chile",
+			            "Bolivia",
+			            "Uruguay",
+			            "Paraguay"
+			        }, "SAZ",
+			     IF(
+			        Country[Country] in {
+			            "Nigeria",
+			            "South Africa",
+			            "Ghana",
+			            "Tanzania",
+			            "Swaziland",
+			            "Zambia",
+			            "Lesotho",
+			            "Botswana",
+			            "Mozambique",
+			            "Uganda",
+			            "Zimbabwe",
+			            "Namibia"
+			        }, "AFR",
+			    IF(
+			        Country[Country] in {
+			            "South Korea",
+			            "Vietnam",
+			            "India",
+			            "China"
+			        }, "APAC",
+			    "Others"
+			    )
+			)))
+		lineageTag: 021a23b3-11f5-4d7b-99f6-b40b2f86c201
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		lineageTag: 26d4e68f-5096-4d87-8717-e1f94a5cd615
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: AGR History[Country]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Country = calculated
+		mode: import
+		source = VALUES('AGR History'[Country])
+
+	annotation PBI_Id = 1d5c5e65cdc642a591a8d36cb7f19c7f
+

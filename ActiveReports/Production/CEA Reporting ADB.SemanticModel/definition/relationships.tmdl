@@ -1,0 +1,152 @@
+relationship 50d7e555-5ac7-4810-9f15-2ceb8248870e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Refresh Date'.Datetime
+	toColumn: LocalDateTable_74c98935-cb0c-4afe-8d8b-048003289059.Date
+
+relationship 31bd2783-6952-46cf-90de-5d9394d03193
+	fromColumn: 'Movement Type'.Country
+	toColumn: Country.Country
+
+relationship 8ae37595-a130-434b-be60-956c8c018868
+	fromColumn: 'Material Type'.Country
+	toColumn: Country.Country
+
+relationship 49474301-e08c-42ab-880b-7e5dc39e4c79
+	fromColumn: 'Missing Mappings'.scope
+	toColumn: Scope.Scope
+
+relationship 69026da8-7a80-4d1e-8801-fb1ccd3119c4
+	fromColumn: 'Movement Type'.Scope
+	toColumn: Scope.Scope
+
+relationship 9d709d06-2aba-4c0b-8e39-2bf2cb8af9f1
+	fromColumn: 'Vendor Mappings'.scope
+	toColumn: Scope.Scope
+
+relationship 3f8a4e0d-5a0b-47c7-9322-fb79a93a23db
+	fromColumn: 'Division/Sub-Division Type'.Country
+	toColumn: Country.Country
+
+relationship dad2fe1a-3c6a-44be-a309-3a4dd197755d
+	fromColumn: 'Missing Mappings'.Country
+	toColumn: Country.Country
+
+relationship bf8fa26c-7290-43af-b444-24d617a4a8a5
+	fromColumn: 'Vendor Mappings'.Country
+	toColumn: Country.Country
+
+relationship 95f9e0ac-68ba-4ed9-8f92-44c59df4b9bb
+	fromColumn: 'Plant Code'.Scope
+	toColumn: Scope.Scope
+
+relationship 2de5fe01-c5ce-4bff-98c7-d5b838df7b0a
+	fromColumn: 'Plant Code'.Country
+	toColumn: Country.Country
+
+relationship 01f5ba54-7a86-4fc5-a595-ad30de3463e5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Division/Sub-Division Type'.DateCreated
+	toColumn: LocalDateTable_48de6b4c-2f40-4401-859f-a713e0c80d62.Date
+
+relationship 2e397f60-ca84-46d4-8fe5-738d69730316
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Division/Sub-Division Type'.DateUpdated
+	toColumn: LocalDateTable_0bd2d656-979f-4827-af71-fdf9f20c0582.Date
+
+relationship c2d51fed-c40f-49c9-9eda-bba5465cfacd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Date Table'.Date
+	toColumn: LocalDateTable_5cf6afe1-4f03-4f37-9085-01b99eb97f1f.Date
+
+relationship 136cefb1-7398-4515-81fa-8437042b665d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'PKG History Anaplan'.Date
+	toColumn: LocalDateTable_85eabdd1-270b-462a-b42f-1662e852dac5.Date
+
+relationship c64adb71-f7a9-b0a2-d948-9f6ec1afda13
+	isActive: false
+	toCardinality: many
+	fromColumn: 'PKG History Anaplan'.'Year - Quarter'
+	toColumn: 'Date Table'.'Year - Quarter'
+
+relationship 802b4d19-a8d7-4678-afff-7e5c228b9a0b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Malt & Adjuncts'.Date
+	toColumn: LocalDateTable_760c47c9-9db6-4e13-be97-98e9a75a7807.Date
+
+relationship ad050bf1-82c3-655c-6249-2ce4bf745d3d
+	isActive: false
+	toCardinality: many
+	fromColumn: 'Malt & Adjuncts'.'Year - Quarter'
+	toColumn: 'Date Table'.'Year - Quarter'
+
+relationship 4994f074-e16d-4ee6-9d56-6dfc53721a17
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'PKG History'.'Document Date'
+	toColumn: LocalDateTable_70267c9c-f073-45d7-af42-ed6380e4bc7d.Date
+
+relationship 90be0f4f-a97d-4ec7-8d97-830eda00fc3b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'PKG History'.'Entry Date'
+	toColumn: LocalDateTable_0384cdba-2366-443b-b32e-67e40a574c01.Date
+
+relationship e08cd7ae-b606-4181-adee-5bf654b4f566
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'AGR History'.'Document Date'
+	toColumn: LocalDateTable_3f50b503-4238-42e5-a65d-9e1b347f9c36.Date
+
+relationship 9d69eec7-c351-4fbe-816b-2b7cced31514
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'AGR History'.'Entry Date'
+	toColumn: LocalDateTable_a6aa54dd-5b95-4193-8f7b-d112bddfed0c.Date
+
+relationship AutoDetected_c80a5e96-4bce-4116-ab1d-fafc35d7bfdd
+	fromColumn: 'Vendor Mapping NAZ'.Scope
+	toColumn: Scope.Scope
+
+relationship 8b23fe6f-14b4-4f9a-b0fd-8c1a623ac892
+	fromColumn: 'Dashboard feedback'.Modified
+	toColumn: LocalDateTable_835b0e9b-a30b-4992-822c-491eb4f9c1ab.Date
+
+relationship fc51f950-8710-4a57-8c3b-391b5eb55206
+	fromColumn: 'Dashboard feedback'.Created
+	toColumn: LocalDateTable_6435090c-f8d6-48b7-997a-6f9e92c2c9cd.Date
+
+relationship 80579cc7-868b-4ee6-a06f-b61dc9c89075
+	fromColumn: 'Feedback-No''s'.Created
+	toColumn: LocalDateTable_a52720a1-dff6-4091-af5d-15f8d03eff50.Date
+
+relationship 6d801787-8a44-442a-9429-d7750524bc4a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'PKG HISTORY ANAPLANN'.'Document Date'
+	toColumn: LocalDateTable_f52916e9-c2f0-415c-9b5a-7b0e0232e9e9.Date
+
+relationship 52b1a835-e52a-4346-a673-ae90ea1cb244
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'PKG HISTORY ANAPLANN'.'Entry Date'
+	toColumn: LocalDateTable_b1aed366-2b91-4678-aa83-02a697d67a05.Date
+
+relationship 42c6d43d-4a33-41f7-b63f-fedefb4682ec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'PKG HISTORY ANAPLANN'.'Date Refreshed'
+	toColumn: LocalDateTable_72af812e-efc6-40bf-9d76-41d2382aef39.Date
+
+relationship AutoDetected_f2c10d3b-20f4-4a5f-adc2-4bb450b39f18
+	fromColumn: 'PKG History'.'Primary Key'
+	toColumn: 'PKG HISTORY ANAPLANN'.'Primary Key'
+
+relationship d587bb93-86ad-4e55-b87e-2e86ea7f7fb0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'AGR HISTORY ANAPLAN'.'Document Date'
+	toColumn: LocalDateTable_f005e02c-9793-48ca-a53b-bb2a8a135562.Date
+
+relationship 6722e619-ad99-4ccc-82fe-c97f51f6ce83
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'AGR HISTORY ANAPLAN'.'Entry Date'
+	toColumn: LocalDateTable_1e71d7ec-6678-4b5b-b062-d66eefe0a804.Date
+
+relationship ace8ca80-5883-4667-a88c-f402db3c146c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'AGR HISTORY ANAPLAN'.'Date Refreshed'
+	toColumn: LocalDateTable_3492f11a-b136-48aa-a0e5-6155302e5c6c.Date
+

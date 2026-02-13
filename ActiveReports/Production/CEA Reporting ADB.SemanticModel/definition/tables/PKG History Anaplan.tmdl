@@ -1,0 +1,155 @@
+table 'PKG History Anaplan'
+	lineageTag: 029eada6-a4e2-46c1-92ed-648a02bfe872
+
+	measure 'Test Pack' = CALCULATE(SUM('PKG History Anaplan'[Tonnages]),FILTER('PKG History Anaplan','PKG History Anaplan'[Time]="Q1 FY23"))
+		lineageTag: 69679610-de96-4011-9fea-cfd42409c136
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1''24 Pack' = CALCULATE(SUM('PKG History Anaplan'[Tonnages]),'PKG History Anaplan'[Time]="Q1 FY24")
+		lineageTag: 238b9fec-7a4d-4884-b56f-c5936d064e38
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1''25 Pack' = CALCULATE(SUM('PKG History Anaplan'[Tonnages]),'PKG History Anaplan'[Time]="Q1 FY25")
+		lineageTag: c60ebd00-9df6-4e51-9624-abccf7ecfb3f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1 24 Pack Final' = IF(ISBLANK([Q1'24 Pack]),"NA",[Q1'24 Pack])
+		lineageTag: c4e92523-e881-4957-aae9-4d28a48d575d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q1 25 Pack Final' = IF(ISBLANK([Q1'25 Pack]),"NA",[Q1'25 Pack])
+		lineageTag: d22e5df2-b3a1-4912-86a6-7b2a3f1b730f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q4''24 Pack' = CALCULATE(SUM('PKG History Anaplan'[Tonnages]),'PKG History Anaplan'[Time]="Q4 FY24")
+		lineageTag: 894835d6-e4e3-4a50-b407-15a146a576f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q4 24 Pack Final' = IF(ISBLANK([Q4'24 Pack]),"NA",[Q4'24 Pack])
+		lineageTag: 94b8fda0-a713-4d2d-8c3d-aaa4a82e2eca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Monthly_Sum_PKG = CALCULATE(SUM('PKG History'[Quantity (in Tonnes)]),'PKG History'[Document Year]="2025",'PKG History'[QuarterYear]="Q1 FY2025")
+		lineageTag: ead7c36f-dc19-4cb3-be8c-fbf6b1cb2cae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Time
+		dataType: string
+		lineageTag: c43bd8e8-0f7d-4eb7-b1f6-9e03297f7d99
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 5c63cb37-ce65-4e2c-a670-de18a1519fbc
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: bd2f3317-495e-4bcd-af8f-ac1f18c67017
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		lineageTag: bb0395b8-2033-4a6e-ae45-3ea316811c92
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubDivision
+		dataType: string
+		lineageTag: a11d71b4-0b10-43fb-bc1c-6648d9f3b3bf
+		summarizeBy: none
+		sourceColumn: SubDivision
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tonnages
+		dataType: double
+		formatString: 0
+		lineageTag: cf82484f-2cde-4203-b08e-692f1d020cfc
+		summarizeBy: sum
+		sourceColumn: Tonnages
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter = LEFT('PKG History Anaplan'[Time],2)
+		lineageTag: 43c455c0-29ff-4b07-9aae-30189ff66b7f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = RIGHT('PKG History Anaplan'[Time],4)
+		lineageTag: ae3aa44c-b41b-4c38-92e2-d6d331565839
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearN = CONCATENATE("20", RIGHT(('PKG History Anaplan'[Time]),2))
+		lineageTag: 1924b118-b488-4286-8e37-e2af568f585f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date =
+			
+			Var Qtr = TRIM(LEFT(RIGHT('PKG History Anaplan'[Time], LEN('PKG History Anaplan'[Time])-1),1))
+			
+			Var MonthN = IF(Qtr = "1", 3, IF(Qtr = "2", 6, IF(Qtr = "3", 9, IF(Qtr = "4", 12))))
+			
+			Var DateN = IF(MonthN in {3,12}, 31, 30)
+			Return DATE('PKG History Anaplan'[YearN], MonthN, DateN)
+		formatString: General Date
+		lineageTag: 3fbf510f-d3ce-4ebf-aa62-98e635b4b774
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 136cefb1-7398-4515-81fa-8437042b665d
+			defaultHierarchy: LocalDateTable_85eabdd1-270b-462a-b42f-1662e852dac5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year - Quarter' = (FORMAT('PKG History Anaplan'[YearN],"YYYY") & "-"& 'PKG History Anaplan'[Quarter])
+		lineageTag: 88d08ebd-c316-4f80-ac49-3690ea4a274f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'PKG History Anaplan' = m
+		mode: import
+		queryGroup: 'Trend Analysis'
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://anheuserbuschinbev.sharepoint.com/sites/GlobalSustainabilityReporting/Shared%20Documents/DTA%20-%20PAC%20-%20Volume%20sourced%20-%20Q1%20FY17-Q2%20FY23.xlsx"), null, true),
+				    Sheet2 = Source{[Name="Sheet1"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet2, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PAC - Volume sourced_upload", type text}, {"Zone", type text}, {"Country", type text}, {"Supplier", type text}, {"VOP/3rd Party", type text}, {"Time", type text}, {"Used for OW Glass SKUs - Glass (t)", Int64.Type}, {"Used for OW Glass SKUs - Crowns (Steels) (t)", Int64.Type}, {"Used for OW Glass SKUs - Closures (Aluminium) (t)", Int64.Type}, {"Used for OW Glass SKUs - Labels (t)", Int64.Type}, {"Used for Returnable Glass SKUs - Glass (t)", Int64.Type}, {"Used for Returnable Glass SKUs - Crowns (Steel) (t)", Int64.Type}, {"Used for Returnable Glass SKUs - Closures (Aluminium) (t)", Int64.Type}, {"Used for Returnable Glass SKUs - Labels (t)", Int64.Type}, {"Used for Can SKUs - Can Bodies (Alu) (t)", Int64.Type}, {"Used for Can SKUs - Can Bodies (Steel) (t)", Int64.Type}, {"Used for Can SKUs - Can Ends (Alu) (t)", Int64.Type}, {"Used for Alu bottle SKUs - Aluminium bottles (t)", Int64.Type}, {"Used for Alu bottle SKUs - Closures (Aluminium) (t)", Int64.Type}, {"Used for PET SKUs - PET preforms (t)", Int64.Type}, {"Used for PET SKUs - Closures (Plastic) (t)", Int64.Type}, {"Used for PET SKUs - Labels (t)", Int64.Type}, {"Used for Steel kegs - KEG (Stainless steel) (t)", Int64.Type}, {"Used for Steel kegs - Closures (Plastic) (t)", Int64.Type}, {"Used for OW PET kegs - Kegs (PET) (t)", Int64.Type}, {"Used for OW PET kegs - Closures (Plastic) (t)", Int64.Type}, {"Used for OW Glass SKUs - Cardboard (t)", Int64.Type}, {"Used for OW Glass SKUs - Shrink Wrap (t)", Int64.Type}, {"Used for OW Glass SKUs - Other (t)", Int64.Type}, {"Used for Returnable Glass SKUs - Plastic crates (t)", Int64.Type}, {"Used for Returnable Glass SKUs - Cardboard (t)", Int64.Type}, {"Used for Returnable Glass SKUs - Other (please specifiy) (t)", Int64.Type}, {"Used for Can SKUs - Cardboard (t)", Int64.Type}, {"Used for Can SKUs - Shrink Wrap (t)", Int64.Type}, {"Used for Can SKUs - Hi-cones (t)", Int64.Type}, {"Used for Can SKUs - Other (please specifiy) (t)", Int64.Type}, {"Used for Alu bottles SKUs - Cardboard (t)", Int64.Type}, {"Used for Alu bottles SKUs - Shrink Wrap (t)", Int64.Type}, {"Used for Alu bottles SKUs - Other (please specifiy) (t)", Int64.Type}, {"Used for PET SKUs - Cardboard (t)", Int64.Type}, {"Used for PET SKUs - Shrink Wrap (t)", Int64.Type}, {"Used for PET SKUs - Other (please specifiy) (t)", Int64.Type}, {"Used for all SKUs - Wood pallets (t)", Int64.Type}, {"Used for all SKUs - HDPE pallets (t)", Int64.Type}, {"Used for all SKUs - Cardboard layer pads (t)", Int64.Type}, {"Used for all SKUs - HDPE layer pads (t)", Int64.Type}, {"Used for all SKUs - Stretch film (t)", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"PAC - Volume sourced_upload", "VOP/3rd Party"}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns",{"Time", "Zone", "Country", "Supplier", "Used for OW Glass SKUs - Glass (t)", "Used for OW Glass SKUs - Crowns (Steels) (t)", "Used for OW Glass SKUs - Closures (Aluminium) (t)", "Used for OW Glass SKUs - Labels (t)", "Used for Returnable Glass SKUs - Glass (t)", "Used for Returnable Glass SKUs - Crowns (Steel) (t)", "Used for Returnable Glass SKUs - Closures (Aluminium) (t)", "Used for Returnable Glass SKUs - Labels (t)", "Used for Can SKUs - Can Bodies (Alu) (t)", "Used for Can SKUs - Can Bodies (Steel) (t)", "Used for Can SKUs - Can Ends (Alu) (t)", "Used for Alu bottle SKUs - Aluminium bottles (t)", "Used for Alu bottle SKUs - Closures (Aluminium) (t)", "Used for PET SKUs - PET preforms (t)", "Used for PET SKUs - Closures (Plastic) (t)", "Used for PET SKUs - Labels (t)", "Used for Steel kegs - KEG (Stainless steel) (t)", "Used for Steel kegs - Closures (Plastic) (t)", "Used for OW PET kegs - Kegs (PET) (t)", "Used for OW PET kegs - Closures (Plastic) (t)", "Used for OW Glass SKUs - Cardboard (t)", "Used for OW Glass SKUs - Shrink Wrap (t)", "Used for OW Glass SKUs - Other (t)", "Used for Returnable Glass SKUs - Plastic crates (t)", "Used for Returnable Glass SKUs - Cardboard (t)", "Used for Returnable Glass SKUs - Other (please specifiy) (t)", "Used for Can SKUs - Cardboard (t)", "Used for Can SKUs - Shrink Wrap (t)", "Used for Can SKUs - Hi-cones (t)", "Used for Can SKUs - Other (please specifiy) (t)", "Used for Alu bottles SKUs - Cardboard (t)", "Used for Alu bottles SKUs - Shrink Wrap (t)", "Used for Alu bottles SKUs - Other (please specifiy) (t)", "Used for PET SKUs - Cardboard (t)", "Used for PET SKUs - Shrink Wrap (t)", "Used for PET SKUs - Other (please specifiy) (t)", "Used for all SKUs - Wood pallets (t)", "Used for all SKUs - HDPE pallets (t)", "Used for all SKUs - Cardboard layer pads (t)", "Used for all SKUs - HDPE layer pads (t)", "Used for all SKUs - Stretch film (t)"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Reordered Columns", {"Time", "Zone", "Country", "Supplier"}, "Attribute", "Value"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "SubDivision"}, {"Value", "Tonnages"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([Zone] = "MAZ")),
+				    #"Appended Query" = Table.Combine({#"Filtered Rows", #"PKG History For Trend"})
+				in
+				    #"Appended Query"
+
+	annotation PBI_ResultType = Table
+

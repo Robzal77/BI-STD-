@@ -1,0 +1,60 @@
+table 'AGR History For Trend'
+	lineageTag: c09c96b8-77bc-4ec9-ad34-4ce9907ac69b
+
+	column Time
+		dataType: string
+		lineageTag: 551ec77a-413b-4cb5-aa15-ff4685308095
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Consumption Country'
+		dataType: string
+		lineageTag: 1fb1abdd-6305-44cc-87bf-ba5fda92a625
+		summarizeBy: none
+		sourceColumn: Consumption Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Brewing Inputs'
+		dataType: string
+		lineageTag: 214b8216-f65e-49a9-974c-fae3c72ac4a8
+		summarizeBy: none
+		sourceColumn: Brewing Inputs
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Supplier Name'
+		dataType: string
+		lineageTag: 47f4a627-8b93-4e0e-9dc2-c44d1a9c39ee
+		summarizeBy: none
+		sourceColumn: Supplier Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tonnages
+		dataType: double
+		lineageTag: cf0d7bd7-350d-423f-8966-97d775342c73
+		summarizeBy: sum
+		sourceColumn: Tonnages
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'AGR History For Trend' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = #"AGR History",
+				    #"Grouped Rows" = Table.Group(Source, {"Supplier", "Material Type", "Country", "QuarterYear"}, {{"Qty", each List.Sum([#"Quantity (in Tonnes)"]), type nullable number}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Grouped Rows",{"QuarterYear", "Country", "Material Type", "Supplier", "Qty"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"QuarterYear", "Time"}, {"Country", "Consumption Country"}, {"Material Type", "Brewing Inputs"}, {"Supplier", "Supplier Name"}, {"Qty", "Tonnages"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns","FY20","FY",Replacer.ReplaceText,{"Time"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,75 @@
+table 'MALT SUPPLIER DETAILS'
+	lineageTag: 93085c14-695a-40b7-8cd5-2cee82f32521
+
+	column 'Supplier Name'
+		dataType: string
+		lineageTag: cf6dcaad-9d41-4ee4-854d-d7681abc08c2
+		summarizeBy: none
+		sourceColumn: Supplier Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Update supplier name'
+		dataType: string
+		lineageTag: 23f0a3bf-685b-42eb-a987-3ce46c1577c4
+		summarizeBy: none
+		sourceColumn: Update supplier name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VOP/3rd Party'
+		dataType: string
+		lineageTag: a9aaa358-9ff4-4a0d-b358-2c29e0be351b
+		summarizeBy: none
+		sourceColumn: VOP/3rd Party
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master supplier'
+		dataType: string
+		lineageTag: 47aae0f9-6f30-4e73-b733-946fda46c2db
+		summarizeBy: none
+		sourceColumn: Master supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Update master supplier'
+		dataType: string
+		lineageTag: 17d72754-46bc-4534-8819-b1f141b8f96e
+		summarizeBy: none
+		sourceColumn: Update master supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 994b8d59-4f08-4ab4-9350-ab1495666f39
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'MALT SUPPLIER DETAILS' = m
+		mode: import
+		queryGroup: 'Trend Analysis'
+		source =
+				let
+				    Source = SharePoint.Files("https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Malt supplier details.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File", each #"Transform File"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File", Table.ColumnNames(#"Transform File"(#"Sample File"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"", type text}, {"Name", type text}, {"Update supplier name", type any}, {"VOP/3rd Party", type text}, {"Master supplier", type text}, {"Update master supplier", type any}, {"Delete malt supplier?", type logical}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Source.Name", ""}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Name", "Supplier Name"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"Delete malt supplier?"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns1", "Segment", each "Malt")
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

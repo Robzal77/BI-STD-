@@ -1,0 +1,23 @@
+table Scope
+	lineageTag: 86e22992-3b1f-419a-8129-91de0ff6c375
+
+	column Scope
+		dataType: string
+		lineageTag: 57c13ffe-49dd-4170-97a0-a5197f006871
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Scope = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WckwvykwuzSkpLUpVitWJVgpITM5OTM/MS1eKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Scope = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Scope", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

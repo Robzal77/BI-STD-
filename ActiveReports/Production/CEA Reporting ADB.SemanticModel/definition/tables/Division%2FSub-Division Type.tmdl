@@ -1,0 +1,189 @@
+table 'Division/Sub-Division Type'
+	lineageTag: 3d9ea842-ac26-481f-b492-5b717551656b
+
+	measure 'Material Codes (Pack)' = ```
+			
+			    CONCATENATEX(
+			        SUMMARIZE(
+			            'Division/Sub-Division Type',
+			            'Division/Sub-Division Type'[Country],
+			            'Division/Sub-Division Type'[Division],
+			            'Division/Sub-Division Type'[SubDivision],
+			            "MaterialCodes", 
+			            CONCATENATEX(
+			                VALUES('Division/Sub-Division Type'[MaterialCode]),
+			                'Division/Sub-Division Type'[MaterialCode],
+			                ", "
+			            )
+			        ),
+			        [MaterialCodes],
+			        ", "
+			    )
+			
+			```
+		lineageTag: 066ae414-35e5-44ff-8782-8f053bd73ead
+
+	column Zone
+		dataType: string
+		lineageTag: 5f706176-30ae-4ba5-ab49-46d1788a3066
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: f2d72516-556c-4b85-87d2-f49c300ad195
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialCode
+		dataType: string
+		lineageTag: b0ffcd85-6449-43d3-b1ce-dd1d973de722
+		summarizeBy: none
+		sourceColumn: MaterialCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: cf3ae1e4-b5a7-4f3a-905a-f109ff9c8552
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubDivision
+		dataType: string
+		lineageTag: 9752deb9-1480-4e5c-8c54-e8f5d58bd9ef
+		summarizeBy: none
+		sourceColumn: SubDivision
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialCodeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2fbbdeba-54a1-47ff-863f-710f301ab653
+		summarizeBy: count
+		sourceColumn: MaterialCodeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: 946f3ca9-1721-484c-b3e9-d591d824c210
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialNumber
+		dataType: string
+		lineageTag: 0639d819-1d81-4379-8350-f8173286a612
+		summarizeBy: none
+		sourceColumn: MaterialNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitOfMeasurement
+		dataType: string
+		lineageTag: 84f83b10-e757-46f2-9fa2-d11204e602e7
+		summarizeBy: none
+		sourceColumn: UnitOfMeasurement
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConversionFactor
+		dataType: double
+		lineageTag: 2b472e72-9568-4100-b684-bed3e6ce4370
+		summarizeBy: sum
+		sourceColumn: ConversionFactor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SAP
+		dataType: string
+		lineageTag: 199a0986-9634-4d55-87df-c3d3ff1583cb
+		summarizeBy: none
+		sourceColumn: SAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3577bc54-bb68-4c46-8bc1-b186a4ee43f8
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateCreated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1b2ebfad-23c7-4696-860d-0941397bc8ea
+		summarizeBy: none
+		sourceColumn: DateCreated
+
+		variation Variation
+			isDefault
+			relationship: 01f5ba54-7a86-4fc5-a595-ad30de3463e5
+			defaultHierarchy: LocalDateTable_48de6b4c-2f40-4401-859f-a713e0c80d62.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateUpdated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5050cec3-e85a-4aad-a338-8bc962c35727
+		summarizeBy: none
+		sourceColumn: DateUpdated
+
+		variation Variation
+			isDefault
+			relationship: 2e397f60-ca84-46d4-8fe5-738d69730316
+			defaultHierarchy: LocalDateTable_0bd2d656-979f-4827-af71-fdf9f20c0582.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserCreated
+		dataType: string
+		lineageTag: ecb6b431-50d9-442e-a2fa-7e5c5490da26
+		summarizeBy: none
+		sourceColumn: UserCreated
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserUpdated
+		dataType: string
+		lineageTag: bff60e29-b74f-4d71-8f12-ceb3b59346b0
+		summarizeBy: none
+		sourceColumn: UserUpdated
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor
+		dataType: string
+		lineageTag: a542c396-6457-4237-abfd-e52261cb13bf
+		summarizeBy: none
+		sourceColumn: Vendor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Division/Sub-Division Type' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Sql.Database("abi-sustainability-eus.database.windows.net", "anaplandb"),
+				    Carbon_Emissions_Reporting_MaterialCode = Source{[Schema="Carbon_Emissions_Reporting",Item="MaterialCode"]}[Data]
+				in
+				    Carbon_Emissions_Reporting_MaterialCode
+
+	annotation PBI_ResultType = Table
+

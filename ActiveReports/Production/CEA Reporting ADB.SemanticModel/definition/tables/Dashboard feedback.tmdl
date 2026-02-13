@@ -1,0 +1,98 @@
+table 'Dashboard feedback'
+	lineageTag: 3731011e-4f1f-46df-8b6b-dd0927281a58
+	sourceLineageTag: 8968da62-2858-4f25-908f-87e23754b955
+
+	measure NPS_Check = EXTERNALMEASURE("NPS_Check", INTEGER, "DirectQuery to AS - Product_NPS_Share_Point_List")
+		formatString: 0
+		lineageTag: b2bf7dc6-5607-40ad-8288-0176fc7c9aaf
+		sourceLineageTag: 77a8d50a-a7b0-424c-8050-b31bf220a305
+		dataCategory: Uncategorized
+
+	column Title
+		dataType: string
+		lineageTag: 2651cbd1-306f-4f03-8d0e-f29b6c24a6f5
+		sourceLineageTag: 65bc7d5d-bddf-4a92-944d-c32d375fd35b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = User
+
+	column Suggestions/comments
+		dataType: string
+		lineageTag: b6779436-44b2-4091-8634-c60f6dc92bed
+		sourceLineageTag: 2c446c24-881b-4834-9e92-5d8b6381c50f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Suggestions/comments
+
+		annotation SummarizationSetBy = User
+
+	column dashboardRating
+		dataType: string
+		lineageTag: b04c366b-3e91-4964-8e81-12b279f478f9
+		sourceLineageTag: 1dff3212-7aec-4333-9f63-b3ba53410e58
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: dashboardRating
+
+		annotation SummarizationSetBy = User
+
+	column Dashboardname
+		dataType: string
+		lineageTag: 14cde9b6-db59-406a-8372-de707109cae9
+		sourceLineageTag: 3f67528d-a46f-48fc-b1e9-e0b7e2bc67e1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Dashboardname
+
+		annotation SummarizationSetBy = User
+
+	column 'ID.1'
+		dataType: string
+		lineageTag: 7dbea5aa-3e10-41f5-add7-ea3c245184c6
+		sourceLineageTag: a2756090-59f9-4583-ab15-2e520cfaba95
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ID.1
+
+		annotation SummarizationSetBy = User
+
+	column Modified
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6a88e3c9-f1eb-4ada-8d8f-49a5acd6fe17
+		sourceLineageTag: b3e8bb4a-6285-4933-a0f5-f66a938f39fe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Modified
+
+		variation Variation
+			isDefault
+			relationship: 8b23fe6f-14b4-4f9a-b0fd-8c1a623ac892
+			defaultHierarchy: LocalDateTable_835b0e9b-a30b-4992-822c-491eb4f9c1ab.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	column Created
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 31f46da5-9e07-4f50-b74f-55d0183b1483
+		sourceLineageTag: cf7322d3-3fd1-4249-99f8-d684b8d200c5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variation
+			isDefault
+			relationship: fc51f950-8710-4a57-8c3b-391b5eb55206
+			defaultHierarchy: LocalDateTable_6435090c-f8d6-48b7-997a-6f9e92c2c9cd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Dashboard feedback' = entity
+		mode: directQuery
+		source
+			entityName: Dashboard feedback
+			expressionSource: 'DirectQuery to AS - Product_NPS_Share_Point_List'
+

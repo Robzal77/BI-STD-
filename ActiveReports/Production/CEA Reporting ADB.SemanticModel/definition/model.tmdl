@@ -1,0 +1,113 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// These tables containt data on an aggregate level and is used for trend analysis.
+queryGroup 'Trend Analysis'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Mapping Files'
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Base Tables'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Page Level Access'
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup 'Trend Analysis\Transform File from Query1'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Trend Analysis\Transform File from Query1\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Trend Analysis\Transform File from Query1 (2)'
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Trend Analysis\Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Trend Analysis\Transform File from Query1 (3)'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Trend Analysis\Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Adjuncts History","Malt History","Malt & Adjuncts","Vendor Mappings","Missing Mappings","Refresh Date","Excluded Vendors","RowLevelAccess","PageLevelAccess","AGR HISTORY ANAPLAN","PKG HISTORY ANAPLANN","Movement Type","Plant Code","Material Type","Sub Divisions","PKG History Anaplan","Division/Sub-Division Type","Scope","PKG History","PKG History For Trend","AGR History","AGR History For Trend","RLS Table","PLS","PageLevelAccessBKP","Vendor Mapping NAZ","DirectQuery to AS - Product_NPS_Share_Point_List","Vendor Exclusion","MALT SUPPLIER DETAILS","Parameter1","Transform Sample File","Sample File","Transform File","ADJUNCTS SUPPLIER DETAILS","Parameter2","Transform Sample File (2)","Sample File (2)","Transform File (2)","PACK SUPPLIER DETAILS","Parameter3","Transform Sample File (3)","Sample File (3)","Transform File (3)"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_7eacadd4-8c1c-42b0-b70a-8e4581da3c09
+ref table 'Malt & Adjuncts'
+ref table 'Date Table'
+ref table 'Vendor Mappings'
+ref table 'Missing Mappings'
+ref table 'Refresh Date'
+ref table LocalDateTable_74c98935-cb0c-4afe-8d8b-048003289059
+ref table 'Excluded Vendors'
+ref table PageLevelAccess
+ref table RowLevelAccess
+ref table 'Movement Type'
+ref table 'Plant Code'
+ref table 'Material Type'
+ref table Country
+ref table 'PKG History Anaplan'
+ref table 'Division/Sub-Division Type'
+ref table Scope
+ref table LocalDateTable_48de6b4c-2f40-4401-859f-a713e0c80d62
+ref table LocalDateTable_0bd2d656-979f-4827-af71-fdf9f20c0582
+ref table LocalDateTable_5cf6afe1-4f03-4f37-9085-01b99eb97f1f
+ref table LocalDateTable_85eabdd1-270b-462a-b42f-1662e852dac5
+ref table LocalDateTable_760c47c9-9db6-4e13-be97-98e9a75a7807
+ref table 'PKG History'
+ref table LocalDateTable_70267c9c-f073-45d7-af42-ed6380e4bc7d
+ref table LocalDateTable_0384cdba-2366-443b-b32e-67e40a574c01
+ref table 'PKG History For Trend'
+ref table 'AGR History'
+ref table 'AGR History For Trend'
+ref table LocalDateTable_3f50b503-4238-42e5-a65d-9e1b347f9c36
+ref table LocalDateTable_a6aa54dd-5b95-4193-8f7b-d112bddfed0c
+ref table 'RLS Table'
+ref table 'Vendor Mapping NAZ'
+ref table 'Dashboard feedback'
+ref table 'Feedback-No''s'
+ref table LocalDateTable_835b0e9b-a30b-4992-822c-491eb4f9c1ab
+ref table LocalDateTable_6435090c-f8d6-48b7-997a-6f9e92c2c9cd
+ref table LocalDateTable_a52720a1-dff6-4091-af5d-15f8d03eff50
+ref table ReportInfo
+ref table 'PKG HISTORY ANAPLANN'
+ref table LocalDateTable_f52916e9-c2f0-415c-9b5a-7b0e0232e9e9
+ref table LocalDateTable_b1aed366-2b91-4678-aa83-02a697d67a05
+ref table LocalDateTable_72af812e-efc6-40bf-9d76-41d2382aef39
+ref table 'AGR HISTORY ANAPLAN'
+ref table LocalDateTable_f005e02c-9793-48ca-a53b-bb2a8a135562
+ref table LocalDateTable_1e71d7ec-6678-4b5b-b062-d66eefe0a804
+ref table LocalDateTable_3492f11a-b136-48aa-a0e5-6155302e5c6c
+ref table 'Vendor Exclusion'
+ref table 'MALT SUPPLIER DETAILS'
+ref table 'ADJUNCTS SUPPLIER DETAILS'
+ref table 'PACK SUPPLIER DETAILS'
+
+ref role 'Sustainability Users'
+
+ref cultureInfo en-US
+

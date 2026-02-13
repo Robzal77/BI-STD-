@@ -1,0 +1,407 @@
+table 'Malt & Adjuncts'
+	lineageTag: 086ce75a-9a05-48db-b5bc-f33b1f903f7a
+
+	measure PrevQtr = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]),PREVIOUSQUARTER('Date Table'[Date]))
+		lineageTag: f7a32b7c-b3d9-42fc-9697-66f4fef9c1c6
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SamePdLY = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]), SAMEPERIODLASTYEAR('Date Table'[Date]))
+		lineageTag: a1e5d199-d980-4c3f-a2ce-c356f6ce46d3
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Chg vs. SPLY' = ```
+			
+			VAR A = SUM('Malt & Adjuncts'[Tonnages])
+			VAR SamePdLY =
+			    CALCULATE(
+			        SUM('Malt & Adjuncts'[Tonnages]),
+			        SAMEPERIODLASTYEAR('Date Table'[Date])
+			    )
+			
+			RETURN
+			IF(
+			    ISBLANK(SamePdLY) || SamePdLY = 0,
+			    BLANK(),
+			    (A - SamePdLY) / SamePdLY
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: eb1d410d-ed79-4062-b585-37e86e18605d
+
+		changedProperty = IsHidden
+
+	measure '% Chg vs. PrevQtr' =
+			
+			VAR A = SUM('Malt & Adjuncts'[Tonnages])
+			VAR PrevQtr = [PrevQtr] -- Assuming [PrevQtr] is the column representing the previous quarter's data
+			
+			RETURN
+			IF(
+			    ISBLANK(PrevQtr) || PrevQtr = 0,
+			    "Insufficient data available for previous quarter",
+			    (A - PrevQtr) / PrevQtr
+			)
+		lineageTag: 5709ed90-1ee7-4712-9ba6-2dda31589c00
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Current Qtr' = SUM('Malt & Adjuncts'[Tonnages])
+		formatString: 0
+		lineageTag: b1929eb7-25f1-4aba-a677-eac67d6dfbcc
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'vs Prev Quarter' =
+			
+			VAR CurrentQuarter = SUM('Malt & Adjuncts'[Tonnages])
+			VAR PrevQuarter = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]), PREVIOUSQUARTER('Malt & Adjuncts'[Quarter]))
+			
+			RETURN
+			    IF(
+			        ISBLANK(CurrentQuarter) || ISBLANK(PrevQuarter),
+			        BLANK(),
+			        DIVIDE(CurrentQuarter - PrevQuarter, PrevQuarter)
+			    )
+		formatString: 0
+		lineageTag: 574bb70c-1713-4e81-85e8-b4a6f0a2d302
+
+		changedProperty = IsHidden
+
+	measure '% change Vs Last Year' = ```
+			
+			IF(
+			    SELECTEDVALUE('Date Table'[Date].[Year]) = BLANK(),
+			    CALCULATE(
+			        [% Chg vs. SPLY],
+			        'Date Table'[Date].[Year] = 2023,
+			        'Date Table'[QuarterShort] = "Q1"
+			    ),
+			    [% Chg vs. SPLY]
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 40133804-21b8-4370-b49c-cf94799b27d6
+
+		changedProperty = IsHidden
+
+	measure '% Change vs. SPLY Quarter' = ```
+			
+			VAR CurrentQtrTonnages = SUM('Malt & Adjuncts'[Tonnages])
+			VAR PreviousQtrTonnages =
+			    CALCULATE(
+			        SUM('Malt & Adjuncts'[Tonnages]),
+			        SAMEPERIODLASTYEAR('Date Table'[Date])
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(PreviousQtrTonnages),
+			        BLANK(),
+			        DIVIDE(CurrentQtrTonnages - PreviousQtrTonnages, PreviousQtrTonnages, 0)
+			    )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 461a033c-7055-4bf2-83b2-ebf3438977b6
+
+		changedProperty = IsHidden
+
+	measure 'Comp quarter Agri' = ```
+			
+			VAR A = SELECTEDVALUE('Date Table'[Year - Quarter])
+			RETURN
+			    CALCULATE(
+			        SUM('Malt & Adjuncts'[Tonnages]),
+			        'Date Table'[Year - Quarter] = A,USERELATIONSHIP('Date Table'[Year - Quarter],'Malt & Adjuncts'[Year - Quarter])
+			    )
+			
+			```
+		lineageTag: 1bf43eb3-4c2d-407a-a278-cf88c9f54367
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q2''24 Agri' = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]),FILTER('Malt & Adjuncts','Malt & Adjuncts'[Time]="Q2 FY24"))
+		lineageTag: 7365a973-98c1-482d-a147-5b73a28cef24
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deviation 23 -24 Agri' = [Q4'24 Agri]-[Q4'23 Agri]
+		lineageTag: 282e1f81-cf0a-4e30-8552-3619a195ac95
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deviation 23 - 24% Agri' = DIVIDE([Q4'24 Agri]-[Q4'23 Agri],[Q4'24 Agri],0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8fd36fd9-b57b-4631-8532-829ee0b274ef
+
+	measure 'Q3 23 Agri Final' = IF(ISBLANK([Q3'23 Agri]),"NA",[Q3'23 Agri])
+		lineageTag: f470cfea-0a61-467e-8844-71b9adf8c15f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q2 24 Agri Final' = IF(ISBLANK([Q2'24 Agri]),"NA",[Q2'24 Agri])
+		lineageTag: b71f376e-f0d9-4ba8-9a6d-253c1e7c5788
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Test aGri' = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]),FILTER('Malt & Adjuncts','Malt & Adjuncts'[Time]="Q1 FY24"))
+		lineageTag: 49dd553e-27d3-4639-a471-1d26880466ae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3''23 Agri' = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]),'Malt & Adjuncts'[Time]="Q3 FY23")
+		lineageTag: 33ca02ea-ea34-418f-932b-274a5459b719
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3''24 Agri' = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]),FILTER('Malt & Adjuncts','Malt & Adjuncts'[Time]="Q3 FY24"))
+		lineageTag: 01e8fa65-7e62-47cd-a307-071deba53628
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q3''24 Agri Final' = IF(ISBLANK([Q3'24 Agri]),"NA",[Q3'24 Agri])
+		lineageTag: 5d747718-4f27-4e08-b93c-4383bc16341a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deviation Q4 Agri' = [Q4'24 Agri]-[Q3'24 Agri]
+		lineageTag: 6b14606c-3868-406a-a317-260e581f9597
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deviation Q4 2024%' = DIVIDE([Q4'24 Agri]-[Q3'24 Agri],[Q4'24 Agri],0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 10ef3f40-6d72-45f4-b90d-968bcae656e6
+
+	measure 'Q4''23 Agri' = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]),'Malt & Adjuncts'[Time]="Q4 FY23")
+		lineageTag: 3ca8169e-8e87-4b30-b718-59397c1300ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q4''24 Agri' = CALCULATE(SUM('Malt & Adjuncts'[Tonnages]),FILTER('Malt & Adjuncts','Malt & Adjuncts'[Time]="Q4 FY24"))
+		lineageTag: a5395ca4-a0c9-4b03-a6bb-f8ceb7778714
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q4''24 Agri Final' = IF(ISBLANK([Q4'24 Agri]),"NA",[Q4'24 Agri])
+		lineageTag: 3fc6c94b-28dc-482b-9df8-b54c5268508b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Q4''23 Agri Final' = IF(ISBLANK([Q4'23 Agri]),"NA",[Q4'23 Agri])
+		lineageTag: aa41e4f1-2142-488e-9a91-41d9b068616a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Time
+		dataType: string
+		lineageTag: 690556cd-c2c5-44b9-9592-3c396aac5119
+		summarizeBy: none
+		sourceColumn: Time
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Consumption Country'
+		dataType: string
+		lineageTag: c02f53e5-fa6c-4bf5-a0ae-8a4cb9ed2626
+		summarizeBy: none
+		sourceColumn: Consumption Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Supplier Name'
+		dataType: string
+		lineageTag: 4e6bfb03-16d4-4b67-a9c6-5bf0f3bca1ad
+		summarizeBy: none
+		sourceColumn: Supplier Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tonnages
+		dataType: double
+		lineageTag: f67b9d54-3f41-4454-a6b3-0de425d04f19
+		summarizeBy: sum
+		sourceColumn: Tonnages
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quarter = LEFT('Malt & Adjuncts'[Time],2)
+		lineageTag: 13758f43-1f1f-42cd-a466-dd734f76082b
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = RIGHT('Malt & Adjuncts'[Time],4)
+		lineageTag: a7e4d3b4-0d93-4a33-a3cd-95ed9a8d578c
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date =
+			
+			Var Qtr = TRIM(LEFT(RIGHT('Malt & Adjuncts'[Time], LEN('Malt & Adjuncts'[Time])-1),1))
+			
+			Var MonthN = IF(Qtr = "1", 3, IF(Qtr = "2", 6, IF(Qtr = "3", 9, IF(Qtr = "4", 12))))
+			
+			Var DateN = IF(MonthN in {3,12}, 31, 30)
+			Return DATE('Malt & Adjuncts'[YearN], MonthN, DateN)
+		formatString: Long Date
+		lineageTag: c5859985-aaaa-4bf9-864f-9376438ec00d
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 802b4d19-a8d7-4678-afff-7e5c228b9a0b
+			defaultHierarchy: LocalDateTable_760c47c9-9db6-4e13-be97-98e9a75a7807.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YearN = CONCATENATE("20", RIGHT(('Malt & Adjuncts'[Time]),2))
+		lineageTag: 4c292679-91ec-4115-9737-d4e50644bb73
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone =
+			IF(
+			    'Malt & Adjuncts'[Consumption Country] in {
+			        "Ecuador",
+			        "Peru",
+			        "Panama",
+			        "Guatemala",
+			        "Mexico",
+			        "El Salvador",
+			        "Dominican Republic",
+			        "Honduras",
+			        "Colombia"
+			    }, "MAZ",
+			    IF(
+			        'Malt & Adjuncts'[Consumption Country] in {
+			            "Argentina",
+			            "Brazil",
+			            "Chile",
+			            "Bolivia",
+			            "Uruguay",
+			            "Paraguay"
+			        }, "SAZ",
+			        IF(
+			            'Malt & Adjuncts'[Consumption Country] in {
+			                "Botswana",
+			                "Brazil",
+			                "Ghana",
+			                "Lesotho",
+			                "Mozambique",
+			                "Namibia",
+			                "Nigeria",
+			                "South Africa",
+			                "Swaziland",
+			                "Tanzania",
+			                "Uganda",
+			                "Zambia"
+			            }, "AFR",
+			            "Others"
+			        )
+			    )
+			)
+		dataType: string
+		lineageTag: 5c3b7323-3b2b-4d2c-b69f-ef1ce07ed6a7
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Change vs. SPLY Quarter column' = ```
+			
+			VAR CurrentQtrTonnages = SUM('Malt & Adjuncts'[Tonnages])
+			VAR PreviousQtrTonnages =
+			    CALCULATE(
+			        SUM('Malt & Adjuncts'[Tonnages]),
+			        SAMEPERIODLASTYEAR('Date Table'[Date])
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(PreviousQtrTonnages),
+			        BLANK(),
+			        DIVIDE(CurrentQtrTonnages - PreviousQtrTonnages, PreviousQtrTonnages, 0)
+			    )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 49a0ccf9-94d3-4aa0-8016-b690d2e8be13
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Brewing Inputs'
+		dataType: string
+		lineageTag: b8db4ad5-161f-48cf-bdd2-d068749072b9
+		summarizeBy: none
+		sourceColumn: Brewing Inputs
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter - Year' = 'Malt & Adjuncts'[Time]
+		lineageTag: f785a3fa-0f66-4571-b54c-7161127f0c81
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year - Quarter' = (FORMAT('Malt & Adjuncts'[YearN],"YYYY") & "-"& 'Malt & Adjuncts'[Quarter])
+		lineageTag: a2fd6a44-c871-4b2e-b28b-fdc2e6c70dd2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Malt & Adjuncts-af1799bb-6444-4b28-b33e-345bfe070f07' = m
+		mode: import
+		queryGroup: 'Trend Analysis'
+		source =
+				let
+				    Source = Table.Combine({#"Adjuncts History", #"Malt History"}),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Time] <> "FY17" and [Time] <> "FY18" and [Time] <> "FY19" and [Time] <> "FY20" and [Time] <> "FY21" and [Time] <> "FY22" and [Time] <> "FY23" )),
+				    #"Appended Query" = Table.Combine({#"Filtered Rows", #"AGR History For Trend"})
+				in
+				    #"Appended Query"
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,363 @@
+table 'AGR HISTORY ANAPLAN'
+	lineageTag: 02105a9d-4567-41ce-ba56-032d6e6aead0
+
+	column 'Purchasing Document Number'
+		dataType: string
+		lineageTag: 8f2260ef-2bc1-49d4-84d2-ea9040b7f7c2
+		summarizeBy: none
+		sourceColumn: Purchasing Document Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: a6b9aedc-8b80-4684-bb7f-f916953ab4f9
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Number'
+		dataType: string
+		lineageTag: 95e45a11-48fc-4d3b-8e8d-798ae9108ebd
+		summarizeBy: none
+		sourceColumn: Item Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Type'
+		dataType: string
+		lineageTag: 1d8e90f4-3435-4482-a383-497cead550f4
+		summarizeBy: none
+		sourceColumn: Document Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Document Category'
+		dataType: string
+		lineageTag: 12ebc6bc-4bea-4653-b1a2-1d9fab4006d9
+		summarizeBy: none
+		sourceColumn: Purchasing Document Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor
+		dataType: string
+		lineageTag: 5170aedc-844b-46d2-a864-496721562eff
+		summarizeBy: none
+		sourceColumn: Vendor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		lineageTag: 81427418-4fe3-41a8-a154-c500aceddc6e
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Organization'
+		dataType: string
+		lineageTag: e2e48770-aa83-4164-a86f-4b9ae90faf1c
+		summarizeBy: none
+		sourceColumn: Purchasing Organization
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 14bf8020-772f-475d-b13e-4d43175f218a
+		summarizeBy: none
+		sourceColumn: Document Date
+
+		variation Variation
+			isDefault
+			relationship: d587bb93-86ad-4e55-b87e-2e86ea7f7fb0
+			defaultHierarchy: LocalDateTable_f005e02c-9793-48ca-a53b-bb2a8a135562.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Material Number'
+		dataType: string
+		lineageTag: 3126b1e1-6aa7-467e-af9f-2088d320850b
+		summarizeBy: none
+		sourceColumn: Material Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Type'
+		dataType: string
+		lineageTag: dafbe041-2ba4-4625-86e5-5d643a811d66
+		summarizeBy: none
+		sourceColumn: Material Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Short Text'
+		dataType: string
+		lineageTag: 84413bd6-7672-4776-bb08-7f59a0a046d8
+		summarizeBy: none
+		sourceColumn: Short Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Group'
+		dataType: string
+		lineageTag: 4ab25c3f-ed2a-4158-aaca-66fb245172d5
+		summarizeBy: none
+		sourceColumn: Material Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: d7a61a2f-9435-4143-b8c0-99b63a580866
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity2
+		dataType: double
+		lineageTag: 23e8512d-ec24-45bd-8e86-74e1dba5d45f
+		summarizeBy: sum
+		sourceColumn: Quantity2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Base Unit of Measure'
+		dataType: string
+		lineageTag: a33bb57f-7fbe-4cd7-bb8b-387f3d591a11
+		summarizeBy: none
+		sourceColumn: Base Unit of Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Movement Type'
+		dataType: string
+		lineageTag: 552550a2-9973-482b-8ab7-56d8403ccf88
+		summarizeBy: none
+		sourceColumn: Movement Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Debit/Credit Indicator'
+		dataType: string
+		lineageTag: 5be82dd5-d431-4038-b6e1-4471212f1978
+		summarizeBy: none
+		sourceColumn: Debit/Credit Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchasing Agreement Number'
+		dataType: string
+		lineageTag: aee1744f-9f2e-4a3b-b9aa-3856472845ef
+		summarizeBy: none
+		sourceColumn: Purchasing Agreement Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Number'
+		dataType: string
+		lineageTag: 17c7c5e5-c046-48da-a37c-a07a3527e214
+		summarizeBy: none
+		sourceColumn: Document Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Line Item Number'
+		dataType: string
+		lineageTag: 32f2479c-6203-43e8-8d00-0e1ddb6f2004
+		summarizeBy: none
+		sourceColumn: Document Line Item Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entry Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 713e1ef9-a576-404d-ba38-387bea8fc198
+		summarizeBy: none
+		sourceColumn: Entry Date
+
+		variation Variation
+			isDefault
+			relationship: 6722e619-ad99-4ccc-82fe-c97f51f6ce83
+			defaultHierarchy: LocalDateTable_1e71d7ec-6678-4b5b-b062-d66eefe0a804.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 39a19fdb-5ccb-4da6-a7f9-fbedc2886d7d
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantity (in Tonnes)'
+		dataType: double
+		lineageTag: 077c3dbe-5b2b-4dd8-bcb2-4843d21bae0f
+		summarizeBy: sum
+		sourceColumn: Quantity (in Tonnes)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Date Refreshed'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 55b038fa-1c4b-49d3-9407-a67b31660c52
+		summarizeBy: none
+		sourceColumn: Date Refreshed
+
+		variation Variation
+			isDefault
+			relationship: ace8ca80-5883-4667-a88c-f402db3c146c
+			defaultHierarchy: LocalDateTable_3492f11a-b136-48aa-a0e5-6155302e5c6c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 611ec00a-2ad3-4617-9a83-cc1fc4ca6997
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity_Changed
+		dataType: double
+		lineageTag: c62f457b-a035-49ab-bc16-c6f0caa74a82
+		summarizeBy: sum
+		sourceColumn: Quantity_Changed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Comments
+		dataType: string
+		lineageTag: 8d82c386-b5de-419c-bfc4-7f87e8bf7e12
+		summarizeBy: none
+		sourceColumn: Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Primary Key'
+		dataType: string
+		lineageTag: 63aa599e-4c41-47e4-8b5a-bed43d57f061
+		summarizeBy: none
+		sourceColumn: Primary Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SAP Total Quantity'
+		dataType: double
+		lineageTag: 0c920310-5efd-4d00-aa08-995b659575d2
+		summarizeBy: sum
+		sourceColumn: SAP Total Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QuarterYear
+		dataType: string
+		lineageTag: 0b27ce81-be2f-4285-94b0-f6fe071c8172
+		summarizeBy: none
+		sourceColumn: QuarterYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Updated_Qty_in_Tonnes
+		dataType: double
+		lineageTag: 08bbd5e1-14bf-4bbc-899f-741ca8ad4808
+		summarizeBy: sum
+		sourceColumn: Updated_Qty_in_Tonnes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Include/Exclude
+		dataType: string
+		lineageTag: 8d0833f0-fdb9-4a0a-8aeb-2dbf346399a7
+		summarizeBy: none
+		sourceColumn: Include/Exclude
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Year'
+		dataType: string
+		lineageTag: ea8b03d2-b191-4371-a421-62246ee4e36e
+		summarizeBy: none
+		sourceColumn: Document Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity_Changed_YTD
+		dataType: double
+		lineageTag: a995d848-3c7b-4703-b462-1f173a28aeda
+		summarizeBy: sum
+		sourceColumn: Quantity_Changed_YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SAP_Total_Quantity_YTD
+		dataType: double
+		lineageTag: 9dbce8c2-dc01-4c92-b41d-ae0b20d3d166
+		summarizeBy: sum
+		sourceColumn: SAP_Total_Quantity_YTD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Month
+		dataType: string
+		lineageTag: c7553578-f1f9-4577-8364-4de61260532b
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 1890c7ce-007a-4646-b024-52437ecca52a
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'AGR HISTORY ANAPLAN' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Sql.Database("abi-sustainability-eus.database.windows.net", "anaplandb", [Query="SELECT *#(lf)FROM [Carbon_Emissions_Reporting].[Agriculture_History]#(lf)WHERE Zone = 'SAZ'#(lf)  AND [Include/Exclude] = '0'#(lf)  AND QuarterYear != 'Q3 FY2025'#(lf)#(lf)UNION ALL#(lf)#(lf)SELECT *#(lf)FROM [Carbon_Emissions_Reporting].[Agriculture_History]#(lf)WHERE Zone = 'AFR'#(lf)  AND [Include/Exclude] = '0'#(lf)  AND QuarterYear != 'Q4 FY2025';#(lf)"]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each true),
+				    Custom1 = Table.RenameColumns(#"Filtered Rows",{{"Quantity (changed)", "Quantity_Changed"}, {"Updated Qty (Tonnes)", "Updated_Qty_in_Tonnes"}, {"Quantity (changed) YTD", "Quantity_Changed_YTD"}, {"SAP Total Quantity YTD", "SAP_Total_Quantity_YTD"}}),
+				    Custom2 = Table.TransformColumnTypes(#"Custom1",{{"Document Date", type date}, {"Entry Date", type datetime}, {"SAP Total Quantity", type number}, {"Quantity (in Tonnes)", type number}, {"Quantity_Changed", type number}, {"Updated_Qty_in_Tonnes", type number}, {"Quantity2", type number}, {"Quantity", type number}}),
+				    Custom3 = Table.AddColumn(#"Custom2", "Month", each Date.ToText([Document Date], "MMMM")),
+				    Custom4 = Table.AddColumn(#"Custom3", "MonthNumber", each Date.Month([Document Date])),
+				    Custom5 = Table.TransformColumnTypes(#"Custom4",{{"MonthNumber", Int64.Type}})
+				in
+				    Custom5
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

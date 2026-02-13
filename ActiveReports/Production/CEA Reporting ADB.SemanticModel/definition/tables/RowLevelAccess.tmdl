@@ -1,0 +1,101 @@
+table RowLevelAccess
+	lineageTag: 27f23b59-263b-423c-854e-67030a8c49f5
+
+	column Zone
+		dataType: string
+		lineageTag: 5234da84-be3c-47a3-bac3-6f7f00fa2eba
+		summarizeBy: none
+		sourceColumn: Zone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 608db6a3-8e52-40f1-aa16-a61233a8182c
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Escalation Spoc'
+		dataType: string
+		lineageTag: ab755c0f-541f-4a1f-a8c1-bb622b253b58
+		summarizeBy: none
+		sourceColumn: Escalation Spoc
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Approver Name'
+		dataType: string
+		lineageTag: 270dee76-5c05-4852-8a51-414bd9407bee
+		summarizeBy: none
+		sourceColumn: Approver Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Approver
+		dataType: string
+		lineageTag: 1283363d-fd7b-4be1-b792-b8f6222e4f24
+		summarizeBy: none
+		sourceColumn: Approver
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manager Name'
+		dataType: string
+		lineageTag: e7e5ad19-21c6-4d67-9b8f-8eeb33a34494
+		summarizeBy: none
+		sourceColumn: Manager Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manager
+		dataType: string
+		lineageTag: c42c1318-e5f7-4f12-9559-a8c0ca5aed2e
+		summarizeBy: none
+		sourceColumn: Manager
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Details '
+		dataType: string
+		lineageTag: 647ae30e-eec1-4bb2-b1b9-2e83756f8896
+		summarizeBy: none
+		sourceColumn: "Details "
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RowLevelAccess = m
+		mode: import
+		queryGroup: 'Page Level Access'
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://anheuserbuschinbev.sharepoint.com/sites/GlobalSustainabilityReporting/Shared%20Documents/Approvers%20List.xlsx"), null, true),
+				    #"MAZ - AGR_Sheet" = Source{[Item="MAZ - AGR",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"MAZ - AGR_Sheet",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Zone", type text}, {"Country", type text}, {"Escalation Spoc", type text}, {"Approver Name", type text}, {"Approver", type text}, {"Manager Name", type text}, {"Manager", type text}, {"Details ", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each ([Zone] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

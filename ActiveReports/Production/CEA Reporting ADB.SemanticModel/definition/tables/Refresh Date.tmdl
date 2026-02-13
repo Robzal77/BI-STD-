@@ -1,0 +1,32 @@
+table 'Refresh Date'
+	lineageTag: 85160b98-6bd9-400f-9b55-56955112a01a
+
+	column Datetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cf80d0c2-ef79-4636-891e-b47062e22d96
+		summarizeBy: none
+		sourceColumn: Datetime
+
+		variation Variation
+			isDefault
+			relationship: 50d7e555-5ac7-4810-9f15-2ceb8248870e
+			defaultHierarchy: LocalDateTable_74c98935-cb0c-4afe-8d8b-048003289059.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Refresh Date-0ca8a0d4-7d31-4237-8677-452efd0d6c16' = m
+		mode: import
+		source =
+				let
+				    istDateTime = DateTimeZone.FixedUtcNow(),
+				    #"Converted to Table" = #table(1, {{istDateTime}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table",{{"Column1", type datetimezone}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Column1", "Datetime"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

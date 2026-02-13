@@ -1,0 +1,97 @@
+table 'Plant Code'
+	lineageTag: c7642c8c-680a-4655-9665-c5b318a423ae
+
+	measure MappedPlantCode = ```
+			
+			    CONCATENATEX(
+			        SUMMARIZE('Plant Code', 'Plant Code'[Country], "Plant Code", 
+			        CONCATENATEX(VALUES('Plant Code'[PlantCode]), 'Plant Code'[PlantCode], ", ")), [Plant Code], ", ")
+			```
+		lineageTag: d8270a77-1df8-4b7d-9d1e-def2c949293e
+
+	column PlantCodeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d5b817d-9862-44a3-b258-ca99d3bcd1a0
+		summarizeBy: count
+		sourceColumn: PlantCodeKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 38bc0b56-94f0-4f2a-a7d2-205134682e94
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompanyCode
+		dataType: string
+		lineageTag: 8b2ceec5-0651-46f7-8da3-efa915f8676a
+		summarizeBy: none
+		sourceColumn: CompanyCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantCode
+		dataType: string
+		lineageTag: 122c8c18-6613-424e-be3e-613c5eba0f5f
+		summarizeBy: none
+		sourceColumn: PlantCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		lineageTag: 73603c6d-4ac8-4926-815e-5fee730afbde
+		summarizeBy: none
+		sourceColumn: Scope
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 68e7499d-84bc-470c-a9ab-f55acfdee37b
+		summarizeBy: none
+		sourceColumn: Zone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3af4a32e-5b6f-4b43-a217-1fa0022c45ff
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Plant Code' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Sql.Database("abi-sustainability-eus.database.windows.net", "anaplandb"),
+				    Carbon_Emissions_Reporting_PlantCode = Source{[Schema="Carbon_Emissions_Reporting",Item="PlantCode"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(Carbon_Emissions_Reporting_PlantCode,{"SAP", "DateCreated", "DateUpdated", "UserCreated", "UserUpdated"}),
+				    #"Sorted Rows" = Table.Sort(#"Removed Columns",{{"PlantCode", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_ResultType = Table
+

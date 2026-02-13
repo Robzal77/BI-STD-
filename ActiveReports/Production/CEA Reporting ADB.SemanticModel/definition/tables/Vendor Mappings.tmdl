@@ -1,0 +1,144 @@
+table 'Vendor Mappings'
+	lineageTag: f8a31587-b38f-426a-b6b5-0422a886a9d0
+
+	column 'Vendor Name'
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 8a8b7267-c78d-4eaf-9e91-f13eb1157a38
+		summarizeBy: none
+		sourceColumn: Vendor Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Supplier'
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: bd7d8eb3-2d70-4ace-9a12-444ddd1e2981
+		summarizeBy: none
+		sourceColumn: Master Supplier
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Malting Facility'
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 41f5d71b-18ad-4b97-9c0c-b73c4a5fdf87
+		summarizeBy: none
+		sourceColumn: Malting Facility
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location of Maltings'
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: af7f94ba-ee43-4981-bbc7-4bcee054a2ab
+		summarizeBy: none
+		sourceColumn: Location of Maltings
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country of Maltings'
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 882b0733-78f2-4fa8-87b8-be8624efe48e
+		summarizeBy: none
+		sourceColumn: Country of Maltings
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Barley Origin'
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 06888d1e-3efc-4591-a53e-bf2a9b4d1b38
+		summarizeBy: none
+		sourceColumn: Barley Origin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		sourceProviderType: nvarchar(10)
+		lineageTag: 84fc5830-de17-480e-a10c-b4cf91fbbf03
+		summarizeBy: none
+		sourceColumn: Zone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: nvarchar(20)
+		lineageTag: e825b30f-6f69-4df6-ada0-5bb6e7c27fa4
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: string
+		sourceProviderType: nvarchar(10)
+		lineageTag: aca1bacc-e675-4dd1-9233-63482ae107f0
+		summarizeBy: none
+		sourceColumn: Created
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Type'
+		dataType: string
+		sourceProviderType: nvarchar(10)
+		lineageTag: 981f6b82-1cb6-44bf-b1d3-c3e1040f9446
+		summarizeBy: none
+		sourceColumn: Material Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column scope
+		dataType: string
+		sourceProviderType: nvarchar(15)
+		lineageTag: cba8208a-512a-4f20-9cbb-c4ca96137e42
+		summarizeBy: none
+		sourceColumn: scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor ID'
+		dataType: string
+		lineageTag: 1313dced-e8aa-4bc6-8d19-8bec6b751a02
+		summarizeBy: none
+		sourceColumn: Vendor ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Vendor Mappings-23d27ce4-07c6-4662-a12a-1e5ce835bd01' = m
+		mode: import
+		queryGroup: 'Mapping Files'
+		source =
+				let
+				    Source = Sql.Database("abi-sustainability-eus.database.windows.net", "anaplandb"),
+				    Carbon_Emissions_Reporting_Vendor_Mapping = Source{[Schema="Carbon_Emissions_Reporting",Item="Vendor_Mapping"]}[Data]
+				in
+				    Carbon_Emissions_Reporting_Vendor_Mapping
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

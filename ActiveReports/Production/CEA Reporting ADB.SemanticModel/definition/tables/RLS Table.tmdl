@@ -1,0 +1,54 @@
+table 'RLS Table'
+	lineageTag: 8123d277-4f2d-4b84-af16-9ccf89ed8ffb
+
+	column 'User Email'
+		dataType: string
+		lineageTag: 4ebffd0a-f331-49dc-ae5c-25423a2c22a3
+		summarizeBy: none
+		sourceColumn: User Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RLS Type'
+		dataType: string
+		lineageTag: b2b7e848-5bc3-463d-83fb-1fe3cceb396e
+		summarizeBy: none
+		sourceColumn: RLS Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 349bb92a-ed30-4da7-bde6-cdf5e0054922
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 74d3a422-f276-474e-aecc-ac432ca47a02
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'RLS Table' = m
+		mode: import
+		queryGroup: 'Page Level Access'
+		source =
+				let
+				    Source = SharePoint.Files("https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each [Folder Path] = "https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"),
+				    #"RLS and PLS xlsx_https://anheuserbuschinbev sharepoint com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/" = #"Filtered Rows"{[Name="RLS and PLS.xlsx",#"Folder Path"="https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"]}[Content],
+				    #"Imported Excel Workbook" = Excel.Workbook(#"RLS and PLS xlsx_https://anheuserbuschinbev sharepoint com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"),
+				    RLS_Sheet = #"Imported Excel Workbook"{[Item="RLS",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(RLS_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"User Email", type text}, {"RLS Type", type text}, {"Zone", type text}, {"Country", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

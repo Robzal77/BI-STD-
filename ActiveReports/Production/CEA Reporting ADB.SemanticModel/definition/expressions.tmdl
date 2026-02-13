@@ -1,0 +1,243 @@
+expression 'Adjuncts History' =
+		let
+		    Source = Excel.Workbook(Web.Contents("https://anheuserbuschinbev.sharepoint.com/sites/GlobalCommandCenter/Shared%20Documents/India%20BU%20Reporting/Sustainability/AGR%20volumes_FY17%20-%20FY23.xlsx"), null, true),
+		    Adjuncts_Sheet = Source{[Item="Adjuncts",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Adjuncts_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Adjuncts Volumes (T) per supplier", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}, {"Column25", type any}, {"Column26", type any}, {"Column27", type any}, {"Column28", type any}, {"Column29", type any}, {"Column30", type any}, {"Column31", type any}, {"Column32", type any}, {"Column33", type any}, {"Column34", type any}}),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"Country L4", type text}, {"Brewing inputs - Adjuncts", type text}, {"AGR - Adjuncts suppliers", type text}, {"Q1 FY17", Int64.Type}, {"Q2 FY17", Int64.Type}, {"Q3 FY17", Int64.Type}, {"Q4 FY17", Int64.Type}, {"FY17", Int64.Type}, {"Q1 FY18", Int64.Type}, {"Q2 FY18", Int64.Type}, {"Q3 FY18", Int64.Type}, {"Q4 FY18", Int64.Type}, {"FY18", Int64.Type}, {"Q1 FY19", Int64.Type}, {"Q2 FY19", Int64.Type}, {"Q3 FY19", Int64.Type}, {"Q4 FY19", Int64.Type}, {"FY19", Int64.Type}, {"Q1 FY20", type number}, {"Q2 FY20", type number}, {"Q3 FY20", Int64.Type}, {"Q4 FY20", Int64.Type}, {"FY20", Int64.Type}, {"Q1 FY21", Int64.Type}, {"Q2 FY21", Int64.Type}, {"Q3 FY21", type number}, {"Q4 FY21", Int64.Type}, {"FY21", Int64.Type}, {"Q1 FY22", Int64.Type}, {"Q2 FY22", Int64.Type}, {"Q3 FY22", type number}, {"Q4 FY22", Int64.Type}, {"FY22", Int64.Type}, {"Q1 FY23", type number}}),
+		    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type1", {"Country L4", "Brewing inputs - Adjuncts", "AGR - Adjuncts suppliers"}, "Attribute", "Value"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Time"}, {"Value", "Tonnages"}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([Time] <> "FY17" and [Time] <> "FY18" and [Time] <> "FY19" and [Time] <> "Q1 FY17" and [Time] <> "Q1 FY18" and [Time] <> "Q1 FY19" and [Time] <> "Q2 FY17" and [Time] <> "Q2 FY18" and [Time] <> "Q2 FY19" and [Time] <> "Q3 FY17" and [Time] <> "Q3 FY18" and [Time] <> "Q3 FY19" and [Time] <> "Q4 FY17" and [Time] <> "Q4 FY18" and [Time] <> "Q4 FY19" and [Time] <> "Q1 FY23")),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Filtered Rows",{"Time", "Country L4", "Brewing inputs - Adjuncts", "AGR - Adjuncts suppliers", "Tonnages"}),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Reordered Columns",{{"Country L4", "Consumption Country"}, {"Brewing inputs - Adjuncts", "Brewing Inputs"}, {"AGR - Adjuncts suppliers", "Supplier Name"}})
+		in
+		    #"Renamed Columns1"
+	lineageTag: 8e3bc60b-1d89-458c-96fb-9d19acf2e6e8
+	queryGroup: 'Trend Analysis'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Malt History' =
+		let
+		    Source = Excel.Workbook(Web.Contents("https://anheuserbuschinbev.sharepoint.com/sites/GlobalCommandCenter/Shared%20Documents/India%20BU%20Reporting/Sustainability/AGR%20volumes_FY17%20-%20FY23.xlsx"), null, true),
+		    Malt_Sheet = Source{[Item="Malt",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Malt_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Time", type text}, {"Consumption Country", type text}, {"Supplier", type text}, {"Malt volume", type number}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Time] <> "Q4 FY17" and [Time] <> "Q4 FY18" and [Time] <> "Q4 FY19" and [Time] <> "Q1 FY23")),
+		    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Brewing Inputs", each "Malt"),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Added Custom",{"Time", "Consumption Country", "Brewing Inputs", "Supplier", "Malt volume"}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Reordered Columns",{{"Brewing Inputs", type text}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"Supplier", "Supplier Name"}, {"Malt volume", "Tonnages"}, {"Brewing Inputs", "Brewing Inputs"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: 5014b057-5668-46a8-8306-2b772aa66f4d
+	queryGroup: 'Trend Analysis'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Sub Divisions' =
+		let
+		    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("jZPRboIwFIZf5cQrTeZDbI5o4hLJmOHCeFFonY2lJW3JsrffYQOF2eK5gXLy/X//c3I4HGZ7JzicjIVdDmvFnINsu3ew7D7mfjE7Pk1gK2u+NHKZF0K5BUGgjGusQMmzaiqpZVMRVG+sQPt77l34xmpWKEFKH8NHXQTiRHWkZmLqWFMrpq8X4PHFcNldETCPwLFO/uGJ5lFnrEJhvMfYneLaZFcPZL8X0WaUJh+9oD3WVmC1ClwwAG/OKY7Vy3LaNzbu31HBRXy20DZZt8NjUmN7DlxkjCMNJQcudBulv6V9zbHwkCR6j7eSWV4YfDxGs7OV+gK5ZTV9b7skUFrmQzsQ/VviuUZrSaEmgw+4jVyWRk9vKiVggJ6MMFzTuOuAmnRjSvVcbgyHGgvCB5oagJvXNCGBt3yKfQuLGk5wJrKZt8KXZzhJVf2Bxx8=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [SubDivisions = _t]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"SubDivisions", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: a42a5540-6bf8-4568-b972-045d4f271d9d
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PLS =
+		let
+		    Source = SharePoint.Files("https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each [Folder Path] = "https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"),
+		    #"RLS and PLS xlsx_https://anheuserbuschinbev sharepoint com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/" = #"Filtered Rows"{[Name="RLS and PLS.xlsx",#"Folder Path"="https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"]}[Content],
+		    #"Imported Excel Workbook" = Excel.Workbook(#"RLS and PLS xlsx_https://anheuserbuschinbev sharepoint com/sites/Sustinability/Shared Documents/General/PBI & Flow QA/Power BI/"),
+		    PLS_Sheet = #"Imported Excel Workbook"{[Item="PLS",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(PLS_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PageName", type text}, {"User Email", type text}, {"Zone", type text}}),
+		    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "ID", each if [PageName] = "Agriculture" then 1 else if [PageName] = "Packaging" then 2 else if [PageName] = "Zonal Filters" then 3 else if [PageName] = "Trend Analysis" then 4 else if [PageName] = "New Vendor Creation" then 5 else if [PageName] = "Raw Data" then 6 else null),
+		    #"Filtered Rows1" = Table.SelectRows(#"Added Conditional Column", each [ID] <> null),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Filtered Rows1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+		in
+		    #"Removed Blank Rows"
+	lineageTag: f33608c2-a0c2-450f-a7a8-420c5be1b767
+	queryGroup: 'Page Level Access'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression PageLevelAccessBKP =
+		let
+		    Source = Excel.Workbook(Web.Contents("https://anheuserbuschinbev.sharepoint.com/sites/GlobalSustainabilityReporting/Shared%20Documents/PageLevelAccess.xlsx"), null, true),
+		    PageAccess_Table = Source{[Item="PageAccess",Kind="Table"]}[Data],
+		    #"Filtered Rows" = Table.SelectRows(PageAccess_Table, each ([ID] <> null)),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"User Email", type text}, {"PageName", type text}}),
+		    #"Cleaned Text" = Table.TransformColumns(#"Changed Type",{{"PageName", Text.Clean, type text}}),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Cleaned Text", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+		in
+		    #"Removed Blank Rows"
+	lineageTag: 99c44aa9-20ba-48e1-8dde-e3e2209340fc
+	queryGroup: 'Page Level Access'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'DirectQuery to AS - Product_NPS_Share_Point_List' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/Brewdat%20PROD%20-%20GHQ%20-%20PBS", "Product_NPS_Share_Point_List"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: 417ee901-fc57-4d88-aec4-530b959aea3e
+
+	annotation PBI_IncludeFutureArtifacts = True
+
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 0373ba8b-fd04-4b75-b9f8-2a1e6eb16ae0
+	queryGroup: 'Trend Analysis\Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File' =
+		let
+		    Source = Excel.Workbook(Parameter1, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 92accd9f-e7b0-4bc0-841e-5d303c4f9c05
+	queryGroup: 'Trend Analysis\Transform File from Query1'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File' =
+		let
+		    Source = SharePoint.Files("https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Malt supplier details.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 251c2ec5-47eb-4769-b92f-906353cc2604
+	queryGroup: 'Trend Analysis\Transform File from Query1\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1 as binary) => let
+		    Source = Excel.Workbook(Parameter1, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: 81fe7a86-edda-4cbd-a84c-7f4a358a220c
+	queryGroup: 'Trend Analysis\Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter2 = #"Sample File (2)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (2)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 7573f353-cb5b-4a44-86fc-fde3d3c969f6
+	queryGroup: 'Trend Analysis\Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (2)' =
+		let
+		    Source = Excel.Workbook(Parameter2, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: f41b4cfc-9df8-4930-a0ae-f7126705d8ac
+	queryGroup: 'Trend Analysis\Transform File from Query1 (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (2)' =
+		let
+		    Source = SharePoint.Files("https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Adjuncts supplier details.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 802b34fe-ef8b-4f91-806d-e58b0845e3a1
+	queryGroup: 'Trend Analysis\Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (2)' =
+		let
+		    Source = (Parameter2 as binary) => let
+		    Source = Excel.Workbook(Parameter2, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (2)""}" ]
+	lineageTag: ef9bdc7e-547f-4fa4-8d43-013b45ac0d74
+	queryGroup: 'Trend Analysis\Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter3 = #"Sample File (3)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (3)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 98592170-1e33-4774-bce4-9551ef2eff2c
+	queryGroup: 'Trend Analysis\Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (3)' =
+		let
+		    Source = Excel.Workbook(Parameter3, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 6ebd4300-a164-4b26-971c-82c2c1da2420
+	queryGroup: 'Trend Analysis\Transform File from Query1 (3)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (3)' =
+		let
+		    Source = SharePoint.Files("https://anheuserbuschinbev.sharepoint.com/sites/Sustinability/", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Packaging supplier details.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 309d5e19-3433-473d-8c2e-26af4bcf0623
+	queryGroup: 'Trend Analysis\Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (3)' =
+		let
+		    Source = (Parameter3 as binary) => let
+		    Source = Excel.Workbook(Parameter3, null, true),
+		    #"Sheet 1_Sheet" = Source{[Item="Sheet 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Sheet 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (3)""}" ]
+	lineageTag: 8232d48c-46ac-4ce3-905c-56f45c0a5c80
+	queryGroup: 'Trend Analysis\Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+

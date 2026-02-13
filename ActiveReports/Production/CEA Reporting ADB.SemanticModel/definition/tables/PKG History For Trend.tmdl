@@ -1,0 +1,70 @@
+table 'PKG History For Trend'
+	lineageTag: 98d985f3-bc7a-423d-b422-479830d70e98
+
+	column Time
+		dataType: string
+		lineageTag: bb29141e-9d99-49de-bf32-fc488b1af322
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 0137d7d5-1cd1-465c-9dd5-172575fac111
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: b279c976-d5de-4055-9fa8-356461eb6a8e
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		lineageTag: 1ee33ed3-7e34-4955-99f5-28881ab273f9
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubDivision
+		dataType: string
+		lineageTag: 7c050dfa-4f52-429c-9bad-0111d6940e29
+		summarizeBy: none
+		sourceColumn: SubDivision
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tonnages
+		dataType: double
+		lineageTag: 65bffbbf-8b58-4708-998d-8dbdd9fe2450
+		summarizeBy: sum
+		sourceColumn: Tonnages
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'PKG History For Trend' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3351803597239433.13.azuredatabricks.net", "sql/protocolv1/o/3351803597239433/1007-083530-q0c3rf79", [Catalog="brewdat_uc_supchn_dev", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="brewdat_uc_supchn_dev",Kind="Database"]}[Data], "SELECT * FROM gld_ghq_sustainability_sustainabilityrep.packaging_history#(lf)WHERE Include_Exclude = '0'", null, [EnableFolding=true]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"Purchasing_Document_Number", "Purchasing Document Number"}, {"Item_Number", "Item Number"}, {"Document_Type", "Document Type"}, {"Purchasing_Document_Category", "Purchasing Document Category"}, {"Purchasing_Organization", "Purchasing Organization"}, {"Supplying_Plant", "Supplying Plant"}, {"Document_Date", "Document Date"}, {"Material_Number", "Material Number"}, {"Sub_Division", "SubDivision"}, {"Short_Text", "Short Text"}, {"Material_Group", "Material Group"}, {"Material_Type", "Material Type"}, {"Base_Unit_of_Measure", "Base Unit of Measure"}, {"Movement_Type", "Movement Type"}, {"Debit_Credit_Indicator", "Debit/Credit Indicator"}, {"Purchasing_Agreement_Number", "Purchasing Agreement Number"}, {"Document_Number", "Document Number"}, {"Document_Line_Item_Number", "Document Line Item Number"}, {"Document_Year", "Document Year"}, {"Entry_Date", "Entry Date"}, {"Primary_Key", "Primary Key"}, {"Date_Refreshed", "Date Refreshed"}, {"Include_Exclude", "Include/Exclude"}, {"SAP_Total_Quantity", "SAP Total Quantity"}, {"Quantity_in_Tonnes", "Quantity (in Tonnes)"}, {"Conversion_Factor", "Conversion Factor"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"Supplier", "SubDivision", "Country", "Zone", "QuarterYear", "Quantity (in Tonnes)"}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Removed Other Columns",{"QuarterYear", "Zone", "Country", "Supplier", "SubDivision", "Quantity (in Tonnes)"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Reordered Columns","FY20","FY",Replacer.ReplaceText,{"QuarterYear"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Replaced Value",{{"QuarterYear", "Time"}, {"Quantity (in Tonnes)", "Tonnages"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Tonnages", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

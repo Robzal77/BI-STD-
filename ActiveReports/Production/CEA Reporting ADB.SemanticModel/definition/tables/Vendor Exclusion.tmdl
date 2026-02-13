@@ -1,0 +1,70 @@
+table 'Vendor Exclusion'
+	lineageTag: 81f12839-dcce-46be-b1dd-a2c5547f50b5
+
+	column Zone
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: 5557957e-017c-43b0-997c-45dbad0bede4
+		summarizeBy: none
+		sourceColumn: Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: f5880315-76f8-4fa5-8167-554fead5eb39
+		summarizeBy: none
+		sourceColumn: Vendor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: a6a0be7b-1a26-4686-8430-979e85e736a4
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scope
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: 2659d812-47d5-4674-8bbd-f7406bb4e79b
+		summarizeBy: none
+		sourceColumn: Scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: 45156d7d-3b6b-492e-951f-8d4ce0726378
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialType
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: 9de4cb91-63df-4c45-84f0-6606ac427306
+		summarizeBy: none
+		sourceColumn: MaterialType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Vendor Exclusion' = m
+		mode: import
+		queryGroup: 'Base Tables'
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-3351803597239433.13.azuredatabricks.net", "sql/protocolv1/o/3351803597239433/1007-083530-q0c3rf79", [Catalog="brewdat_uc_supchn_dev", Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null]){[Name="brewdat_uc_supchn_dev",Kind="Database"]}[Data], "select * from slv_ghq_sustainability_dataverse.manual_vendor_exclusion", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,115 @@
+table 'Missing Mappings'
+	lineageTag: e9d89962-3241-49e9-9f63-4652abe33dc3
+
+	column 'Vendor Name'
+		dataType: string
+		lineageTag: 9c741e6a-9778-4b83-a6ff-f57012039008
+		summarizeBy: none
+		sourceColumn: Vendor Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Master Supplier'
+		dataType: string
+		lineageTag: 7c304a8b-58c1-4b3f-a309-fc4bd8d98f89
+		summarizeBy: none
+		sourceColumn: Master Supplier
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Malting Facility'
+		dataType: string
+		lineageTag: 90be678a-28cb-464e-855c-08048f7326e4
+		summarizeBy: none
+		sourceColumn: Malting Facility
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location of Maltings'
+		dataType: string
+		lineageTag: fedbedd9-eaa9-43d8-89ef-b86e7dfd59ac
+		summarizeBy: none
+		sourceColumn: Location of Maltings
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country of Maltings'
+		dataType: string
+		lineageTag: 38e55755-b5ea-41ad-9379-13c38a515268
+		summarizeBy: none
+		sourceColumn: Country of Maltings
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Barley Origin'
+		dataType: string
+		lineageTag: 3cfc203b-9f3b-422c-825c-58b6f2192bc4
+		summarizeBy: none
+		sourceColumn: Barley Origin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zone
+		dataType: string
+		lineageTag: 990c604f-916d-4cc7-99e6-0ff0994b8929
+		summarizeBy: none
+		sourceColumn: Zone
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 402155d1-7bca-40a2-ab2e-7267dc90891a
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Type'
+		dataType: string
+		lineageTag: 4d5b2ea9-83a1-442e-98a1-b918e18bf73e
+		summarizeBy: none
+		sourceColumn: Material Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column scope
+		dataType: string
+		lineageTag: 5d590f07-b40e-4548-a033-0024a92d916c
+		summarizeBy: none
+		sourceColumn: scope
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Missing Mappings-27c26b92-6bea-4bbb-902a-93cf5fe0a28c' = m
+		mode: import
+		queryGroup: 'Mapping Files'
+		source =
+				let
+				    Source = Sql.Database("abi-sustainability-eus.database.windows.net", "anaplandb"),
+				    Carbon_Emissions_Reporting_Agriculture_Malt_Mapping_tmp = Source{[Schema="Carbon_Emissions_Reporting",Item="Agriculture_Malt_Mapping_tmp"]}[Data]
+				in
+				    Carbon_Emissions_Reporting_Agriculture_Malt_Mapping_tmp
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

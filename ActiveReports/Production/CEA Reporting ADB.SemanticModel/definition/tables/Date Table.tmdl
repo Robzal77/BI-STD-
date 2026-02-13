@@ -1,0 +1,59 @@
+table 'Date Table'
+	lineageTag: 56ac2d70-9f6a-480a-9a0c-bf0c5a02138e
+
+	column Date
+		formatString: Short Date
+		lineageTag: 7232e3b6-418f-4831-8a13-9b001ee83b20
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: c2d51fed-c40f-49c9-9eda-bba5465cfacd
+			defaultHierarchy: LocalDateTable_5cf6afe1-4f03-4f37-9085-01b99eb97f1f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterShort = ```
+			
+			    SWITCH('Date Table'[Date].[Quarter],
+			        "Qtr 1", "Q1",
+			        "Qtr 2", "Q2",
+			        "Qtr 3", "Q3",
+			        "Qtr 4", "Q4",
+			       'Date Table'[Date].[Quarter]
+			    )
+			```
+		lineageTag: 3db12564-8096-4684-83bd-7b1d6bdc9b1a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year - Quarter' = (FORMAT('Date Table'[Date],"YYYY") & "-"& 'Date Table'[QuarterShort])
+		dataType: string
+		lineageTag: 74e697c3-ecea-415a-8742-0ed36479d5b9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year short' = RIGHT(YEAR('Date Table'[Date]),2)
+		lineageTag: 1c31852a-ac73-4d2c-b421-07007492d4a8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quat- year short' = 'Date Table'[QuarterShort] & "'"& 'Date Table'[Year short]
+		lineageTag: fe9e6284-0dcd-4f14-9cbf-888045533ee0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Table-335d05fc-65c4-40c7-b682-d82fbb850371' = calculated
+		mode: import
+		source =
+				
+				CALENDAR(DATE(2020,1,1),DATE(YEAR(TODAY()),12,31))
+
+	annotation PBI_Id = 8093002bce4a4feda4b3b987a3dedb1d
+
