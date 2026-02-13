@@ -51,7 +51,7 @@ def log_to_csv(log_data, log_file='logs/governance_log.csv'):
         with open(log_file, 'a', newline='', encoding='utf-8') as f:
             fieldnames = ['timestamp', 'developer', 'report_name', 'model_path', 
                          'auto_datetime_status', 'bidirectional_count', 'missing_descriptions_count',
-                         'missing_descriptions_list', 'overall_status', 'failure_count']
+                         'missing_descriptions_list', 'overall_status', 'failure_count', 'score']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             
             if not file_exists:
@@ -213,6 +213,23 @@ def check_governance(start_dir, enable_logging=True):
 
             total_failures += model_failures
             
+            # Calculate Score (0-100 scale)
+            # Start at 100, deduct points for violations
+            score = 100
+            if time_intel_enabled:
+                score -= 15
+            score -= (bidirectional_count * 10)
+            score -= (len(missing_desc_list) * 5)
+            score = max(0, score)  # Floor at 0
+            
+            # Display score
+            if score == 100:
+                print_colored(f"\n  📊 SCORE: {score}/100 - Perfect!", Colors.GREEN + Colors.BOLD)
+            elif score >= 70:
+                print_colored(f"\n  📊 SCORE: {score}/100 - Good", Colors.YELLOW)
+            else:
+                print_colored(f"\n  📊 SCORE: {score}/100 - Needs Improvement", Colors.RED)
+            
             # Log results to CSV
             if enable_logging:
                 log_data = {
@@ -225,7 +242,8 @@ def check_governance(start_dir, enable_logging=True):
                     'missing_descriptions_count': len(missing_desc_list),
                     'missing_descriptions_list': '; '.join(missing_desc_list[:5]) if missing_desc_list else '',
                     'overall_status': 'PASS' if model_failures == 0 else 'FAIL',
-                    'failure_count': model_failures
+                    'failure_count': model_failures,
+                    'score': score
                 }
                 log_to_csv(log_data)
             

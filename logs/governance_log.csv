@@ -34,3 +34,5 @@ timestamp,developer,report_name,model_path,auto_datetime_status,bidirectional_co
 >>>>>>> Stashed changes
 2026-02-01 20:41:48,robza,AbinBev Theme File,C:\Users\robza\OneDrive\BI_Ops_Factory\BI-STD\Project\AbinBev Theme File.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0
 2026-02-01 20:41:48,robza,Local TEST,C:\Users\robza\OneDrive\BI_Ops_Factory\BI-STD\Project\Local TEST.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0
+2026-02-13 08:21:24,robza,Local TEST,C:\Users\robza\OneDrive\BI_Ops_Factory\BI-STD\ActiveReports\LocalTest\Local TEST.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0,100
+2026-02-13 08:21:36,robza,Local TEST,C:\Users\robza\OneDrive\BI_Ops_Factory\BI-STD\ActiveReports\LocalTest\Local TEST.SemanticModel\definition\model.tmdl,PASS,0,0,,PASS,0,100
