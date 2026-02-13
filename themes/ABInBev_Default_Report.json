@@ -39,7 +39,7 @@
                 ],
                 "dropShadow": [
                     {
-                        "show": true,
+                        "show": false,
                         "color": {
                             "solid": {
                                 "color": "#000000"

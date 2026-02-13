@@ -3,7 +3,7 @@
 **Report Name:** CEA Ranking
 **Version:** 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
 **Generated:** February 13, 2026
-**Architect:** 40103427
+**Architect:** robza
 
 ---
 
