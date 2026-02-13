@@ -30,6 +30,8 @@ BI-STD/
 │   ├── generate_live_docs.py      # Skips Archive & Templates
 │   ├── batch_test_runner.py
 │   ├── wiki_builder.py            # Skips Archive & Templates
+│   ├── car_wash.py                # 🚿 NEW: Auto-fix governance violations
+│   ├── batch_runner.py            # 🏭 NEW: Batch process multiple reports
 │   └── markdown_to_html.py
 │
 ├── 📂 Themes/                     # Power BI themes
@@ -128,13 +130,35 @@ Reports must pass all checks to get documentation:
 3. **Documentation**
    - All measures must have descriptions
 
+## 📊 Quality Scoring System (NEW!)
+
+Every governance check now provides a **0-100 score** for precise quality tracking:
+
+**How Scores Work:**
+- Start at **100 points**
+- **-15 points** if Auto Date/Time is enabled
+- **-10 points** per bidirectional relationship
+- **-5 points** per missing measure description
+
+**Score Categories:**
+- 🎉 **100**: Perfect! (Green)
+- ⚠️ **70-99**: Good (Yellow)  
+- ❌ **0-69**: Needs Improvement (Red)
+
+**Example:**
+```
+Auto DateTime ON + 2 bidirectional + 3 missing descriptions
+= 100 - 15 - 20 - 15 = 50/100
+```
+
 ## 📝 Logs
 
 All governance check results are logged to:
-- `Logs/governance_log.csv` - Individual governance checks
+- `Logs/governance_log.csv` - Individual governance checks **+ Scores**
 - `Logs/batch_run_results.csv` - Batch test results
+- `Logs/batch_processing_log.csv` - **NEW:** Batch runner pre/post scores
 
-**Columns:**
+**governance_log.csv Columns:**
 - Timestamp
 - Developer (Windows username)
 - Report name
@@ -142,6 +166,7 @@ All governance check results are logged to:
 - Bidirectional filter count
 - Missing descriptions count
 - Overall status (PASS/FAIL)
+- **Score (0-100)** ← NEW!
 
 ## 🎨 Themes
 
@@ -153,22 +178,82 @@ Apply theme in Power BI:
 
 ## 🔧 For Developers
 
-### Adding New Reports
+### Workflow 1: Adding New Reports (Standard)
 
 1. Create `.pbip` file in `ActiveReports/` folder
 2. Develop report following governance rules
 3. Run `Report Governance Run.bat`
-4. Fix any governance failures
-5. Documentation auto-generates on 100% pass (Markdown + HTML)
+4. Check your **score** (aim for 100/100)
+5. Fix any governance failures
+6. Documentation auto-generates on 100% pass (Markdown + HTML)
 
-### Best Practices
+### Workflow 2: Auto-Fix Single Report 🚿 **NEW!**
 
-- **Always** add descriptions to measures
-- **Never** use bidirectional relationships
-- **Always** disable Auto Date/Time in model settings
-- **Check** governance before committing to Git
+If your report has governance violations, use the **Car Wash** to auto-fix:
 
-### Batch Testing Workflow
+```bash
+# Step 1: Check current score
+python Validators/check_governance.py "ActiveReports/YourFolder/YourReport"
+# Output: 📊 SCORE: 85/100 - Good
+
+# Step 2: Auto-fix violations
+python Scripts/car_wash.py "ActiveReports/YourFolder/YourReport"
+# Fixes: Auto Date/Time, injects AB InBev theme, removes color overrides
+
+# Step 3: Verify improvement
+python Validators/check_governance.py "ActiveReports/YourFolder/YourReport"
+# Output: 📊 SCORE: 100/100 - Perfect!
+```
+
+**What Car Wash Fixes Automatically:**
+- ✅ Disables Auto Date/Time in TMDL
+- ✅ Injects AB InBev corporate theme
+- ✅ Scans visuals for hardcoded color overrides
+
+### Workflow 3: Batch Process Multiple Reports 🏭 **NEW!**
+
+Process multiple reports at once with pre/post scoring:
+
+```bash
+# Process all reports in a folder
+python Scripts/batch_runner.py "ActiveReports/Production"
+```
+
+**What Happens:**
+
+For **EACH** report:
+1. 📋 PRE-WASH governance check → Record score
+2. 🚿 Car Wash (if score < 100) → Auto-fix violations
+3. 📋 POST-WASH governance check → Record new score
+4. 📝 Auto-generate docs (if score = 100) → Live documentation created
+
+**Example Output:**
+```
+📊 BATCH PROCESSING SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Projects: 5
+   ✅ Passing: 4
+   🚿 Auto-Fixed: 3
+
+Detailed Results:
+Project          PRE   POST   Improvement   Docs
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sales_Report     85    100    +15%          ✓
+Inventory_Dash   70    100    +30%          ✓
+Customer_KPIs    100   100    0%            ✓
+Finance_Report   90    100    +10%          ✓
+HR_Dashboard     65    95     +30%          -
+
+📁 Results saved to: Logs/batch_processing_log.csv
+```
+
+**Benefits:**
+- ✅ Process 10+ reports in minutes
+- ✅ Track before/after quality improvements
+- ✅ Auto-generate documentation for all compliant reports
+- ✅ Clear CSV logs for audit trails
+
+### Workflow 4: Traditional Batch Testing
 
 1. Copy reports to `BatchTesting/` folder
 2. Run `Bulk PBI Analysis.bat`
@@ -182,9 +267,25 @@ Apply theme in Power BI:
 - Step-by-step fix instructions
 - Exact Power BI menu paths
 
+### Best Practices
+
+- **Always** add descriptions to measures
+- **Never** use bidirectional relationships
+- **Always** disable Auto Date/Time in model settings
+- **Use Car Wash** for quick fixes before committing
+- **Run batch_runner** for multiple reports at once
+- **Check scores** - aim for 100/100 before deployment
+
 ## 🆕 What's New
 
-### Recent Improvements:
+### 🎉 POC Framework (February 2026) - "10/10 Standardization"
+- ✅ **Quality Scoring (0-100)**: Quantitative metrics replace PASS/FAIL
+- ✅ **Car Wash Script**: Auto-fix governance violations in seconds
+- ✅ **Batch Runner**: Process multiple reports with before/after tracking
+- ✅ **Live Documentation**: Auto-generated for 100% compliant reports
+- ✅ **CSV Audit Trails**: Complete score history and batch run logs
+
+### Previous Improvements:
 - ✅ **Folder Reorganization**: Cleaner, more professional naming
 - ✅ **HTML Documentation**: Auto-generated HTML alongside Markdown
 - ✅ **Enhanced Batch Testing**: Detailed action items for developers

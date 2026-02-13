@@ -1,0 +1,43 @@
+======================================================================
+POWER BI GOVERNANCE REPORT
+======================================================================
+Project: CEA Reporting ADB
+Date: 2026-02-13 10:51:16
+Developer: robza
+Score: 0/100
+
+----------------------------------------------------------------------
+PERFORMANCE CHECKS
+----------------------------------------------------------------------
+❌ Auto Date/Time: FAIL
+   Fix: Open Project Settings -> Data Load -> Uncheck Auto date/time
+
+----------------------------------------------------------------------
+LOGIC CHECKS
+----------------------------------------------------------------------
+✅ Bidirectional Relationships: 0 found
+
+
+----------------------------------------------------------------------
+DOCUMENTATION CHECKS
+----------------------------------------------------------------------
+⚠️ Measure Descriptions: 68 missing
+
+Missing Descriptions:
+  - AGR History.tmdl: Q1 25 Agri Final
+  - AGR History.tmdl: Deviation 24-25 Agri (Y)
+  - AGR History.tmdl: Deviation 24-25% Agri (Y)
+  - AGR History.tmdl: Q4 24 Agri
+  - AGR History.tmdl: Q4 24 Agri Final
+  - AGR History.tmdl: Deviation 24-25 Agri (M)
+  - AGR History.tmdl: Deviation 24-25% Agri (M)
+  - AGR History.tmdl: Month_Sum_Agri
+  - AGR History.tmdl: Q3 24 Agri
+  - AGR History.tmdl: Q3 25 Agri
+  ...and 58 more
+
+Fix: Add 'Description' property to these measures or use bulk description tool
+
+----------------------------------------------------------------------
+OVERALL STATUS: FAIL
+----------------------------------------------------------------------

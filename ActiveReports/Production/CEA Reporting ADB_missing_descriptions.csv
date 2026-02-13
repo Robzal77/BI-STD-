@@ -1,0 +1,4 @@
+table_file,measure_name,current_description,new_description
+AGR History.tmdl,Q1 24 Agri,,Q1 FY2024 agriculture quantity in tonnes
+AGR History.tmdl,Q1 24 Agri Final,,Q1 FY2024 agriculture quantity with NA handling
+AGR History.tmdl,Q1 25 Agri,,Q1 FY2025 agriculture quantity in tonnes

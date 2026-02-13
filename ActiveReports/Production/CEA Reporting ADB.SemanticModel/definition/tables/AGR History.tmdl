@@ -1,17 +1,20 @@
-table 'AGR History'
+﻿table 'AGR History'
 	lineageTag: 48c25e45-b0e6-4997-bc9c-acc9e8eae693
 
 	measure 'Q1 24 Agri' = CALCULATE(SUM('AGR History'[Quantity (in Tonnes)]),'AGR History'[QuarterYear]="Q1 FY2024")
+    description = "Q1 FY2024 agriculture quantity in tonnes"
 		lineageTag: 0f1bc0ed-23e0-41eb-905f-c5d7457027a3
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Q1 24 Agri Final' = IF(ISBLANK([Q1 24 Agri]),"NA",[Q1 24 Agri])
+    description = "Q1 FY2024 agriculture quantity with NA handling"
 		lineageTag: 080fa79b-777d-4fe3-a6f5-05d2318b6605
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Q1 25 Agri' = CALCULATE(SUM('AGR History'[Quantity (in Tonnes)]),'AGR History'[QuarterYear]="Q1 FY2025")
+    description = "Q1 FY2025 agriculture quantity in tonnes"
 		lineageTag: 9a7ee60b-f6f1-4f0d-b518-b82b0b123763
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

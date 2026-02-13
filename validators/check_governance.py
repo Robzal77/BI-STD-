@@ -61,6 +61,60 @@ def log_to_csv(log_data, log_file='logs/governance_log.csv'):
     except Exception as e:
         print_colored(f"  ⚠️ Warning: Failed to write log: {e}", Colors.YELLOW)
 
+def generate_governance_report_file(report_data, output_path):
+    """Generate individual governance report file for a project"""
+    try:
+        report_content = f"""{'='*70}
+POWER BI GOVERNANCE REPORT
+{'='*70}
+Project: {report_data['project_name']}
+Date: {report_data['timestamp']}
+Developer: {report_data['developer']}
+Score: {report_data['score']}/100
+
+{'-'*70}
+PERFORMANCE CHECKS
+{'-'*70}
+{('✅' if report_data['auto_datetime_status'] == 'PASS' else '❌')} Auto Date/Time: {report_data['auto_datetime_status']}
+{'   Fix: Open Project Settings -> Data Load -> Uncheck Auto date/time' if report_data['auto_datetime_status'] == 'FAIL' else ''}
+
+{'-'*70}
+LOGIC CHECKS
+{'-'*70}
+{('✅' if report_data['bidirectional_count'] == 0 else '❌')} Bidirectional Relationships: {report_data['bidirectional_count']} found
+{'   Fix: Change filter direction to Single in Model View' if report_data['bidirectional_count'] > 0 else ''}
+
+{'-'*70}
+DOCUMENTATION CHECKS
+{'-'*70}
+{('✅' if report_data['missing_descriptions_count'] == 0 else '⚠️')} Measure Descriptions: {report_data['missing_descriptions_count']} missing
+"""
+        
+        # Add missing descriptions list if any
+        if report_data['missing_descriptions_list']:
+            report_content += "\nMissing Descriptions:\n"
+            for desc in report_data['missing_descriptions_list'][:10]:  # Show first 10
+                report_content += f"  - {desc}\n"
+            if len(report_data['missing_descriptions_list']) > 10:
+                report_content += f"  ...and {len(report_data['missing_descriptions_list']) - 10} more\n"
+            report_content += "\nFix: Add 'Description' property to these measures or use bulk description tool\n"
+        
+        report_content += f"""
+{'-'*70}
+OVERALL STATUS: {report_data['overall_status']}
+{'-'*70}
+"""
+        
+        # Write report file
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(report_content)
+        
+        return True
+    except Exception as e:
+        print_colored(f"  ⚠️ Warning: Failed to generate report file: {e}", Colors.YELLOW)
+        return False
+
+
 def check_governance(start_dir, enable_logging=True):
     start_dir = os.path.abspath(start_dir)
     developer = get_developer_name()
@@ -203,10 +257,36 @@ def check_governance(start_dir, enable_logging=True):
                     print_colored(f"      - {m}", Colors.YELLOW)
                 if len(missing_desc_list) > 3:
                      print_colored(f"      ...and {len(missing_desc_list)-3} more", Colors.YELLOW)
-                print_colored("      💡 FIX: Add 'Description' to these measures in the Properties pane.", Colors.YELLOW)
-                # Warning doesn't count as failure for now? User said "if warning orange".
-                # But typically documentation gaps are governance failures.
-                # Let's count it as failure for final summary but show as orange.
+                print_colored("      💡 FIX: Use bulk description tool to add descriptions", Colors.YELLOW)
+                
+                # Auto-export CSV for bulk editing
+                if '.SemanticModel' in root:
+                    parts = root.split(os.sep)
+                    for i, part in enumerate(parts):
+                        if part.endswith('.SemanticModel'):
+                            parent_dir = os.sep.join(parts[:i])
+                            csv_path = os.path.join(parent_dir, f"{project_name}_missing_descriptions.csv")
+                            
+                            # Check if CSV already exists to avoid overwriting user's work
+                            if not os.path.exists(csv_path):
+                                try:
+                                    # Import export function
+                                    import importlib.util
+                                    spec = importlib.util.spec_from_file_location("export_desc", 
+                                        os.path.join(os.path.dirname(__file__), '..', 'Scripts', 'export_missing_descriptions.py'))
+                                    export_module = importlib.util.module_from_spec(spec)
+                                    spec.loader.exec_module(export_module)
+                                    
+                                    # Call export function
+                                    export_module.export_missing_descriptions(parent_dir)
+                                    print_colored(f"      📄 Created: {os.path.basename(csv_path)}", Colors.GREY)
+                                    print_colored(f"      ➡️  Next: Fill descriptions in CSV and run: python Scripts/apply_descriptions.py \"{csv_path}\"", Colors.GREY)
+                                except Exception as e:
+                                    print_colored(f"      ⚠️ Could not auto-create CSV: {e}", Colors.YELLOW)
+                            else:
+                                print_colored(f"      📄 CSV exists: {os.path.basename(csv_path)} (not overwriting)", Colors.GREY)
+                            break
+                
                 model_failures += 1 
             else:
                  print_colored("  ✅ [PASS] Documentation: All measures described", Colors.GREEN)
@@ -246,6 +326,35 @@ def check_governance(start_dir, enable_logging=True):
                     'score': score
                 }
                 log_to_csv(log_data)
+            
+            # Generate individual governance report file for this project
+            # Determine output path (same folder as .pbip file)
+            report_file_path = None
+            if '.SemanticModel' in root:
+                parts = root.split(os.sep)
+                for i, part in enumerate(parts):
+                    if part.endswith('.SemanticModel'):
+                        parent_dir = os.sep.join(parts[:i])
+                        report_file_name = f"{project_name}_GOVERNANCE_REPORT.txt"
+                        report_file_path = os.path.join(parent_dir, report_file_name)
+                        break
+            
+            if report_file_path:
+                report_data = {
+                    'project_name': project_name,
+                    'timestamp': timestamp,
+                    'developer': developer,
+                    'score': score,
+                    'auto_datetime_status': 'PASS' if not time_intel_enabled else 'FAIL',
+                    'bidirectional_count': bidirectional_count,
+                    'missing_descriptions_count': len(missing_desc_list),
+                    'missing_descriptions_list': missing_desc_list,
+                    'overall_status': 'PASS' if model_failures == 0 else 'FAIL'
+                }
+                
+                if generate_governance_report_file(report_data, report_file_path):
+                    print_colored(f"  📄 Governance Report: {os.path.basename(report_file_path)}", Colors.GREY)
+
             
             # Auto-generate documentation for this report ONLY if all checks passed
             if '.SemanticModel' in root and model_failures == 0:

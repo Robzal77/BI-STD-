@@ -44,7 +44,9 @@ def extract_measures_from_tmdl(file_path):
         content = f.read()
     
     # Find all measure blocks
-    measure_pattern = r"measure\s+'([^']+)'\s*=([^}]+?)(?=\n\nmeasure|\n\ncolumn|\n\ntable|\Z)"
+    # Match: measure 'Name' = ... (until next measure/column/table or end)
+    # Using negative lookahead to stop at next top-level element (not indented)
+    measure_pattern = r"measure\s+'([^']+)'\s*=(.*?)(?=\n(?:measure|column|table|partition)\s|$)"
     matches = re.finditer(measure_pattern, content, re.DOTALL | re.MULTILINE)
     
     for match in matches:
@@ -73,15 +75,13 @@ def export_missing_descriptions(project_path):
     if project_path.endswith('.pbip'):
         project_path = project_path[:-5]  # Remove .pbip extension
     
-    # Look for SemanticModel folder
-    semantic_model_dir = None
-    for item in os.listdir(os.path.dirname(project_path)):
-        if item.endswith('.SemanticModel'):
-            semantic_model_dir = os.path.join(os.path.dirname(project_path), item)
-            break
+    # Look for SemanticModel folder matching the project name
+    project_name = os.path.basename(project_path)
+    expected_semantic_model = f"{project_name}.SemanticModel"
+    semantic_model_dir = os.path.join(os.path.dirname(project_path), expected_semantic_model)
     
-    if not semantic_model_dir or not os.path.exists(semantic_model_dir):
-        print_colored(f"[ERROR] Could not find .SemanticModel folder in {os.path.dirname(project_path)}", Colors.RED)
+    if not os.path.exists(semantic_model_dir):
+        print_colored(f"[ERROR] Could not find {expected_semantic_model} in {os.path.dirname(project_path)}", Colors.RED)
         return None
     
     tables_dir = os.path.join(semantic_model_dir, 'definition', 'tables')

@@ -45,10 +45,10 @@ def update_measure_description(file_path, measure_name, new_description):
         content = f.read()
     
     # Find the measure block
-    # Pattern: measure 'name' = ... (everything until next measure/column/table or end)
-    measure_pattern = rf"(measure\s+'{re.escape(measure_name)}'\s*=\s*[^\n]+(?:\n(?:    |\t)[^\n]+)*)"
+    # Must match the same pattern used in export script
+    measure_pattern = rf"(measure\s+'{re.escape(measure_name)}'\s*=.*?)(?=\n(?:measure|column|table|partition)\s|$)"
     
-    match = re.search(measure_pattern, content, re.MULTILINE)
+    match = re.search(measure_pattern, content, re.DOTALL | re.MULTILINE)
     
     if not match:
         print_colored(f"    ⚠️  Warning: Could not find measure '{measure_name}' in {os.path.basename(file_path)}", Colors.YELLOW)
@@ -87,18 +87,18 @@ def import_descriptions(csv_file_path):
         print_colored(f"[ERROR] CSV file not found: {csv_file_path}", Colors.RED)
         return False
     
-    # Get the project directory (CSV is in same folder as report)
+    # Get the project directory and name from CSV filename
+    # CSV is named: {ProjectName}_missing_descriptions.csv
     project_dir = os.path.dirname(csv_file_path)
+    csv_basename = os.path.basename(csv_file_path)
+    project_name = csv_basename.replace('_missing_descriptions.csv', '')
     
-    # Find the .SemanticModel folder
-    semantic_model_dir = None
-    for item in os.listdir(project_dir):
-        if item.endswith('.SemanticModel'):
-            semantic_model_dir = os.path.join(project_dir, item)
-            break
+    # Find the matching .SemanticModel folder
+    expected_semantic_model = f"{project_name}.SemanticModel"
+    semantic_model_dir = os.path.join(project_dir, expected_semantic_model)
     
-    if not semantic_model_dir:
-        print_colored(f"[ERROR] Could not find .SemanticModel folder in {project_dir}", Colors.RED)
+    if not os.path.exists(semantic_model_dir):
+        print_colored(f"[ERROR] Could not find {expected_semantic_model} in {project_dir}", Colors.RED)
         return False
     
     tables_dir = os.path.join(semantic_model_dir, 'definition', 'tables')
